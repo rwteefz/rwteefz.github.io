@@ -1,7 +1,7 @@
 {
   "site": {
     "shortName": "Math Archive",
-    "title": "XX大学数学课程试卷与资料",
+    "title": "SDU数学课程试卷与资料",
     "description": "一个可自由编辑、持续共建的数学课程试卷与学习资料索引。",
     "kicker": "数学课程 · 开放资料 · 持续共建",
     "introduction": "这里收录数学相关课程的往年试卷、习题、笔记与参考资料。页面借鉴学术主页的清晰结构，并将所有内容集中在一个数据文件中，便于长期维护。",
@@ -9,9 +9,9 @@
     "footer": "© 2026 Math Archive · 本站为非官方学习资料索引"
   },
   "profile": {
-    "name": "资料站维护者",
-    "motto": "我们的征途是定义、定理与证明。",
-    "institution": "XX大学数学学院",
+    "name": "rwteefz",
+    "motto": "Mathematics reveals.",
+    "institution": "山东大学",
     "links": [
       {
         "label": "your-email@example.com",
