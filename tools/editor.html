@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>rwteefz / private site editor</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b0d0c;--panel:#101412;--ink:#dfe7df;--muted:#89948b;--line:#26302a;--green:#9effa8}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}main{width:min(900px,calc(100% - 36px));margin:0 auto;padding:60px 0 100px}h1{margin:0;font-size:42px;font-weight:500;letter-spacing:-.07em}p{color:var(--muted)}.eyebrow{color:var(--green);font-size:10px;letter-spacing:.15em;text-transform:uppercase}.bar{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:30px}.bar a{color:var(--green)}.actions{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}.button{border:1px solid var(--green);padding:8px 12px;background:var(--green);color:var(--bg);font:inherit;cursor:pointer}.button.secondary{background:transparent;color:var(--green)}.button:disabled{opacity:.4;cursor:not-allowed}.json{width:100%;min-height:600px;padding:14px;border:1px solid var(--line);background:var(--panel);color:var(--green);font:12px/1.55 ui-monospace,monospace;resize:vertical;outline:0}.json:focus{border-color:var(--green)}#status{font-size:11px;color:var(--muted)}.ok{color:var(--green)!important}.bad{color:#ff7d7d!important}.hint{border-left:2px solid var(--green);padding-left:14px;font-size:12px}</style>
+</head>
+<body>
+  <main>
+    <div class="bar"><a href="../">← repository</a><span id="status">no file loaded</span></div>
+    <p class="eyebrow">private maintainer tool / runs only on your computer</p>
+    <h1>edit the node.</h1>
+    <p>Nothing here is deployed by GitHub Pages. Load <code>content/site.json</code>, edit it locally, then download the updated file and commit it back to the repository.</p>
+    <div class="actions"><label class="button secondary" for="load">load site.json</label><input id="load" type="file" accept="application/json" hidden><button class="button" id="download" disabled>download site.json ↓</button></div>
+    <textarea id="json" class="json" spellcheck="false" aria-label="site.json"></textarea>
+    <p class="hint">workflow: load → edit → download → replace <code>content/site.json</code> → commit. This page has no network calls, credentials, or upload endpoint.</p>
+  </main>
+  <script>
+    const input=document.querySelector('#load'), editor=document.querySelector('#json'), download=document.querySelector('#download'), status=document.querySelector('#status');
+    const check=()=>{try{JSON.parse(editor.value);download.disabled=false;status.textContent='valid JSON';status.className='ok'}catch{download.disabled=true;status.textContent='invalid JSON';status.className='bad'}};
+    input.addEventListener('change',async()=>{const file=input.files?.[0];if(!file)return;editor.value=await file.text();check();});
+    editor.addEventListener('input',()=>{status.textContent='unsaved changes';status.className='';check();});
+    download.addEventListener('click',()=>{const blob=new Blob([JSON.stringify(JSON.parse(editor.value),null,2)+'\n'],{type:'application/json'});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='site.json';link.click();URL.revokeObjectURL(link.href);status.textContent='downloaded';status.className='ok'});
+  </script>
+</body>
+</html>

@@ -11,6 +11,7 @@ test("exports a GitHub Pages-ready homepage", async () => {
   assert.match(html, /systems, math, and small useful things/);
   assert.match(html, /id=["']main-content["']/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
+  assert.doesNotMatch(html, /maintainer interface|local editor|download site\.json|#edit/i);
   await access(new URL("../dist/client/files/README.md", import.meta.url));
 });
 

@@ -2,9 +2,9 @@
 
 A deliberately small personal homepage: mono typography, a little terminal energy, and a single JSON file as the source of truth.
 
-## Update the page
+## Update the page privately
 
-Open `/edit/` on the published site (or `http://localhost:3000/edit/` locally). Change the quick fields or edit the JSON directly, then download `site.json`.
+The public site intentionally contains no editor or admin controls. Open [`tools/editor.html`](tools/editor.html) on your own computer, load `content/site.json`, edit it, and download the updated file.
 
 Replace `content/site.json` in the repository with that file and commit. The existing GitHub Actions workflow rebuilds and publishes the site automatically.
 
@@ -17,7 +17,7 @@ For larger edits, the main fields are:
 - `writing`: short notes or external links
 - `contact`: email call-to-action
 
-The editor is intentionally local-only: it does not need a database, login, or API token, and it never writes to GitHub on your behalf.
+The editor is intentionally local-only: it is not included in the GitHub Pages build, does not need a database, login, or API token, and never writes to GitHub on your behalf.
 
 ## Local preview
 

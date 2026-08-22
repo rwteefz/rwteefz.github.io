@@ -47,30 +47,9 @@
     }
   ],
   "projects": [
-    {
-      "number": "01",
-      "title": "math archive",
-      "tag": "open data / web",
-      "description": "A searchable, human-maintained index for course notes, exams, and the things that usually disappear into chat history.",
-      "stack": "Next.js · JSON · GitHub Pages",
-      "url": "https://github.com/rwteefz/rwteefz.github.io"
-    },
-    {
-      "number": "02",
-      "title": "tiny experiments",
-      "tag": "lab / in progress",
-      "description": "Small programs for visualising functions, testing ideas, and understanding how abstractions behave under pressure.",
-      "stack": "Python · TypeScript · whatever works",
-      "url": "https://github.com/rwteefz"
-    },
-    {
-      "number": "03",
-      "title": "this interface",
-      "tag": "meta / shipped",
-      "description": "A personal page that stays close to the source: one editable data file, one readable layout, zero framework-shaped fog.",
-      "stack": "React · CSS · local editor",
-      "url": "#edit"
-    }
+    { "number": "01", "title": "math archive", "tag": "open data / web", "description": "A searchable, human-maintained index for course notes, exams, and the things that usually disappear into chat history.", "stack": "Next.js · JSON · GitHub Pages", "url": "https://github.com/rwteefz/rwteefz.github.io" },
+    { "number": "02", "title": "tiny experiments", "tag": "lab / in progress", "description": "Small programs for visualising functions, testing ideas, and understanding how abstractions behave under pressure.", "stack": "Python · TypeScript · whatever works", "url": "https://github.com/rwteefz" },
+    { "number": "03", "title": "this interface", "tag": "meta / shipped", "description": "A personal page that stays close to the source: one readable layout, zero framework-shaped fog, and a bias toward useful defaults.", "stack": "React · CSS · GitHub Pages", "url": "https://github.com/rwteefz/rwteefz.github.io" }
   ],
   "writing": [
     {

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import siteData from "@/content/site.json";
-import { Editor } from "./Editor";
 
 const external = (url: string) => /^(https?:|mailto:)/.test(url);
 
@@ -31,7 +30,6 @@ export function ExamArchive() {
           <nav className="primary-nav" aria-label="Primary navigation">
             <a href="#work">work</a><a href="#education">education</a><a href="#writing">writing</a><a href="#contact">contact</a>
           </nav>
-          <a className="edit-link" href="#edit">edit <span>↗</span></a>
           <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label="Toggle theme" aria-pressed={dark}>{dark ? "☼" : "◐"}</button>
         </div>
       </header>
@@ -80,7 +78,6 @@ export function ExamArchive() {
           </section>
 
           <section className="contact-panel" id="contact"><p className="eyebrow">{siteData.contact.title}</p><h2>{siteData.contact.text}</h2><a className="button-link" href={`mailto:${siteData.contact.email}`}>{siteData.contact.email} <span>↗</span></a></section>
-          <section className="editor-panel" id="edit"><p className="eyebrow">maintainer interface</p><h2>keep the node alive</h2><p>Edit the site locally in a friendly form, then download a fresh <code>site.json</code> to commit to GitHub.</p><Editor /></section>
           <footer className="site-footer"><span>{siteData.site.footer}</span><span>{siteData.site.status}</span></footer>
         </div>
       </main>
