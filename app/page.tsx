@@ -9,10 +9,10 @@ export const metadata: Metadata = {
     title: siteData.site.title,
     description: siteData.site.description,
     type: "website",
-    locale: "zh_CN",
+    locale: "en_US",
     images: [
       {
-        url: "./og.png",
+        url: "/og.png",
         width: 1200,
         height: 630,
         alt: `${siteData.site.shortName} 分享封面`,
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteData.site.title,
     description: siteData.site.description,
-    images: ["./og.png"],
+    images: ["/og.png"],
   },
 };
 

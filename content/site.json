@@ -1,384 +1,45 @@
 {
   "site": {
-    "shortName": "Math Archive",
-    "title": "SDU数学课程试卷与资料",
-    "description": "一个可自由编辑、持续共建的数学课程试卷与学习资料索引。",
-    "kicker": "数学课程 · 开放资料 · 持续共建",
-    "introduction": "这里收录数学相关课程的往年试卷、习题、笔记与参考资料。页面借鉴学术主页的清晰结构，并将所有内容集中在一个数据文件中，便于长期维护。",
-    "updated": "2026-08-15",
-    "footer": "© 2026 Math Archive · 本站为非官方学习资料索引"
+    "shortName": "rwteefz",
+    "title": "rwteefz — systems, math, and small useful things",
+    "description": "Personal site of rwteefz: a compact log of learning, experiments, and shipped work.",
+    "kicker": "PERSONAL NODE / 2026",
+    "introduction": "I am a student and builder interested in mathematics, software, and the quiet space where ideas become tools.",
+    "updated": "2026-08-22",
+    "status": "currently learning · building · documenting",
+    "footer": "© 2026 rwteefz · built with plain HTML instincts and too much coffee"
   },
   "profile": {
     "name": "rwteefz",
-    "motto": "Mathematics reveals.",
-    "institution": "山东大学",
+    "role": "student / developer / curious human",
+    "motto": "make it legible, then make it useful.",
+    "location": "Shandong, China",
     "links": [
-      {
-        "label": "your-email@example.com",
-        "url": "mailto:your-email@example.com",
-        "icon": "@"
-      },
-      {
-        "label": "GitHub",
-        "url": "https://github.com/",
-        "icon": "⌘"
-      },
-      {
-        "label": "投稿说明",
-        "url": "#submission",
-        "icon": "+"
-      }
+      { "label": "github.com/rwteefz", "url": "https://github.com/rwteefz", "icon": "GH" },
+      { "label": "your-email@example.com", "url": "mailto:your-email@example.com", "icon": "@" }
     ]
   },
-  "announcement": {
-    "date": "最近更新",
-    "text": "模板已预置课程分类、搜索、深色模式和投稿说明。请在 content/site.json 中替换站名、联系方式与示例资料。"
-  },
-  "categories": [
-    {
-      "id": "analysis",
-      "navLabel": "分析 / 方程",
-      "title": "分析与微分方程",
-      "symbol": "∫",
-      "description": "从数学分析到微分方程、实变与复变函数的课程资料。",
-      "courses": [
-        {
-          "name": "数学分析",
-          "code": "MATH · 101",
-          "description": "极限、微积分、级数与多元分析",
-          "materials": [
-            {
-              "year": "2025",
-              "term": "秋",
-              "type": "期中试题",
-              "format": "PDF",
-              "teacher": "示例教师 A",
-              "note": "A 卷",
-              "url": ""
-            },
-            {
-              "year": "2024",
-              "term": "春",
-              "type": "期末试题",
-              "format": "PDF",
-              "teacher": "示例教师 B",
-              "note": "含参考答案",
-              "url": ""
-            }
-          ]
-        },
-        {
-          "name": "常微分方程",
-          "code": "MATH · 203",
-          "description": "常微分方程的定性、定量与数值方法",
-          "materials": [
-            {
-              "year": "2025",
-              "term": "春",
-              "type": "期末试题",
-              "format": "PDF",
-              "teacher": "示例教师 C",
-              "note": "回忆版",
-              "url": ""
-            }
-          ]
-        },
-        {
-          "name": "实变函数",
-          "code": "MATH · 305",
-          "description": "测度论、Lebesgue 积分与函数空间",
-          "materials": [
-            {
-              "year": "2024",
-              "term": "秋",
-              "type": "复习提纲",
-              "format": "讲义",
-              "teacher": "示例教师 D",
-              "note": "课程整理",
-              "url": "files/README.md"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "geometry",
-      "navLabel": "几何 / 拓扑",
-      "title": "几何与拓扑",
-      "symbol": "△",
-      "description": "几何直观与拓扑结构相关课程的试卷和学习笔记。",
-      "courses": [
-        {
-          "name": "解析几何",
-          "code": "MATH · 112",
-          "description": "向量、二次曲面与空间几何",
-          "materials": [
-            {
-              "year": "2025",
-              "term": "秋",
-              "type": "期末试题",
-              "format": "PDF",
-              "teacher": "示例教师 E",
-              "note": "",
-              "url": ""
-            }
-          ]
-        },
-        {
-          "name": "拓扑学",
-          "code": "MATH · 316",
-          "description": "点集拓扑、紧致性与连通性",
-          "materials": [
-            {
-              "year": "2024",
-              "term": "春",
-              "type": "期中试题",
-              "format": "PDF",
-              "teacher": "示例教师 F",
-              "note": "",
-              "url": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "probability",
-      "navLabel": "概率 / 统计",
-      "title": "概率与统计",
-      "symbol": "ℙ",
-      "description": "概率论、数理统计与随机过程的课程资料。",
-      "courses": [
-        {
-          "name": "概率论",
-          "code": "MATH · 221",
-          "description": "随机变量、分布、数字特征与极限定理",
-          "materials": [
-            {
-              "year": "2025",
-              "term": "春",
-              "type": "期末试题",
-              "format": "PDF",
-              "teacher": "示例教师 G",
-              "note": "含答案",
-              "url": ""
-            }
-          ]
-        },
-        {
-          "name": "数理统计",
-          "code": "MATH · 322",
-          "description": "参数估计、假设检验与回归分析",
-          "materials": [
-            {
-              "year": "2024",
-              "term": "秋",
-              "type": "作业汇总",
-              "format": "PDF",
-              "teacher": "示例教师 H",
-              "note": "第 1–8 章",
-              "url": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "algebra",
-      "navLabel": "代数 / 数论",
-      "title": "代数与数论",
-      "symbol": "≡",
-      "description": "线性代数、高等代数、抽象代数与数论资料。",
-      "courses": [
-        {
-          "name": "高等代数",
-          "code": "MATH · 102",
-          "description": "线性空间、线性变换与二次型",
-          "materials": [
-            {
-              "year": "2025",
-              "term": "秋",
-              "type": "期中试题",
-              "format": "PDF",
-              "teacher": "示例教师 I",
-              "note": "B 卷",
-              "url": ""
-            },
-            {
-              "year": "2024",
-              "term": "春",
-              "type": "期末试题",
-              "format": "PDF",
-              "teacher": "示例教师 J",
-              "note": "",
-              "url": ""
-            }
-          ]
-        },
-        {
-          "name": "抽象代数",
-          "code": "MATH · 307",
-          "description": "群、环、域与 Galois 理论入门",
-          "materials": [
-            {
-              "year": "2024",
-              "term": "秋",
-              "type": "期末试题",
-              "format": "PDF",
-              "teacher": "示例教师 K",
-              "note": "",
-              "url": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "applied",
-      "navLabel": "应数 / 计算",
-      "title": "应用数学与计算",
-      "symbol": "Σ",
-      "description": "数学建模、数值分析和计算方法相关课程。",
-      "courses": [
-        {
-          "name": "数学模型",
-          "code": "AMATH · 241",
-          "description": "建模方法、优化与模型分析",
-          "materials": [
-            {
-              "year": "2025",
-              "term": "春",
-              "type": "课程项目",
-              "format": "ZIP",
-              "teacher": "示例教师 L",
-              "note": "题目与模板",
-              "url": ""
-            }
-          ]
-        },
-        {
-          "name": "数值分析",
-          "code": "AMATH · 302",
-          "description": "插值、数值积分与线性方程组",
-          "materials": [
-            {
-              "year": "2024",
-              "term": "秋",
-              "type": "期末试题",
-              "format": "PDF",
-              "teacher": "示例教师 M",
-              "note": "",
-              "url": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "general",
-      "navLabel": "通修课程",
-      "title": "通修与基础课程",
-      "symbol": "∞",
-      "description": "面向数学专业学生的公共基础课和工具课程。",
-      "courses": [
-        {
-          "name": "大学物理",
-          "code": "PHYS · 101",
-          "description": "力学、电磁学、光学与近代物理",
-          "materials": [
-            {
-              "year": "2025",
-              "term": "春",
-              "type": "期末试题",
-              "format": "PDF",
-              "teacher": "联合命题",
-              "note": "",
-              "url": ""
-            }
-          ]
-        },
-        {
-          "name": "计算机基础",
-          "code": "CS · 100",
-          "description": "程序设计、数据处理与科学计算入门",
-          "materials": [
-            {
-              "year": "2024",
-              "term": "秋",
-              "type": "上机练习",
-              "format": "ZIP",
-              "teacher": "示例教师 N",
-              "note": "",
-              "url": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "entrance",
-      "navLabel": "招生 / 资格考",
-      "title": "招生与资格考试",
-      "symbol": "λ",
-      "description": "研究生招生、夏令营、资格考试及相关经验资料。",
-      "courses": [
-        {
-          "name": "研究生入学考试",
-          "code": "ENTRANCE",
-          "description": "招生笔试、复试与备考资料",
-          "materials": [
-            {
-              "year": "2025",
-              "term": "春",
-              "type": "笔试真题",
-              "format": "PDF",
-              "teacher": "招生考试",
-              "note": "回忆版",
-              "url": ""
-            }
-          ]
-        },
-        {
-          "name": "博士资格考试",
-          "code": "QUALIFY",
-          "description": "基础综合与方向资格考试",
-          "materials": [
-            {
-              "year": "2024",
-              "term": "秋",
-              "type": "考试大纲",
-              "format": "PDF",
-              "teacher": "学院命题",
-              "note": "",
-              "url": ""
-            }
-          ]
-        }
-      ]
-    }
+  "now": [
+    "studying mathematical foundations and algorithms",
+    "turning notes into small, reusable tools",
+    "learning to ship fewer things with more care"
   ],
-  "submission": {
-    "title": "试卷投稿须知",
-    "introduction": "欢迎提交清晰、完整且来源可靠的课程资料。你可以通过邮箱、Issue 或 Pull Request 投稿。",
-    "steps": [
-      "将扫描件整理为方向正确、文字清晰的 PDF，文件名建议使用英文与数字。",
-      "注明课程、学年、学期、考试类型和授课教师；如需匿名，请在投稿时说明。",
-      "上传文件后，在对应课程的 materials 列表中复制一条记录并修改链接。"
-    ],
-    "notice": "请勿上传含个人敏感信息、受限制传播或版权状态不明的资料；本站与学校官方无关。"
-  },
-  "thanks": {
-    "title": "致谢名单",
-    "introduction": "感谢所有整理、扫描、校对和提交资料的同学。下面是占位示例，可按入学年份持续补充。",
-    "groups": [
-      {
-        "year": "2024 级",
-        "names": ["示例同学 A", "示例同学 B", "匿名贡献者"]
-      },
-      {
-        "year": "2025 级",
-        "names": ["示例同学 C", "示例同学 D"]
-      }
-    ]
+  "education": [
+    { "period": "2023—2027", "title": "B.Sc. in Mathematics", "place": "Shandong University", "detail": "Analysis, algebra, probability, numerical methods, and the habit of asking better questions." },
+    { "period": "always", "title": "Independent study", "place": "books · papers · source code", "detail": "A living syllabus spanning systems, typography, programming languages, and mathematical thinking." }
+  ],
+  "projects": [
+    { "number": "01", "title": "math archive", "tag": "open data / web", "description": "A searchable, human-maintained index for course notes, exams, and the things that usually disappear into chat history.", "stack": "Next.js · JSON · GitHub Pages", "url": "https://github.com/rwteefz/rwteefz.github.io" },
+    { "number": "02", "title": "tiny experiments", "tag": "lab / in progress", "description": "Small programs for visualising functions, testing ideas, and understanding how abstractions behave under pressure.", "stack": "Python · TypeScript · whatever works", "url": "https://github.com/rwteefz" },
+    { "number": "03", "title": "this interface", "tag": "meta / shipped", "description": "A personal page that stays close to the source: one editable data file, one readable layout, zero framework-shaped fog.", "stack": "React · CSS · local editor", "url": "#edit" }
+  ],
+  "writing": [
+    { "date": "2026-08", "title": "Notes on learning in public", "detail": "Why unfinished work is often the most honest kind of documentation.", "url": "#" },
+    { "date": "2026-06", "title": "A small argument for boring tools", "detail": "When a text file, a browser, and version control are enough.", "url": "#" }
+  ],
+  "contact": {
+    "title": "say hello",
+    "text": "Have a useful link, a good question, or a project that needs a second pair of eyes? Send a note.",
+    "email": "your-email@example.com"
   }
 }

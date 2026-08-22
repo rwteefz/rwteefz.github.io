@@ -1,335 +1,89 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import siteData from "@/content/site.json";
+import { Editor } from "./Editor";
 
-type Material = (typeof siteData.categories)[number]["courses"][number]["materials"][number];
-
-const isExternal = (url: string) => /^(https?:|mailto:)/.test(url);
-
-const materialHref = (url: string) => {
-  if (isExternal(url) || url.startsWith("#")) return url;
-  return `./${url.replace(/^\//, "")}`;
-};
+const external = (url: string) => /^(https?:|mailto:)/.test(url);
 
 export function ExamArchive() {
-  const [query, setQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [darkMode, setDarkMode] = useState(false);
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem("rwteefz-theme") === "dark";
+    setDark(saved);
+    document.documentElement.dataset.theme = saved ? "dark" : "light";
+  }, []);
 
   const toggleTheme = () => {
-    const next = !darkMode;
-    setDarkMode(next);
+    const next = !dark;
+    setDark(next);
     document.documentElement.dataset.theme = next ? "dark" : "light";
+    window.localStorage.setItem("rwteefz-theme", next ? "dark" : "light");
   };
-
-  const normalizedQuery = query.trim().toLocaleLowerCase("zh-CN");
-
-  const visibleCategories = useMemo(() => {
-    return siteData.categories
-      .filter((category) => activeCategory === "all" || category.id === activeCategory)
-      .map((category) => ({
-        ...category,
-        courses: category.courses.filter((course) => {
-          if (!normalizedQuery) return true;
-          const haystack = [
-            category.title,
-            category.description,
-            course.name,
-            course.code,
-            course.description,
-            ...course.materials.flatMap((item) => [
-              item.year,
-              item.term,
-              item.type,
-              item.teacher,
-              item.note,
-            ]),
-          ]
-            .join(" ")
-            .toLocaleLowerCase("zh-CN");
-          return haystack.includes(normalizedQuery);
-        }),
-      }))
-      .filter((category) => category.courses.length > 0);
-  }, [activeCategory, normalizedQuery]);
-
-  const totalCourses = siteData.categories.reduce(
-    (sum, category) => sum + category.courses.length,
-    0,
-  );
-  const totalMaterials = siteData.categories.reduce(
-    (sum, category) =>
-      sum + category.courses.reduce((courseSum, course) => courseSum + course.materials.length, 0),
-    0,
-  );
-  const resultCount = visibleCategories.reduce(
-    (sum, category) => sum + category.courses.length,
-    0,
-  );
 
   return (
     <div className="site-frame">
-      <a className="skip-link" href="#main-content">
-        跳到主要内容
-      </a>
-
+      <a className="skip-link" href="#main-content">skip to content</a>
       <header className="masthead">
         <div className="masthead__inner">
-          <a className="brand" href="#top" aria-label={`${siteData.site.shortName} 首页`}>
-            <span className="brand__mark" aria-hidden="true">
-              ∫
-            </span>
-            <span>{siteData.site.shortName}</span>
-          </a>
-
-          <nav className="primary-nav" aria-label="课程分类导航">
-            {siteData.categories.map((category) => (
-              <a key={category.id} href={`#${category.id}`}>
-                {category.navLabel}
-              </a>
-            ))}
+          <a className="brand" href="#top"><span className="brand__mark">›_</span> {siteData.profile.name}</a>
+          <nav className="primary-nav" aria-label="Primary navigation">
+            <a href="#work">work</a><a href="#education">education</a><a href="#writing">writing</a><a href="#contact">contact</a>
           </nav>
-
-          <button
-            className="theme-toggle"
-            type="button"
-            onClick={toggleTheme}
-            aria-label={darkMode ? "切换到浅色模式" : "切换到深色模式"}
-            aria-pressed={darkMode}
-          >
-            <span aria-hidden="true">{darkMode ? "☀" : "◐"}</span>
-          </button>
+          <a className="edit-link" href="#edit">edit <span>↗</span></a>
+          <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label="Toggle theme" aria-pressed={dark}>{dark ? "☼" : "◐"}</button>
         </div>
       </header>
 
-      <div className="page-shell" id="top">
-        <aside className="sidebar" aria-label="站点信息">
-          <div className="profile-card">
-            <div className="profile-card__avatar" aria-hidden="true">
-              <span>Σ</span>
-            </div>
-            <div className="profile-card__body">
-              <p className="eyebrow">OPEN ARCHIVE</p>
-              <h2>{siteData.profile.name}</h2>
-              <p className="profile-card__motto">{siteData.profile.motto}</p>
-              <ul className="profile-links">
-                <li>
-                  <span aria-hidden="true">⌖</span>
-                  {siteData.profile.institution}
-                </li>
-                {siteData.profile.links.map((link) => (
-                  <li key={link.label}>
-                    <span aria-hidden="true">{link.icon}</span>
-                    <a
-                      href={link.url}
-                      target={isExternal(link.url) && !link.url.startsWith("mailto:") ? "_blank" : undefined}
-                      rel={isExternal(link.url) && !link.url.startsWith("mailto:") ? "noreferrer" : undefined}
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="sidebar-index">
-            <p>快速目录</p>
-            <a href="#archive">试卷与资料</a>
-            <a href="#submission">投稿须知</a>
-            <a href="#thanks">致谢名单</a>
-          </div>
+      <main className="page-shell" id="main-content">
+        <aside className="sidebar">
+          <div className="status-dot" aria-label="online" />
+          <p className="eyebrow">{siteData.site.kicker}</p>
+          <h2>{siteData.profile.name}</h2>
+          <p className="profile-role">{siteData.profile.role}</p>
+          <p className="profile-motto">“{siteData.profile.motto}”</p>
+          <div className="side-rule" />
+          <p className="side-label">elsewhere</p>
+          <ul className="profile-links">
+            <li><span>⌖</span>{siteData.profile.location}</li>
+            {siteData.profile.links.map((link) => <li key={link.label}><span>{link.icon}</span><a href={link.url} target={external(link.url) && !link.url.startsWith("mailto:") ? "_blank" : undefined} rel={external(link.url) && !link.url.startsWith("mailto:") ? "noreferrer" : undefined}>{link.label}</a></li>)}
+          </ul>
+          <div className="side-rule" />
+          <p className="side-label">system</p>
+          <p className="side-meta">last sync<br /><strong>{siteData.site.updated}</strong></p>
+          <p className="side-meta">status<br /><strong className="green">● online</strong></p>
         </aside>
 
-        <main id="main-content" className="content">
-          <section className="hero" aria-labelledby="page-title">
-            <p className="eyebrow">{siteData.site.kicker}</p>
-            <h1 id="page-title">{siteData.site.title}</h1>
+        <div className="content">
+          <section className="hero" id="top">
+            <p className="eyebrow">hello, world</p>
+            <h1>{siteData.site.title}</h1>
             <p className="hero__lead">{siteData.site.introduction}</p>
-            <div className="announcement" role="note">
-              <span className="announcement__date">{siteData.announcement.date}</span>
-              <p>{siteData.announcement.text}</p>
-            </div>
+            <p className="terminal-line"><span className="green">$</span> cat /now.txt <span className="cursor">▋</span></p>
+            <ul className="now-list">{siteData.now.map((item) => <li key={item}>{item}</li>)}</ul>
           </section>
 
-          <section className="archive-tools" id="archive" aria-label="资料筛选">
-            <div className="search-box">
-              <span aria-hidden="true">⌕</span>
-              <input
-                type="search"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="搜索课程、年份、教师或资料类型…"
-                aria-label="搜索资料"
-              />
-              {query && (
-                <button type="button" onClick={() => setQuery("")} aria-label="清空搜索">
-                  清除
-                </button>
-              )}
-            </div>
-
-            <div className="filter-row" aria-label="按分类筛选">
-              <button
-                className={activeCategory === "all" ? "is-active" : ""}
-                type="button"
-                onClick={() => setActiveCategory("all")}
-              >
-                全部
-              </button>
-              {siteData.categories.map((category) => (
-                <button
-                  className={activeCategory === category.id ? "is-active" : ""}
-                  key={category.id}
-                  type="button"
-                  onClick={() => setActiveCategory(category.id)}
-                >
-                  {category.navLabel}
-                </button>
-              ))}
-            </div>
-
-            <div className="archive-stats" aria-label="资料统计">
-              <span>
-                <strong>{totalCourses}</strong> 门课程
-              </span>
-              <span>
-                <strong>{totalMaterials}</strong> 条资料
-              </span>
-              <span>
-                更新于 <strong>{siteData.site.updated}</strong>
-              </span>
-            </div>
+          <section className="section" id="work">
+            <div className="section-head"><span className="section-index">01</span><div><p className="eyebrow">selected output</p><h2>things i have made</h2></div></div>
+            <div className="project-grid">{siteData.projects.map((project) => <article className="project-card" key={project.number}><div className="project-top"><span className="project-number">{project.number}</span><span className="project-tag">{project.tag}</span></div><h3>{project.title}</h3><p>{project.description}</p><div className="project-foot"><span>{project.stack}</span><a href={project.url} target={external(project.url) ? "_blank" : undefined} rel={external(project.url) ? "noreferrer" : undefined}>inspect ↗</a></div></article>)}</div>
           </section>
 
-          <div className="catalog" aria-live="polite">
-            {visibleCategories.length > 0 ? (
-              visibleCategories.map((category) => (
-                <section className="category-section" id={category.id} key={category.id}>
-                  <div className="section-heading">
-                    <span className="section-heading__symbol" aria-hidden="true">
-                      {category.symbol}
-                    </span>
-                    <div>
-                      <p className="eyebrow">{category.courses.length} COURSES</p>
-                      <h2>{category.title}</h2>
-                      <p>{category.description}</p>
-                    </div>
-                  </div>
-
-                  <div className="course-list">
-                    {category.courses.map((course) => (
-                      <section className="course-card" key={`${category.id}-${course.code}`}>
-                        <div className="course-heading">
-                          <span>
-                            <small>{course.code}</small>
-                            <strong>{course.name}</strong>
-                            <em>{course.description}</em>
-                          </span>
-                          <span className="course-card__count">{course.materials.length} 份资料</span>
-                        </div>
-
-                        <div className="material-table-wrap">
-                          <table className="material-table">
-                            <thead>
-                              <tr>
-                                <th scope="col">学年</th>
-                                <th scope="col">学期</th>
-                                <th scope="col">资料</th>
-                                <th scope="col">教师 / 备注</th>
-                                <th scope="col">下载</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {course.materials.map((material: Material, index) => (
-                                <tr key={`${course.code}-${material.year}-${material.type}-${index}`}>
-                                  <td data-label="学年">{material.year}</td>
-                                  <td data-label="学期">{material.term}</td>
-                                  <td data-label="资料">
-                                    <span className="material-type">{material.type}</span>
-                                    <small>{material.format}</small>
-                                  </td>
-                                  <td data-label="教师 / 备注">
-                                    <strong>{material.teacher}</strong>
-                                    {material.note && <small>{material.note}</small>}
-                                  </td>
-                                  <td data-label="下载">
-                                    {material.url ? (
-                                      <a
-                                        className="resource-link"
-                                        href={materialHref(material.url)}
-                                        target={isExternal(material.url) ? "_blank" : undefined}
-                                        rel={isExternal(material.url) ? "noreferrer" : undefined}
-                                      >
-                                        查看 <span aria-hidden="true">↗</span>
-                                      </a>
-                                    ) : (
-                                      <span className="resource-link is-missing">待补充</span>
-                                    )}
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </section>
-                    ))}
-                  </div>
-                </section>
-              ))
-            ) : (
-              <div className="empty-state">
-                <span aria-hidden="true">∅</span>
-                <h2>没有找到匹配资料</h2>
-                <p>试试其他关键词，或清除当前分类筛选。</p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setQuery("");
-                    setActiveCategory("all");
-                  }}
-                >
-                  查看全部资料
-                </button>
-              </div>
-            )}
-          </div>
-
-          <section className="editorial-section" id="submission">
-            <p className="eyebrow">CONTRIBUTE</p>
-            <h2>{siteData.submission.title}</h2>
-            <p>{siteData.submission.introduction}</p>
-            <ol>
-              {siteData.submission.steps.map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ol>
-            <p className="callout">{siteData.submission.notice}</p>
+          <section className="section" id="education">
+            <div className="section-head"><span className="section-index">02</span><div><p className="eyebrow">background process</p><h2>education &amp; experience</h2></div></div>
+            <div className="timeline">{siteData.education.map((item) => <article className="timeline-row" key={`${item.period}-${item.title}`}><div className="timeline-period">{item.period}</div><div><h3>{item.title}</h3><p className="timeline-place">{item.place}</p><p>{item.detail}</p></div></article>)}</div>
           </section>
 
-          <section className="editorial-section" id="thanks">
-            <p className="eyebrow">CREDITS</p>
-            <h2>{siteData.thanks.title}</h2>
-            <p>{siteData.thanks.introduction}</p>
-            <div className="thanks-list">
-              {siteData.thanks.groups.map((group) => (
-                <p key={group.year}>
-                  <strong>{group.year}</strong>
-                  <span>{group.names.join("、")}</span>
-                </p>
-              ))}
-            </div>
+          <section className="section" id="writing">
+            <div className="section-head"><span className="section-index">03</span><div><p className="eyebrow">plain text dispatches</p><h2>notes from the buffer</h2></div></div>
+            <div className="writing-list">{siteData.writing.map((item) => <a className="writing-row" href={item.url} key={item.title}><span>{item.date}</span><span><strong>{item.title}</strong><small>{item.detail}</small></span><b>↗</b></a>)}</div>
           </section>
 
-          <footer className="site-footer">
-            <p>{siteData.site.footer}</p>
-            <p>
-              当前显示 <strong>{resultCount}</strong> 门课程 · 内容由社区共同维护
-            </p>
-          </footer>
-        </main>
-      </div>
+          <section className="contact-panel" id="contact"><p className="eyebrow">{siteData.contact.title}</p><h2>{siteData.contact.text}</h2><a className="button-link" href={`mailto:${siteData.contact.email}`}>{siteData.contact.email} <span>↗</span></a></section>
+          <section className="editor-panel" id="edit"><p className="eyebrow">maintainer interface</p><h2>keep the node alive</h2><p>Edit the site locally in a friendly form, then download a fresh <code>site.json</code> to commit to GitHub.</p><Editor /></section>
+          <footer className="site-footer"><span>{siteData.site.footer}</span><span>{siteData.site.status}</span></footer>
+        </div>
+      </main>
     </div>
   );
 }

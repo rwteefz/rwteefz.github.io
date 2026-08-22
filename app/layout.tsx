@@ -6,10 +6,10 @@ const siteUrl = process.env.GITHUB_PAGES_SITE_URL ?? "http://localhost:3000/";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "数学课程资料站",
-    template: "%s · 数学课程资料站",
+    default: "rwteefz — systems, math, and small useful things",
+    template: "%s · rwteefz",
   },
-  description: "一个可自由编辑、持续共建的数学课程试卷与学习资料索引。",
+  description: "Personal site of rwteefz: systems, math, and small useful things.",
 };
 
 export const viewport: Viewport = {
@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body>{children}</body>
     </html>
   );
