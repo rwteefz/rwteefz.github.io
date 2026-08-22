@@ -15,8 +15,16 @@
     "motto": "make it legible, then make it useful.",
     "location": "Shandong, China",
     "links": [
-      { "label": "github.com/rwteefz", "url": "https://github.com/rwteefz", "icon": "GH" },
-      { "label": "your-email@example.com", "url": "mailto:your-email@example.com", "icon": "@" }
+      {
+        "label": "github.com/rwteefz",
+        "url": "https://github.com/rwteefz",
+        "icon": "GH"
+      },
+      {
+        "label": "your-email@example.com",
+        "url": "mailto:your-email@example.com",
+        "icon": "@"
+      }
     ]
   },
   "now": [
@@ -25,17 +33,58 @@
     "learning to ship fewer things with more care"
   ],
   "education": [
-    { "period": "2023—2027", "title": "B.Sc. in Mathematics", "place": "Shandong University", "detail": "Analysis, algebra, probability, numerical methods, and the habit of asking better questions." },
-    { "period": "always", "title": "Independent study", "place": "books · papers · source code", "detail": "A living syllabus spanning systems, typography, programming languages, and mathematical thinking." }
+    {
+      "period": "2025-2029",
+      "title": "B.Sc. in Mathematics",
+      "place": "Shandong University",
+      "detail": "Analysis, algebra, probability, numerical methods, and the habit of asking better questions."
+    },
+    {
+      "period": "always",
+      "title": "Independent study",
+      "place": "books · papers · source code",
+      "detail": "A living syllabus spanning systems, typography, programming languages, and mathematical thinking."
+    }
   ],
   "projects": [
-    { "number": "01", "title": "math archive", "tag": "open data / web", "description": "A searchable, human-maintained index for course notes, exams, and the things that usually disappear into chat history.", "stack": "Next.js · JSON · GitHub Pages", "url": "https://github.com/rwteefz/rwteefz.github.io" },
-    { "number": "02", "title": "tiny experiments", "tag": "lab / in progress", "description": "Small programs for visualising functions, testing ideas, and understanding how abstractions behave under pressure.", "stack": "Python · TypeScript · whatever works", "url": "https://github.com/rwteefz" },
-    { "number": "03", "title": "this interface", "tag": "meta / shipped", "description": "A personal page that stays close to the source: one editable data file, one readable layout, zero framework-shaped fog.", "stack": "React · CSS · local editor", "url": "#edit" }
+    {
+      "number": "01",
+      "title": "math archive",
+      "tag": "open data / web",
+      "description": "A searchable, human-maintained index for course notes, exams, and the things that usually disappear into chat history.",
+      "stack": "Next.js · JSON · GitHub Pages",
+      "url": "https://github.com/rwteefz/rwteefz.github.io"
+    },
+    {
+      "number": "02",
+      "title": "tiny experiments",
+      "tag": "lab / in progress",
+      "description": "Small programs for visualising functions, testing ideas, and understanding how abstractions behave under pressure.",
+      "stack": "Python · TypeScript · whatever works",
+      "url": "https://github.com/rwteefz"
+    },
+    {
+      "number": "03",
+      "title": "this interface",
+      "tag": "meta / shipped",
+      "description": "A personal page that stays close to the source: one editable data file, one readable layout, zero framework-shaped fog.",
+      "stack": "React · CSS · local editor",
+      "url": "#edit"
+    }
   ],
   "writing": [
-    { "date": "2026-08", "title": "Notes on learning in public", "detail": "Why unfinished work is often the most honest kind of documentation.", "url": "#" },
-    { "date": "2026-06", "title": "A small argument for boring tools", "detail": "When a text file, a browser, and version control are enough.", "url": "#" }
+    {
+      "date": "2026-08",
+      "title": "Notes on learning in public",
+      "detail": "Why unfinished work is often the most honest kind of documentation.",
+      "url": "#"
+    },
+    {
+      "date": "2026-06",
+      "title": "A small argument for boring tools",
+      "detail": "When a text file, a browser, and version control are enough.",
+      "url": "#"
+    }
   ],
   "contact": {
     "title": "say hello",
