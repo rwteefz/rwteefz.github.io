@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
 import siteData from "@/content/site.json";
 
 export function SiteHeader() {
@@ -37,7 +36,10 @@ export function SiteHeader() {
   return (
     <header className="masthead">
       <div className="masthead__inner">
-        <Link className="brand" href="/">
+        {/* Plain anchor, like the nav: a client-side hop to "/" can leave the
+            reader at the scroll position of the page they came from. */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+        <a className="brand" href="/">
           {siteData.profile.logo ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -48,7 +50,7 @@ export function SiteHeader() {
           ) : (
             siteData.profile.name
           )}
-        </Link>
+        </a>
         {/* Plain anchors on purpose: next/link swallows same-page hash jumps. */}
         {/* eslint-disable @next/next/no-html-link-for-pages */}
         <nav className="primary-nav" aria-label="Primary">
