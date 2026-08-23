@@ -3,7 +3,8 @@ import siteData from "@/content/site.json";
 import { ExamArchive } from "./ExamArchive";
 
 export const metadata: Metadata = {
-  title: siteData.site.title,
+  // absolute: the site title already names rwteefz, so skip the layout's "%s · rwteefz" template.
+  title: { absolute: siteData.site.title },
   description: siteData.site.description,
   openGraph: {
     title: siteData.site.title,
