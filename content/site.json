@@ -130,6 +130,7 @@
       "period": "2025-2029",
       "title": "Shandong University",
       "logo": "/images/logo-shandong-university.png",
+      "url": "https://www.sdu.edu.cn/",
       "place": "B.Sc. in Mathematics and Finance",
       "city": "Jinan",
       "detail": "Analysis, algebra, probability, numerical methods, and the habit of asking better questions."
@@ -138,6 +139,7 @@
       "period": "2022 - 2025",
       "title": "No.2 High School of East China Normal University",
       "logo": "/images/logo-ecnu-no2-high-school.png",
+      "url": "https://www.hsefz.cn/",
       "place": "Senior high school",
       "city": "Shanghai",
       "detail": "Mathematical modelling project: A Study on Comprehensive Mathematical Modeling of Noise and Travel Fatigue Among Residents Living Near Above-Ground Subway Stations."
@@ -146,6 +148,7 @@
       "period": "always",
       "title": "Independent study",
       "logo": "",
+      "url": "",
       "place": "books · papers · source code",
       "city": "",
       "detail": "I am building a solid foundation in mathematics, deepening my interest in the subject, teaching myself data structures and algorithms, reading research papers, and continuing to learn and improve."

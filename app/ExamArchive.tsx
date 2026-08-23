@@ -60,7 +60,13 @@ function Education() {
       {siteData.education.map((item) => (
         <article className="row" key={`${item.period}-${item.title}`}>
           <h3>
-            {item.title}
+            {item.url ? (
+              <a className="row__site" href={item.url} {...linkProps(item.url)}>
+                {item.title}
+              </a>
+            ) : (
+              item.title
+            )}
             {item.logo ? (
               <>
                 {/* A non-breaking space keeps the crest on the name's last line. */}
