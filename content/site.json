@@ -48,6 +48,11 @@
   },
   "sections": [
     {
+      "key": "education",
+      "label": "Education",
+      "visible": true
+    },
+    {
       "key": "now",
       "label": "Now",
       "visible": true
@@ -55,11 +60,6 @@
     {
       "key": "projects",
       "label": "Projects",
-      "visible": true
-    },
-    {
-      "key": "education",
-      "label": "Education",
       "visible": true
     },
     {
