@@ -17,12 +17,17 @@ The studio is a local editing app. It runs on your own computer, writes these
 files for you, and can publish to GitHub with one button.
 
 ```bash
-npm install       # first time only
-npm run studio    # then open http://127.0.0.1:4321
+npm install    # first time only
+npm run edit   # every time you want to make changes
 ```
 
-Run `npm run dev` in a second terminal to preview the real site at
-`http://localhost:3000` while you edit.
+That one command starts the studio, starts the live preview, and opens the
+studio in your browser. Press Ctrl-C once to stop both.
+
+- **Studio** — http://127.0.0.1:4321 — where you edit
+- **Preview** — http://localhost:3000 — the real site, updating as you type
+
+(`npm run studio` starts the studio on its own if you ever want just that.)
 
 The studio has six tabs:
 
@@ -100,8 +105,9 @@ Requires Node.js 22 or newer.
 
 ```bash
 npm install
-npm run dev       # preview at http://localhost:3000
-npm run studio    # editing app at http://127.0.0.1:4321
+npm run edit      # studio + preview together, opens the browser
+npm run dev       # preview only, at http://localhost:3000
+npm run studio    # studio only, at http://127.0.0.1:4321
 npm test          # build the site and check the export
 npm run lint
 ```

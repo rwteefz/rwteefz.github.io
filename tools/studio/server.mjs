@@ -303,5 +303,5 @@ const server = createServer(async (req, res) => {
 
 server.listen(PORT, "127.0.0.1", () => {
   console.log(`\n  Studio    http://127.0.0.1:${PORT}`);
-  console.log(`  Preview   http://localhost:3000   (run "npm run dev" in another terminal)\n`);
+  console.log(`  Preview   http://localhost:3000   (started for you by "npm run edit")\n`);
 });
