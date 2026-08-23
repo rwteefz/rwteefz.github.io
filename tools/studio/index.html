@@ -365,8 +365,10 @@ function renderProfile() {
 
 const SECTION_SPECS = {
   now: { singular: "line", stringList: true },
-  projects: { singular: "project", titleKey: "title", blank: { number: "", title: "", tag: "", description: "", stack: "", url: "" },
-    fields: [{ key: "title", label: "Project name" }, { key: "description", label: "What it is", type: "textarea" },
+  projects: { singular: "project", titleKey: "title", blank: { number: "", title: "", date: "", tag: "", description: "", stack: "", url: "" },
+    fields: [{ key: "title", label: "Project name" },
+      { key: "date", label: "When", hint: "2026-06 for June 2026. Projects are listed oldest first; entries with only a year, or none, sit at the end." },
+      { key: "description", label: "What it is", type: "textarea" },
       { key: "tag", label: "Tag" }, { key: "stack", label: "Built with" }, { key: "url", label: "Link" },
       { key: "number", label: "Internal id", hint: "Any short value, different for each project." }] },
   education: { singular: "entry", titleKey: "title", blank: { period: "", title: "", logo: "", place: "", city: "", detail: "" },

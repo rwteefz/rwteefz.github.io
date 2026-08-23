@@ -19,19 +19,33 @@ function Now() {
   );
 }
 
+/**
+ * Oldest first, so the list reads as a progression. A date with a month
+ * ("2026-06") takes its place on that timeline; one with only a year, or none
+ * at all, keeps to the end in the order site.json lists it.
+ */
+const when = (date: string) => {
+  const [year, month] = String(date ?? "").split("-");
+  return month ? Number(year) * 12 + Number(month) : Number.POSITIVE_INFINITY;
+};
+
+const projects = [...siteData.projects].sort((a, b) => when(a.date) - when(b.date));
+
 function Projects() {
   return (
     <div className="rows">
-      {siteData.projects.map((project) => (
+      {projects.map((project) => (
         <a className="row" key={project.number} href={project.url} {...linkProps(project.url)}>
           <div className="row__top">
             <h3>
               {project.title} <span className="row__arrow">↗</span>
             </h3>
-            <span className="row__aside">{project.tag}</span>
+            <span className="row__aside">{project.date}</span>
           </div>
           <p>{project.description}</p>
-          <p className="row__foot">{project.stack}</p>
+          <p className="row__foot">
+            {[project.tag, project.stack].filter(Boolean).join(" · ")}
+          </p>
         </a>
       ))}
     </div>

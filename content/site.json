@@ -82,6 +82,7 @@
     {
       "number": "00",
       "title": "Euler–Maclaurin formula and asymptotic estimates",
+      "date": "2026-06",
       "tag": "course paper / mathematics",
       "description": "A term paper for Mathematical Analysis II, and the furthest I have taken a piece of mathematical writing: the Euler–Maclaurin summation formula derived from Bernoulli numbers, then applied to Stirling's formula, Romberg integration, and singular expansions for lattice sums.",
       "stack": "LaTeX · 72 pages · read it on the site",
@@ -90,6 +91,7 @@
     {
       "number": "00b",
       "title": "Constructing auxiliary functions for Rolle's theorem",
+      "date": "2026-01",
       "tag": "course paper / mathematics",
       "description": "An earlier term paper, written in my first year and more of a starting point than the Analysis II one: Rolle's theorem proved and extended, then ideas from ordinary differential equations used to build the auxiliary functions that mean-value problems need.",
       "stack": "LaTeX · 16 pages · read it on the site",
@@ -98,6 +100,7 @@
     {
       "number": "01",
       "title": "math archive",
+      "date": "2026",
       "tag": "open data / web",
       "description": "A searchable, human-maintained index for course notes, exams, and the things that usually disappear into chat history.",
       "stack": "Next.js · JSON · GitHub Pages",
@@ -106,6 +109,7 @@
     {
       "number": "02",
       "title": "tiny experiments",
+      "date": "2026",
       "tag": "lab / in progress",
       "description": "Small programs for visualising functions, testing ideas, and understanding how abstractions behave under pressure.",
       "stack": "Python · TypeScript · whatever works",
@@ -114,6 +118,7 @@
     {
       "number": "03",
       "title": "this interface",
+      "date": "2026",
       "tag": "meta / shipped",
       "description": "A personal page that stays close to the source: one readable layout, zero framework-shaped fog, and a bias toward useful defaults.",
       "stack": "React · CSS · GitHub Pages",
