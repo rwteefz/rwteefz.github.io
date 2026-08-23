@@ -84,7 +84,7 @@
       "title": "Euler–Maclaurin formula and asymptotic estimates",
       "date": "2026-06",
       "tag": "course paper / mathematics",
-      "description": "My paper for Mathematical Analysis II, and the one I put the most into: the Euler–Maclaurin summation formula derived from Bernoulli numbers, then applied to Stirling's formula, Romberg integration, and singular expansions for lattice sums.",
+      "description": "My paper for Mathematical Analysis II: the Euler–Maclaurin summation formula derived from Bernoulli numbers, then applied to Stirling's formula, Romberg integration, and singular expansions for lattice sums.",
       "stack": "LaTeX · 72 pages · read it on the site",
       "url": "/papers/euler-maclaurin"
     },
@@ -175,7 +175,7 @@
       "slug": "euler-maclaurin",
       "title": "Euler–Maclaurin 公式与渐进估计",
       "meta": "Term paper · Mathematical Analysis II · School of Mathematics, Shandong University · 72 pages",
-      "summary": "A term paper for Mathematical Analysis II, and the longer of the two papers here. It builds the Euler–Maclaurin summation formula from power sums and Bernoulli numbers, reads it through Riemann–Stieltjes integration, and then puts it to work: Stirling's formula, asymptotic expansions, Richardson extrapolation and Romberg integration, and the singular Euler–Maclaurin expansion for lattice sums.",
+      "summary": "A term paper for Mathematical Analysis II. It builds the Euler–Maclaurin summation formula from power sums and Bernoulli numbers, reads it through Riemann–Stieltjes integration, and then puts it to work: Stirling's formula, asymptotic expansions, Richardson extrapolation and Romberg integration, and the singular Euler–Maclaurin expansion for lattice sums.",
       "pages": 72,
       "width": 2480,
       "height": 3508,
