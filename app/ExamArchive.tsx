@@ -180,9 +180,13 @@ export function ExamArchive() {
           <section className="contact" id="contact">
             <p className="section-label">{siteData.contact.title}</p>
             <p>{siteData.contact.text}</p>
-            <a className="contact__link" href={`mailto:${siteData.contact.email}`}>
-              {siteData.contact.email}
-            </a>
+            {[siteData.contact.email, siteData.contact.emailAlt]
+              .filter(Boolean)
+              .map((address) => (
+                <a className="contact__link" key={address} href={`mailto:${address}`}>
+                  {address}
+                </a>
+              ))}
           </section>
 
           <footer className="site-footer">

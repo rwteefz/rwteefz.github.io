@@ -435,7 +435,8 @@ a.row:hover .row__arrow { transform: translate(2px, -2px); }
 }
 
 .contact__link {
-  display: inline-block;
+  display: block;
+  width: fit-content;
   margin-top: 18px;
   color: var(--accent);
   font-size: 1.0625rem;

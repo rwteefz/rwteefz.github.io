@@ -38,6 +38,11 @@
         "icon": "GH"
       },
       {
+        "label": "ericzhang2007@outlook.com",
+        "url": "mailto:ericzhang2007@outlook.com",
+        "icon": "@"
+      },
+      {
         "label": "ericzhangsh@mail.sdu.edu.cn",
         "url": "mailto:ericzhangsh@mail.sdu.edu.cn",
         "icon": "@"
@@ -175,9 +180,10 @@
     }
   ],
   "contact": {
-    "title": "Contact Me",
+    "title": "Contact me",
     "text": "Have a great question or idea you’d like to discuss, collaborate on, or share with me? Send me a note.",
-    "email": "ericzhangsh@mail.sdu.edu.cn"
+    "email": "ericzhang2007@outlook.com",
+    "emailAlt": "ericzhangsh@mail.sdu.edu.cn"
   },
   "papers": [
     {

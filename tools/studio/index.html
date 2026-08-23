@@ -358,7 +358,8 @@ function renderProfile() {
   contact.append(el("div", { className: "spacer" }), el("h2", { textContent: "Contact" }),
     field("Heading", site.contact, "title"),
     field("Invitation", site.contact, "text", { type: "textarea" }),
-    field("Your email address", site.contact, "email"));
+    field("Your email address", site.contact, "email"),
+    field("Second email address", site.contact, "emailAlt", { hint: "Shown under the first. Leave empty for none." }));
 
   return [you, links, meta, contact];
 }
