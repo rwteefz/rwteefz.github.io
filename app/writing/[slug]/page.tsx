@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProfileCard } from "@/app/ProfileCard";
 import { SiteHeader } from "@/app/SiteHeader";
@@ -28,6 +27,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
+/* eslint-disable @next/next/no-html-link-for-pages */
 export default async function ArticlePage({ params }: Params) {
   const post = getPost((await params).slug);
   if (!post) notFound();
@@ -40,9 +40,9 @@ export default async function ArticlePage({ params }: Params) {
 
         <div className="page__body">
           <article className="article">
-            <Link className="back-link" href="/#writing">
+            <a className="back-link" href="/#writing">
               ← All writing
-            </Link>
+            </a>
 
             <h1>{post.title}</h1>
             {post.date ? <p className="article__date">{post.date}</p> : null}
@@ -61,7 +61,7 @@ export default async function ArticlePage({ params }: Params) {
 
           <footer className="site-footer">
             <span>{siteData.site.footer}</span>
-            <Link href="/#writing">More writing</Link>
+            <a href="/#writing">More writing</a>
           </footer>
         </div>
       </main>

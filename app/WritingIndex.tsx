@@ -11,6 +11,7 @@ export const totalPages = Math.max(1, Math.ceil(posts.length / perPage));
 /** Page 1 lives at /writing, the rest at /writing/page/2, /writing/page/3 … */
 export const pageHref = (n: number) => (n <= 1 ? "/writing" : `/writing/page/${n}`);
 
+/* eslint-disable @next/next/no-html-link-for-pages */
 export function WritingIndex({ pageNumber }: { pageNumber: number }) {
   const current = Math.min(Math.max(1, pageNumber), totalPages);
   const slice = posts.slice((current - 1) * perPage, current * perPage);
@@ -87,7 +88,7 @@ export function WritingIndex({ pageNumber }: { pageNumber: number }) {
 
           <footer className="site-footer">
             <span>{siteData.site.footer}</span>
-            <Link href="/">Home</Link>
+            <a href="/">Home</a>
           </footer>
         </div>
       </main>

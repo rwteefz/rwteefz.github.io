@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProfileCard } from "@/app/ProfileCard";
 import { SiteHeader } from "@/app/SiteHeader";
@@ -26,6 +25,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
+/* eslint-disable @next/next/no-html-link-for-pages */
 export default async function PaperPage({ params }: Params) {
   const paper = getPaper((await params).slug);
   if (!paper) notFound();
@@ -43,9 +43,9 @@ export default async function PaperPage({ params }: Params) {
 
         <div className="page__body">
           <article className="article">
-            <Link className="back-link" href="/#projects">
+            <a className="back-link" href="/#projects">
               ← All projects
-            </Link>
+            </a>
 
             <h1>{paper.title}</h1>
             {paper.meta ? <p className="article__date">{paper.meta}</p> : null}
@@ -86,7 +86,7 @@ export default async function PaperPage({ params }: Params) {
 
           <footer className="site-footer">
             <span>{siteData.site.footer}</span>
-            <Link href="/#projects">More projects</Link>
+            <a href="/#projects">More projects</a>
           </footer>
         </div>
       </main>
