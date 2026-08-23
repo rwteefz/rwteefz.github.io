@@ -74,9 +74,9 @@
     }
   ],
   "now": [
-    "studying mathematical foundations and algorithms",
-    "turning notes into small, reusable tools",
-    "learning to ship fewer things with more care"
+    "Studying Differential Manifolds and Functional Analysis",
+    "Turning notes into small, reusable tools",
+    "Trying to conduct research in interested fields"
   ],
   "projects": [
     {
@@ -119,7 +119,7 @@
       "logo": "/images/logo-shandong-university.png",
       "place": "B.Sc. in Mathematics",
       "city": "Jinan",
-      "detail": "Analysis, algebra, probability, numerical methods, and the habit of asking better questions."
+      "detail": ""
     },
     {
       "period": "always",
@@ -127,7 +127,7 @@
       "logo": "",
       "place": "books · papers · source code",
       "city": "",
-      "detail": "I am building a solid foundation in mathematics, deepening my interest in the subject, teaching myself data structures and algorithms, reading research papers, and continuing to learn and improve."
+      "detail": "A living syllabus spanning systems, typography, programming languages, and mathematical thinking."
     }
   ],
   "activities": [
@@ -151,8 +151,8 @@
     }
   ],
   "contact": {
-    "title": "say hello",
-    "text": "Have a useful link, a good question, or a project that needs a second pair of eyes? Send a note.",
+    "title": "Contact Me",
+    "text": "Have a great question or idea you’d like to discuss, collaborate on, or share with me? Send me a note.",
     "email": "ericzhangsh@sdu.edu.cn"
   }
 }
