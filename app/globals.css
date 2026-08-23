@@ -482,6 +482,24 @@ a.row:hover .row__arrow { transform: translate(2px, -2px); }
   border-radius: 8px;
 }
 
+/* ---------- paper reader ---------- */
+
+.reader {
+  display: block;
+  width: 100%;
+  height: min(82vh, 1000px);
+  margin: 32px 0 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--hover);
+}
+
+.reader__note {
+  margin: 14px 0 0;
+  color: var(--faint);
+  font-size: 0.875rem;
+}
+
 /* ---------- prose (rendered Markdown) ---------- */
 
 .prose {

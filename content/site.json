@@ -80,6 +80,14 @@
   ],
   "projects": [
     {
+      "number": "00",
+      "title": "Euler–Maclaurin formula and asymptotic estimates",
+      "tag": "course paper / mathematics",
+      "description": "A term paper for Mathematical Analysis II, and my first go at writing mathematics as a paper: the Euler–Maclaurin summation formula derived from Bernoulli numbers, then applied to Stirling's formula, Romberg integration, and singular expansions for lattice sums.",
+      "stack": "LaTeX · 72 pages · read it on the site",
+      "url": "/papers/euler-maclaurin"
+    },
+    {
       "number": "01",
       "title": "math archive",
       "tag": "open data / web",
@@ -154,5 +162,15 @@
     "title": "Contact Me",
     "text": "Have a great question or idea you’d like to discuss, collaborate on, or share with me? Send me a note.",
     "email": "ericzhangsh@sdu.edu.cn"
-  }
+  },
+  "papers": [
+    {
+      "slug": "euler-maclaurin",
+      "title": "Euler–Maclaurin 公式与渐进估计",
+      "meta": "Term paper · Mathematical Analysis II · School of Mathematics, Shandong University · 72 pages",
+      "summary": "My first attempt at writing mathematics as a paper rather than as homework. It builds the Euler–Maclaurin summation formula from power sums and Bernoulli numbers, reads it through Riemann–Stieltjes integration, and then puts it to work: Stirling's formula, asymptotic expansions, Richardson extrapolation and Romberg integration, and the singular Euler–Maclaurin expansion for lattice sums.",
+      "file": "/files/mathematical-analysis-2-paper.pdf",
+      "note": "Reading view only — please do not redistribute. Ask me if you would like a copy."
+    }
+  ]
 }
