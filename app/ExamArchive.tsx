@@ -45,7 +45,14 @@ function Education() {
     <div className="rows rows--cv">
       {siteData.education.map((item) => (
         <article className="row" key={`${item.period}-${item.title}`}>
-          <h3>{item.title}</h3>
+          <h3>
+            {item.title}
+            {item.logo ? (
+              // Decorative: the school's name is right next to it.
+              // eslint-disable-next-line @next/next/no-img-element
+              <img className="row__logo" src={item.logo} alt="" />
+            ) : null}
+          </h3>
           <span className="row__qual">{item.place}</span>
           <span className="row__aside">
             {item.city ? <span className="row__city">{item.city}</span> : null}

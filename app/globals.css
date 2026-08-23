@@ -159,6 +159,11 @@ button { font: inherit; }
 
 .page__body { min-width: 0; }
 
+/* The shell is wide for the CV rows; running text keeps a readable measure. */
+.article,
+.hero__lead,
+.hero__tagline { max-width: 44em; }
+
 .section { margin-top: 72px; }
 
 .section-label {
@@ -364,6 +369,22 @@ a.row:hover h3 { color: var(--accent); }
 }
 
 .rows--cv .row__detail { grid-column: 1 / -1; }
+
+.rows--cv .row__aside { text-align: right; }
+
+
+/* A school crest riding on the heading line. White disc behind it so a logo
+   with its own white background still reads as a badge in dark mode. */
+.row__logo {
+  /* Tailwind's preflight makes images block-level; this one rides with the text. */
+  display: inline-block;
+  height: 1.4em;
+  width: auto;
+  margin-left: 0.45em;
+  vertical-align: -0.3em;
+  border-radius: 50%;
+  background: #fff;
+}
 
 /* The degree or role, lighter than the institution it belongs to. */
 .row__qual {
