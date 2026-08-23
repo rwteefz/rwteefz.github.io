@@ -17,6 +17,10 @@
     "accent": "",
     "accentDark": ""
   },
+  "pagination": {
+    "perPage": 5,
+    "homeLimit": 3
+  },
   "profile": {
     "name": "rwteefz",
     "role": "student / developer / curious human",

@@ -71,21 +71,31 @@ function Activities() {
   );
 }
 
+const homeLimit = Math.max(1, Number(siteData.pagination?.homeLimit) || 4);
+
 function Writing() {
   return (
-    <div className="rows">
-      {posts.map((post) => (
-        <Link className="row" key={post.slug} href={`/writing/${post.slug}`}>
-          <div className="row__top">
-            <h3>
-              {post.title} <span className="row__arrow">→</span>
-            </h3>
-            <span className="row__aside">{post.date}</span>
-          </div>
-          <p>{post.summary}</p>
+    <>
+      <div className="rows">
+        {posts.slice(0, homeLimit).map((post) => (
+          <Link className="row" key={post.slug} href={`/writing/${post.slug}`}>
+            <div className="row__top">
+              <h3>
+                {post.title} <span className="row__arrow">→</span>
+              </h3>
+              <span className="row__aside">{post.date}</span>
+            </div>
+            <p>{post.summary}</p>
+          </Link>
+        ))}
+      </div>
+
+      {posts.length > homeLimit ? (
+        <Link className="see-all" href="/writing">
+          All {posts.length} articles →
         </Link>
-      ))}
-    </div>
+      ) : null}
+    </>
   );
 }
 

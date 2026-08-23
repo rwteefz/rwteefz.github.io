@@ -1,66 +1,118 @@
 # rwteefz.github.io
 
 My personal site: profile, projects, education, activities, and writing.
-Everything you see on the page comes from one file, [`content/site.json`](content/site.json).
-No database, no login, no admin panel — the published site is plain static files.
 
-## How to change the content
+The published site is plain static files — no database, no server, no admin
+panel. Everything comes from three places in this repository:
 
-You never need to touch the code. Pick whichever of these suits you.
-
-### 1. Edit on github.com (easiest, nothing to install)
-
-1. Open [`content/site.json`](content/site.json) on github.com.
-2. Click the pencil icon (**Edit this file**).
-3. Change the text between the quotation marks. Leave the quotes, commas, and brackets alone.
-4. Scroll down and press **Commit changes**.
-
-GitHub rebuilds and republishes the site automatically. Give it about a minute, then reload the page.
-
-### 2. Use the form editor (best if JSON makes you nervous)
-
-Open [`tools/editor.html`](tools/editor.html) in your browser — double-clicking the file is enough.
-It shows a normal form: labelled boxes, and buttons to add, reorder, or remove entries.
-
-1. Click **Load site.json** and choose `content/site.json`.
-2. Edit the boxes.
-3. Click **Download site.json**, then put the downloaded file back at `content/site.json` and commit it.
-   Or click **Copy JSON** and paste it over the file on github.com using the steps above.
-
-This tool runs entirely on your computer. It is not part of the published site, makes no network
-calls, and never touches GitHub on your behalf.
-
-### 3. Edit the file directly
-
-Open `content/site.json` in any text editor, change it, and commit. Run `npm test` first if you want
-to be sure the file is still valid.
-
-## What each part of `site.json` controls
-
-| Key | Where it shows up |
+| Where | What it holds |
 | --- | --- |
-| `profile` | Your name, tagline, role, location, and the links at the top |
-| `site` | Browser tab title, intro paragraph, footer, and link-preview text |
-| `now` | The short "Now" list of what you are working on |
-| `projects` | The Projects rows |
-| `education` | The Education rows |
-| `activities` | The Activities rows — clubs, volunteering, competitions |
-| `writing` | The Writing rows. Use `"#"` as the link for anything unpublished |
-| `contact` | The closing block and your email address |
+| `content/site.json` | Profile, sections, theme, and all the short text |
+| `content/posts/*.md` | One Markdown file per article |
+| `public/images/` | Pictures used by articles and the logo |
 
-## Run it on your own computer
+## Editing with the studio (the easy way)
 
-Requires Node.js 22 or newer:
+The studio is a local editing app. It runs on your own computer, writes these
+files for you, and can publish to GitHub with one button.
+
+```bash
+npm install       # first time only
+npm run studio    # then open http://127.0.0.1:4321
+```
+
+Run `npm run dev` in a second terminal to preview the real site at
+`http://localhost:3000` while you edit.
+
+The studio has six tabs:
+
+- **Look** — pick a theme, colour mode, fonts, accent colour, logo, and how many
+  articles appear per page
+- **Profile** — your name, tagline, links, and the page's sharing text
+- **Sections** — reorder or hide sections, and edit Now, Projects, Education and
+  Activities
+- **Articles** — write, rename, and delete articles, with a live preview and an
+  **Add a picture** button that uploads and links the image for you
+- **Pictures** — upload and manage everything in `public/images`
+- **Publish** — writes a commit and pushes it. It builds and tests the site
+  first, and refuses to publish if something is broken.
+
+Your changes are saved to disk as you type. Publishing is always a separate,
+deliberate click.
+
+The studio is not part of the published site. It listens only on `127.0.0.1`,
+so nothing outside your computer can reach it.
+
+## Editing on github.com (no tools needed)
+
+You can also edit straight in the browser:
+
+- **Text** — open `content/site.json`, click the pencil icon, change the text
+  between the quotation marks, and press **Commit changes**.
+- **A new article** — open `content/posts/`, click **Add file → Create new
+  file**, name it `my-article.md`, and copy the shape of
+  [`_template.md`](content/posts/_template.md).
+- **A picture** — open `public/images/`, click **Add file → Upload files**, then
+  use it in an article with `![description](/images/your-file.jpg)`.
+
+Either way, GitHub rebuilds and republishes the site automatically in about a
+minute.
+
+## Writing articles
+
+Each article is a Markdown file in `content/posts/`. The filename becomes the
+web address, so `notes-on-learning.md` is served at `/writing/notes-on-learning`.
+
+```markdown
+---
+title: The title of your article
+date: 2026-08-23
+summary: One sentence shown under the title on the homepage.
+cover:
+coverAlt:
+---
+
+Write normally. A blank line starts a new paragraph.
+```
+
+Files whose name starts with `_` are drafts and never appear on the site.
+[`_template.md`](content/posts/_template.md) documents the rest of the format.
+
+Articles are listed newest first, paged at `/writing`, with the most recent few
+also shown on the homepage. Both counts are set under **Look** in the studio.
+
+## Themes
+
+Four presets live in [`content/themes.json`](content/themes.json), each a full
+palette for light and dark plus a heading typeface:
+
+- **Ink** — warm paper, serif headings, deep green. Quiet and editorial.
+- **Slate** — cool neutrals, tight sans headings, electric blue. Crisp and modern.
+- **Archive** — parchment and oxblood, high-contrast serif. Academic press.
+- **Noir** — dark-first graphite, monospace headings, teal signal.
+
+Pick one under **Look**, or set `theme.preset` in `site.json`. Heading font, body
+font, and accent colour can each be overridden on top of the preset.
+
+## Running it yourself
+
+Requires Node.js 22 or newer.
 
 ```bash
 npm install
-npm run dev
+npm run dev       # preview at http://localhost:3000
+npm run studio    # editing app at http://127.0.0.1:4321
+npm test          # build the site and check the export
+npm run lint
 ```
-
-Then open `http://localhost:3000/`. Run `npm test` to build the site and check the export.
 
 ## How it gets published
 
-GitHub Pages serves static files only — there is no server running behind this site. The workflow in
-`.github/workflows/pages.yml` builds the page into `dist/client` and deploys it on every commit to
-`main`. Keep the repository's Pages source set to **GitHub Actions**.
+GitHub Pages serves static files only — there is no server behind this site.
+`.github/workflows/pages.yml` builds into `dist/client` and deploys on every
+commit to `main`. Keep the repository's Pages source set to **GitHub Actions**.
+
+`tools/finalise-export.mjs` runs after the build. vinext cannot prerender a
+dynamic route while `trailingSlash` is enabled, so the config turns it off and
+this script mirrors every exported `page.html` to `page/index.html`, keeping both
+`/writing/my-article` and `/writing/my-article/` working.

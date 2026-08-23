@@ -1,34 +1,49 @@
 // vinext's static export cannot prerender dynamic routes while `trailingSlash` is
 // on (its prerenderer follows its own 308 and gives up), so the config keeps
-// trailing slashes off and each article lands at writing/<slug>.html.
+// trailing slashes off and every route lands at <route>.html.
 //
-// GitHub Pages resolves /writing/<slug> to that file, but a link someone typed or
-// shared with a trailing slash would 404. This copies each article to
-// writing/<slug>/index.html as well, so both addresses work.
+// GitHub Pages resolves /writing to writing.html, but two cases still break:
+// a link written with a trailing slash, and /writing itself once a writing/
+// directory exists next to writing.html — the directory can win and there is no
+// index.html inside it.
+//
+// So: for every exported page.html, also write page/index.html.
 
 import { copyFile, mkdir, readdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const writingDir = join(dirname(fileURLToPath(import.meta.url)), "..", "dist", "client", "writing");
+const clientDir = join(dirname(fileURLToPath(import.meta.url)), "..", "dist", "client");
 
-let entries;
-try {
-  entries = await readdir(writingDir, { withFileTypes: true });
-} catch (error) {
-  if (error.code === "ENOENT") {
-    console.log("finalise-export: no articles to mirror");
-    process.exit(0);
+const SKIP = new Set(["index.html", "404.html"]);
+
+async function mirror(dir) {
+  let entries;
+  try {
+    entries = await readdir(dir, { withFileTypes: true });
+  } catch (error) {
+    if (error.code === "ENOENT") return 0;
+    throw error;
   }
-  throw error;
+
+  let count = 0;
+
+  for (const entry of entries) {
+    if (entry.isDirectory()) {
+      count += await mirror(join(dir, entry.name));
+      continue;
+    }
+
+    if (!entry.isFile() || !entry.name.endsWith(".html") || SKIP.has(entry.name)) continue;
+
+    const base = entry.name.replace(/\.html$/, "");
+    await mkdir(join(dir, base), { recursive: true });
+    await copyFile(join(dir, entry.name), join(dir, base, "index.html"));
+    count += 1;
+  }
+
+  return count;
 }
 
-const articles = entries.filter((entry) => entry.isFile() && entry.name.endsWith(".html"));
-
-for (const article of articles) {
-  const slug = article.name.replace(/\.html$/, "");
-  await mkdir(join(writingDir, slug), { recursive: true });
-  await copyFile(join(writingDir, article.name), join(writingDir, slug, "index.html"));
-}
-
-console.log(`finalise-export: mirrored ${articles.length} article(s) to directory URLs`);
+const mirrored = await mirror(clientDir);
+console.log(`finalise-export: mirrored ${mirrored} page(s) to directory URLs`);
