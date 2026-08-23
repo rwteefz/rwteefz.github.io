@@ -288,6 +288,14 @@ function renderLook() {
     pick("Starting colour mode", "mode", [["system", "Follow the visitor's device"], ["light", "Always light"], ["dark", "Always dark"]]),
     pick("Heading font", "headingFont", fonts),
     pick("Body font", "bodyFont", fonts),
+    pick("Heading weight", "headingWeight", [
+      ["", "Theme default (regular)"], ["300", "Light"], ["400", "Regular"],
+      ["500", "Medium"], ["600", "Semibold"], ["700", "Bold"], ["800", "Extra bold"],
+    ], "Applies to your name and every section and article heading."),
+    pick("Text size", "textScale", [
+      ["", "Normal"], ["0.9", "Small"], ["0.95", "Slightly smaller"],
+      ["1.05", "Slightly larger"], ["1.15", "Large"], ["1.25", "Extra large"],
+    ], "Scales all text on the site together."),
     field("Accent colour override", site.theme, "accent", { hint: "A hex colour such as #2f6f52. Leave empty to use the theme's own." }),
     field("Accent colour in dark mode", site.theme, "accentDark", { hint: "Leave empty to use the theme's own." }),
   );

@@ -46,11 +46,22 @@ const FONTS = ["serif", "sans", "mono"];
 const font = (choice: string, fallback: string) =>
   `var(--font-${FONTS.includes(choice) ? choice : fallback})`;
 
+// Bounded so a stray value in site.json cannot make the site unreadable.
+const WEIGHTS = ["300", "400", "500", "600", "700", "800"];
+const weight = (choice: string) => (WEIGHTS.includes(String(choice)) ? String(choice) : "400");
+
+const scale = (choice: unknown) => {
+  const value = Number(choice);
+  return Number.isFinite(value) && value >= 0.8 && value <= 1.4 ? String(value) : "1";
+};
+
 const themeCss = [
   block(":root:root", preset.light, theme.accent),
   `:root:root{`,
   `--font-heading:${font(theme.headingFont, preset.headingFont)};`,
   `--font-body:${font(theme.bodyFont, "sans")};`,
+  `--heading-weight:${weight(theme.headingWeight)};`,
+  `--text-scale:${scale(theme.textScale)};`,
   `color-scheme:light;}`,
   block(':root:root[data-theme="dark"]', preset.dark, theme.accentDark),
   `:root:root[data-theme="dark"]{color-scheme:dark;}`,

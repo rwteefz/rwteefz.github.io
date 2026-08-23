@@ -150,6 +150,25 @@ function readBody(req, limit) {
 
 const readJson = async (req) => JSON.parse((await readBody(req, 4 * 1024 * 1024)).toString("utf8") || "{}");
 
+/**
+ * Streams a file, answering 404 if it is missing. A ReadStream emits its
+ * failure as an 'error' event, and an unhandled one takes down the process —
+ * a broken image link in an article preview must not stop the studio.
+ */
+function streamFile(res, file, type) {
+  const stream = createReadStream(file);
+
+  stream.once("error", () => {
+    if (!res.headersSent) fail(res, 404, "not found");
+    else res.end();
+  });
+
+  stream.once("open", () => {
+    res.writeHead(200, { "content-type": type, "cache-control": "no-store" });
+    stream.pipe(res);
+  });
+}
+
 async function serveStatic(res, pathname) {
   const name = pathname === "/" ? "index.html" : pathname.slice(1);
   const file = join(studioDir, name);
@@ -157,14 +176,7 @@ async function serveStatic(res, pathname) {
   // Never serve outside tools/studio.
   if (!file.startsWith(studioDir)) return fail(res, 403, "forbidden");
 
-  try {
-    await stat(file);
-  } catch {
-    return fail(res, 404, "not found");
-  }
-
-  res.writeHead(200, { "content-type": MIME[extname(file)] ?? "application/octet-stream", "cache-control": "no-store" });
-  createReadStream(file).pipe(res);
+  streamFile(res, file, MIME[extname(file)] ?? "application/octet-stream");
 }
 
 const server = createServer(async (req, res) => {
@@ -176,8 +188,7 @@ const server = createServer(async (req, res) => {
       if (pathname.startsWith("/images/")) {
         const name = pathname.slice("/images/".length);
         if (!IMAGE_NAME.test(name)) return fail(res, 400, "bad image name");
-        res.writeHead(200, { "content-type": MIME[extname(name)] ?? "application/octet-stream" });
-        return createReadStream(join(imagesDir, name)).pipe(res);
+        return streamFile(res, join(imagesDir, name), MIME[extname(name)] ?? "application/octet-stream");
       }
       return serveStatic(res, pathname);
     }

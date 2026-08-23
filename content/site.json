@@ -11,11 +11,13 @@
   },
   "theme": {
     "preset": "ink",
-    "mode": "system",
+    "mode": "dark",
     "headingFont": "",
     "bodyFont": "",
     "accent": "",
-    "accentDark": ""
+    "accentDark": "",
+    "headingWeight": "",
+    "textScale": ""
   },
   "pagination": {
     "perPage": 5,
