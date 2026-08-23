@@ -64,7 +64,7 @@ export default async function PaperPage({ params }: Params) {
                   <div className="reader__page" key={page}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={`/papers/${paper.slug}/p-${page}.jpg`}
+                      src={`/papers/${paper.slug}/p-${page}.png`}
                       alt={`Page ${index + 1} of ${paper.pages}`}
                       loading={index < 2 ? "eager" : "lazy"}
                       draggable={false}

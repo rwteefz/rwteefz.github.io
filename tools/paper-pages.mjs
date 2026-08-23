@@ -26,20 +26,22 @@ if (!pdf || !/^[a-z0-9][a-z0-9-]*$/.test(slug ?? "")) {
 
 const outDir = join(repoRoot, "public", "papers", slug);
 
-// 170 dpi puts roughly two image pixels behind every CSS pixel of the reader
-// column, so the mathematics stays sharp on a retina screen; quality 70 keeps
-// each page near two hundred kilobytes, and the pages load as they are reached.
+// 300 dpi, as a 256-colour PNG. These pages are black text on white with a
+// little red on the covers, which a palette compresses far better than JPEG —
+// each page lands near 130 kB, smaller than a 170 dpi JPEG of the same page and
+// with no ringing around the glyphs, so the mathematics stays crisp when a
+// reader zooms in. Pages load as they are reached.
 await rm(outDir, { recursive: true, force: true });
 await mkdir(outDir, { recursive: true });
 
 await run("gs", [
-  "-sDEVICE=jpeg", "-dJPEGQ=70", "-r170",
+  "-sDEVICE=png256", "-r300",
   "-dNOPAUSE", "-dBATCH", "-dQUIET", "-dSAFER",
   "-dTextAlphaBits=4", "-dGraphicsAlphaBits=4",
-  `-sOutputFile=${join(outDir, "p-%03d.jpg")}`,
+  `-sOutputFile=${join(outDir, "p-%03d.png")}`,
   resolve(pdf),
 ], { maxBuffer: 32 * 1024 * 1024 });
 
-const pages = (await readdir(outDir)).filter((name) => name.endsWith(".jpg")).length;
+const pages = (await readdir(outDir)).filter((name) => name.endsWith(".png")).length;
 console.log(`${slug}: ${pages} page images in public/papers/${slug}`);
 console.log(`set "pages": ${pages} on that paper in content/site.json`);
