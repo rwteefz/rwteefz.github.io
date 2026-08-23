@@ -58,8 +58,8 @@ until you click Publish.
 **Look** — theme, colour mode, fonts, heading weight, text size, logo, and how
 many articles show per page.
 
-**Profile** — your name, tagline, role, location, links, the page title used by
-search engines, the footer, and your contact email.
+**Profile** — your name, profile photo, tagline, role, location, links, the page
+title used by search engines, the footer, and your contact email.
 
 **Sections** — reorder or hide whole sections with the ↑ ↓ and Visible/Hidden
 buttons, rename their headings, and edit the contents of Now, Projects,
@@ -122,6 +122,11 @@ picture**, and choose a file. It uploads and inserts the link for you.
 
 **Your logo:** same idea — upload it, copy the address, and paste it into
 **Look → Logo**. Leave that box empty to show your name as text instead.
+
+**Your profile photo:** the round picture in the left column of every page.
+Upload a square photo (about 500 pixels wide is plenty) under **Pictures**, copy
+its address, and paste it into **Profile → Profile photo**. Leave that box empty
+and the column shows your initials instead.
 
 Two habits worth keeping:
 

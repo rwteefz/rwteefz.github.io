@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProfileCard } from "@/app/ProfileCard";
 import { SiteHeader } from "@/app/SiteHeader";
 import { posts } from "@/app/posts";
 import siteData from "@/content/site.json";
@@ -22,69 +23,73 @@ export function WritingIndex({ pageNumber }: { pageNumber: number }) {
 
       <SiteHeader />
 
-      <main className="page" id="main-content">
-        <section className="hero">
-          <h1>Writing</h1>
-          <p className="hero__lead">
-            {posts.length} {posts.length === 1 ? "article" : "articles"}
-            {totalPages > 1 ? ` · page ${current} of ${totalPages}` : ""}
-          </p>
-        </section>
+      <main className="page page--aside" id="main-content">
+        <ProfileCard />
 
-        <section className="section">
-          <div className="rows">
-            {slice.map((post) => (
-              <Link className="row" key={post.slug} href={`/writing/${post.slug}`}>
-                <div className="row__top">
-                  <h3>
-                    {post.title} <span className="row__arrow">→</span>
-                  </h3>
-                  <span className="row__aside">{post.date}</span>
-                </div>
-                <p>{post.summary}</p>
-              </Link>
-            ))}
-          </div>
+        <div className="page__body">
+          <section className="hero">
+            <h1>Writing</h1>
+            <p className="hero__lead">
+              {posts.length} {posts.length === 1 ? "article" : "articles"}
+              {totalPages > 1 ? ` · page ${current} of ${totalPages}` : ""}
+            </p>
+          </section>
 
-          {totalPages > 1 ? (
-            <nav className="pager" aria-label="Article pages">
-              {current > 1 ? (
-                <Link className="pager__step" href={pageHref(current - 1)} rel="prev">
-                  ← Newer
+          <section className="section">
+            <div className="rows">
+              {slice.map((post) => (
+                <Link className="row" key={post.slug} href={`/writing/${post.slug}`}>
+                  <div className="row__top">
+                    <h3>
+                      {post.title} <span className="row__arrow">→</span>
+                    </h3>
+                    <span className="row__aside">{post.date}</span>
+                  </div>
+                  <p>{post.summary}</p>
                 </Link>
-              ) : (
-                <span className="pager__step pager__step--off">← Newer</span>
-              )}
+              ))}
+            </div>
 
-              <span className="pager__pages">
-                {Array.from({ length: totalPages }, (_, index) => index + 1).map((n) =>
-                  n === current ? (
-                    <span className="pager__page pager__page--on" key={n} aria-current="page">
-                      {n}
-                    </span>
-                  ) : (
-                    <Link className="pager__page" key={n} href={pageHref(n)}>
-                      {n}
-                    </Link>
-                  ),
+            {totalPages > 1 ? (
+              <nav className="pager" aria-label="Article pages">
+                {current > 1 ? (
+                  <Link className="pager__step" href={pageHref(current - 1)} rel="prev">
+                    ← Newer
+                  </Link>
+                ) : (
+                  <span className="pager__step pager__step--off">← Newer</span>
                 )}
-              </span>
 
-              {current < totalPages ? (
-                <Link className="pager__step" href={pageHref(current + 1)} rel="next">
-                  Older →
-                </Link>
-              ) : (
-                <span className="pager__step pager__step--off">Older →</span>
-              )}
-            </nav>
-          ) : null}
-        </section>
+                <span className="pager__pages">
+                  {Array.from({ length: totalPages }, (_, index) => index + 1).map((n) =>
+                    n === current ? (
+                      <span className="pager__page pager__page--on" key={n} aria-current="page">
+                        {n}
+                      </span>
+                    ) : (
+                      <Link className="pager__page" key={n} href={pageHref(n)}>
+                        {n}
+                      </Link>
+                    ),
+                  )}
+                </span>
 
-        <footer className="site-footer">
-          <span>{siteData.site.footer}</span>
-          <Link href="/">Home</Link>
-        </footer>
+                {current < totalPages ? (
+                  <Link className="pager__step" href={pageHref(current + 1)} rel="next">
+                    Older →
+                  </Link>
+                ) : (
+                  <span className="pager__step pager__step--off">Older →</span>
+                )}
+              </nav>
+            ) : null}
+          </section>
+
+          <footer className="site-footer">
+            <span>{siteData.site.footer}</span>
+            <Link href="/">Home</Link>
+          </footer>
+        </div>
       </main>
     </>
   );

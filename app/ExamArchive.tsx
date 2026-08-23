@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProfileCard } from "@/app/ProfileCard";
 import { SiteHeader } from "@/app/SiteHeader";
 import { posts } from "@/app/posts";
 import siteData from "@/content/site.json";
@@ -117,48 +118,41 @@ export function ExamArchive() {
 
       <SiteHeader />
 
-      <main className="page" id="main-content">
-        <section className="hero" id="top">
-          <h1>{siteData.profile.name}</h1>
-          <p className="hero__tagline">{siteData.profile.motto}</p>
-          <p className="hero__lead">{siteData.site.introduction}</p>
-          <ul className="hero__meta">
-            <li>{siteData.profile.role}</li>
-            <li>{siteData.profile.location}</li>
-            {siteData.profile.links.map((link) => (
-              <li key={link.label}>
-                <a href={link.url} {...linkProps(link.url)}>
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
+      <main className="page page--aside" id="main-content">
+        <ProfileCard />
 
-        {siteData.sections
-          .filter((section) => section.visible && section.key in SECTIONS)
-          .map((section) => {
-            const Body = SECTIONS[section.key];
-            return (
-              <section className="section" id={section.key} key={section.key}>
-                <p className="section-label">{section.label}</p>
-                <Body />
-              </section>
-            );
-          })}
+        <div className="page__body">
+          <section className="hero" id="top">
+            <h1>{siteData.profile.name}</h1>
+            <p className="hero__tagline">{siteData.profile.motto}</p>
+            <p className="hero__lead">{siteData.site.introduction}</p>
+          </section>
 
-        <section className="contact" id="contact">
-          <p className="section-label">{siteData.contact.title}</p>
-          <p>{siteData.contact.text}</p>
-          <a className="contact__link" href={`mailto:${siteData.contact.email}`}>
-            {siteData.contact.email}
-          </a>
-        </section>
+          {siteData.sections
+            .filter((section) => section.visible && section.key in SECTIONS)
+            .map((section) => {
+              const Body = SECTIONS[section.key];
+              return (
+                <section className="section" id={section.key} key={section.key}>
+                  <p className="section-label">{section.label}</p>
+                  <Body />
+                </section>
+              );
+            })}
 
-        <footer className="site-footer">
-          <span>{siteData.site.footer}</span>
-          <span>Updated {siteData.site.updated}</span>
-        </footer>
+          <section className="contact" id="contact">
+            <p className="section-label">{siteData.contact.title}</p>
+            <p>{siteData.contact.text}</p>
+            <a className="contact__link" href={`mailto:${siteData.contact.email}`}>
+              {siteData.contact.email}
+            </a>
+          </section>
+
+          <footer className="site-footer">
+            <span>{siteData.site.footer}</span>
+            <span>Updated {siteData.site.updated}</span>
+          </footer>
+        </div>
       </main>
     </>
   );

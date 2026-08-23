@@ -1,10 +1,10 @@
 {
   "site": {
     "shortName": "rwteefz",
-    "title": "rwteefz — systems, math, and small useful things",
+    "title": "rwteefz — Mathematics, Analysis and Possibilities",
     "description": "Personal site of rwteefz: a compact log of learning, experiments, and shipped work.",
     "kicker": "PERSONAL NODE / 2026",
-    "introduction": "I am a student and builder interested in mathematics, software, and the quiet space where ideas become tools.",
+    "introduction": "I am pursuing dual bachelor’s degrees in Mathematics and Finance at Shandong University (SDU), with academic interests in differential geometry, functional analysis, machine learning, deep learning, and financial technology (FinTech).",
     "updated": "2026-08-22",
     "status": "currently learning · building · documenting",
     "footer": "© 2026 rwteefz · built with plain HTML instincts and too much coffee"
@@ -12,11 +12,11 @@
   "theme": {
     "preset": "ink",
     "mode": "dark",
-    "headingFont": "",
+    "headingFont": "sans",
     "bodyFont": "",
     "accent": "",
     "accentDark": "",
-    "headingWeight": "",
+    "headingWeight": "700",
     "textScale": "1.05"
   },
   "pagination": {
@@ -24,10 +24,13 @@
     "homeLimit": 3
   },
   "profile": {
-    "name": "rwteefz",
+    "name": "Zixuan Zhang",
+    "handle": "rwteefz",
+    "photo": "/images/profile.png",
+    "photoAlt": "Monochrome illustration of a hooded figure — Zixuan Zhang's avatar",
     "role": "student / developer / curious human",
-    "motto": "make it legible, then make it useful.",
-    "location": "Shandong, China",
+    "motto": "Mathematics reveals.",
+    "location": "Shanghai, China",
     "links": [
       {
         "label": "github.com/rwteefz",

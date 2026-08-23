@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ProfileCard } from "@/app/ProfileCard";
 import { SiteHeader } from "@/app/SiteHeader";
 import { getPost, posts } from "@/app/posts";
 import siteData from "@/content/site.json";
@@ -34,31 +35,35 @@ export default async function ArticlePage({ params }: Params) {
   return (
     <>
       <SiteHeader />
-      <main className="page" id="main-content">
-        <article className="article">
-          <Link className="back-link" href="/#writing">
-            ← All writing
-          </Link>
+      <main className="page page--aside" id="main-content">
+        <ProfileCard />
 
-          <h1>{post.title}</h1>
-          {post.date ? <p className="article__date">{post.date}</p> : null}
-          {post.summary ? <p className="article__summary">{post.summary}</p> : null}
+        <div className="page__body">
+          <article className="article">
+            <Link className="back-link" href="/#writing">
+              ← All writing
+            </Link>
 
-          {post.cover ? (
-            // A plain <img>: next/image has no optimiser behind a static export,
-            // and the file is already served straight from public/images.
-            // eslint-disable-next-line @next/next/no-img-element
-            <img className="article__cover" src={post.cover} alt={post.coverAlt} />
-          ) : null}
+            <h1>{post.title}</h1>
+            {post.date ? <p className="article__date">{post.date}</p> : null}
+            {post.summary ? <p className="article__summary">{post.summary}</p> : null}
 
-          {/* The Markdown comes from this repository, written by the site owner. */}
-          <div className="prose" dangerouslySetInnerHTML={{ __html: post.html }} />
-        </article>
+            {post.cover ? (
+              // A plain <img>: next/image has no optimiser behind a static export,
+              // and the file is already served straight from public/images.
+              // eslint-disable-next-line @next/next/no-img-element
+              <img className="article__cover" src={post.cover} alt={post.coverAlt} />
+            ) : null}
 
-        <footer className="site-footer">
-          <span>{siteData.site.footer}</span>
-          <Link href="/#writing">More writing</Link>
-        </footer>
+            {/* The Markdown comes from this repository, written by the site owner. */}
+            <div className="prose" dangerouslySetInnerHTML={{ __html: post.html }} />
+          </article>
+
+          <footer className="site-footer">
+            <span>{siteData.site.footer}</span>
+            <Link href="/#writing">More writing</Link>
+          </footer>
+        </div>
       </main>
     </>
   );

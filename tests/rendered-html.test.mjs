@@ -8,11 +8,21 @@ const postsDir = new URL("../content/posts/", import.meta.url);
 const publishedPosts = async () =>
   (await readdir(postsDir)).filter((name) => name.endsWith(".md") && !name.startsWith("_"));
 
+const site = JSON.parse(await readFile(new URL("../content/site.json", import.meta.url), "utf8"));
+
+/** The rendered page carries HTML-escaped text, so compare like for like. */
+const escapeHtml = (text) =>
+  text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#x27;");
+
+const literal = (text) => new RegExp(escapeHtml(text).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+
 test("exports a GitHub Pages-ready homepage", async () => {
   const html = await readFile(new URL("../dist/client/index.html", import.meta.url), "utf8");
 
-  assert.match(html, /rwteefz/);
-  assert.match(html, /systems, math, and small useful things/);
+  // Whatever the owner has set in site.json — not a title frozen into the test.
+  assert.match(html, literal(site.site.shortName));
+  assert.match(html, literal(site.site.title));
   assert.match(html, /id=["']main-content["']/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
   assert.doesNotMatch(html, /maintainer interface|local editor|download site\.json|#edit/i);
@@ -23,7 +33,9 @@ test("keeps editable content in one valid JSON file", async () => {
   const raw = await readFile(new URL("../content/site.json", import.meta.url), "utf8");
   const content = JSON.parse(raw);
 
-  assert.equal(content.site.shortName, "rwteefz");
+  for (const key of ["shortName", "title", "description"]) {
+    assert.ok(content.site[key]?.trim(), `site.${key} must not be empty`);
+  }
   assert.ok(content.projects.length >= 3);
   assert.ok(content.education.length >= 1);
   assert.ok(content.activities.length >= 1);

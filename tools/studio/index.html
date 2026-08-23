@@ -321,6 +321,9 @@ function renderProfile() {
   const you = el("section", { className: "panel" });
   you.append(el("h2", { textContent: "You" }),
     field("Name or handle", site.profile, "name"),
+    field("Name in the left column", site.profile, "handle", { hint: "Your handle, shown under the photo. Leave empty to use the name above." }),
+    field("Profile photo", site.profile, "photo", { hint: "Upload it under Pictures, then use /images/your-photo.jpg. Leave empty to show your initials." }),
+    field("Photo description", site.profile, "photoAlt", { hint: "Read aloud by screen readers." }),
     field("Tagline", site.profile, "motto", { hint: "One short line under your name." }),
     field("Role", site.profile, "role"),
     field("Location", site.profile, "location"),
