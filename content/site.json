@@ -84,7 +84,7 @@
       "title": "Euler–Maclaurin formula and asymptotic estimates",
       "date": "2026-06",
       "tag": "course paper / mathematics",
-      "description": "A term paper for Mathematical Analysis II, and the furthest I have taken a piece of mathematical writing: the Euler–Maclaurin summation formula derived from Bernoulli numbers, then applied to Stirling's formula, Romberg integration, and singular expansions for lattice sums.",
+      "description": "My paper for Mathematical Analysis II, and the one I put the most into: the Euler–Maclaurin summation formula derived from Bernoulli numbers, then applied to Stirling's formula, Romberg integration, and singular expansions for lattice sums.",
       "stack": "LaTeX · 72 pages · read it on the site",
       "url": "/papers/euler-maclaurin"
     },
@@ -93,7 +93,7 @@
       "title": "Constructing auxiliary functions for Rolle's theorem",
       "date": "2026-01",
       "tag": "course paper / mathematics",
-      "description": "My first-year paper for Mathematical Analysis I, and the first time I tried to write mathematics properly rather than just answer questions. It proves Rolle's theorem, extends it, and then borrows ideas from ordinary differential equations to build the auxiliary functions that mean-value problems ask for.",
+      "description": "My paper for Mathematical Analysis I, and the first time I tried to write mathematics properly rather than just answer questions. It proves Rolle's theorem, extends it, and then borrows ideas from ordinary differential equations to build the auxiliary functions that mean-value problems ask for.",
       "stack": "LaTeX · 16 pages · read it on the site",
       "url": "/papers/rolle-mean-value"
     },
@@ -175,7 +175,7 @@
       "slug": "euler-maclaurin",
       "title": "Euler–Maclaurin 公式与渐进估计",
       "meta": "Term paper · Mathematical Analysis II · School of Mathematics, Shandong University · 72 pages",
-      "summary": "The longest piece of mathematics I have written so far. It builds the Euler–Maclaurin summation formula from power sums and Bernoulli numbers, reads it through Riemann–Stieltjes integration, and then puts it to work: Stirling's formula, asymptotic expansions, Richardson extrapolation and Romberg integration, and the singular Euler–Maclaurin expansion for lattice sums.",
+      "summary": "A term paper for Mathematical Analysis II, and the longer of the two papers here. It builds the Euler–Maclaurin summation formula from power sums and Bernoulli numbers, reads it through Riemann–Stieltjes integration, and then puts it to work: Stirling's formula, asymptotic expansions, Richardson extrapolation and Romberg integration, and the singular Euler–Maclaurin expansion for lattice sums.",
       "pages": 72,
       "width": 2480,
       "height": 3508,
