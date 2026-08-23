@@ -98,6 +98,15 @@
       "url": "/papers/rolle-mean-value"
     },
     {
+      "number": "01a",
+      "title": "Advanced Algebra (2), worked problems",
+      "date": "2026-07",
+      "tag": "course notes / Advanced Algebra",
+      "description": "A problem book I wrote for myself while taking Advanced Algebra (2): linear maps, eigenvalues and Jordan form, quadratic forms, inner product spaces — each problem proved out in full, often more than one way.",
+      "stack": "LaTeX · 47 pages · read it on the site",
+      "url": "/papers/advanced-algebra"
+    },
+    {
       "number": "01",
       "title": "math archive",
       "date": "2026",
@@ -189,6 +198,16 @@
       "pages": 16,
       "width": 2480,
       "height": 3508,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "advanced-algebra",
+      "title": "Advanced Algebra (2)",
+      "meta": "Worked problems · Advanced Algebra (2) · Shandong University · 47 pages",
+      "summary": "Problems from Advanced Algebra (2) worked through in full, following Shuqian Zhu's course at Shandong University and the Xie–Yao textbook. It runs from linear maps and their matrix representations through eigenvalues, Jordan form, quadratic forms and inner product spaces, and where a problem admits more than one line of attack the alternatives are written out side by side rather than left as a remark.",
+      "pages": 47,
+      "width": 2550,
+      "height": 3300,
       "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
     }
   ]
