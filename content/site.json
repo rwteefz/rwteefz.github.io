@@ -183,6 +183,8 @@
       "meta": "Term paper · Mathematical Analysis II · School of Mathematics, Shandong University · 72 pages",
       "summary": "The longest piece of mathematics I have written so far. It builds the Euler–Maclaurin summation formula from power sums and Bernoulli numbers, reads it through Riemann–Stieltjes integration, and then puts it to work: Stirling's formula, asymptotic expansions, Richardson extrapolation and Romberg integration, and the singular Euler–Maclaurin expansion for lattice sums.",
       "pages": 72,
+      "width": 2480,
+      "height": 3508,
       "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
     },
     {
@@ -191,6 +193,8 @@
       "meta": "Term paper · Mathematical Analysis I · Shandong University · 16 pages · January 2026",
       "summary": "Where the writing started, in my first year: Rolle's theorem proved and extended, and then a way of constructing the auxiliary functions that mean-value problems ask for — reading the construction through first-order linear and higher-order constant-coefficient differential equations.",
       "pages": 16,
+      "width": 2480,
+      "height": 3508,
       "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
     }
   ]

@@ -66,7 +66,13 @@ export default async function PaperPage({ params }: Params) {
                     <img
                       src={`/papers/${paper.slug}/p-${page}.png`}
                       alt={`Page ${index + 1} of ${paper.pages}`}
+                      // Without these the placeholders have no height, every
+                      // page counts as on-screen at once, and the ones further
+                      // down stay blank while the browser works through them.
+                      width={paper.width}
+                      height={paper.height}
                       loading={index < 2 ? "eager" : "lazy"}
+                      decoding="async"
                       draggable={false}
                     />
                     <span className="reader__shield" aria-hidden="true" />
