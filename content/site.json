@@ -38,8 +38,8 @@
         "icon": "GH"
       },
       {
-        "label": "ericzhangsh@sdu.edu.cn",
-        "url": "mailto:ericzhangsh@sdu.edu.cn",
+        "label": "ericzhangsh@mail.sdu.edu.cn",
+        "url": "mailto:ericzhangsh@mail.sdu.edu.cn",
         "icon": "@"
       }
     ],
@@ -177,7 +177,7 @@
   "contact": {
     "title": "Contact Me",
     "text": "Have a great question or idea you’d like to discuss, collaborate on, or share with me? Send me a note.",
-    "email": "ericzhangsh@sdu.edu.cn"
+    "email": "ericzhangsh@mail.sdu.edu.cn"
   },
   "papers": [
     {
