@@ -151,7 +151,12 @@ export function ExamArchive() {
           <section className="hero" id="top">
             <h1>{siteData.profile.name}</h1>
             <p className="hero__tagline">{siteData.profile.motto}</p>
-            <p className="hero__lead">{siteData.site.introduction}</p>
+            {/* A blank line in site.json starts a new paragraph. */}
+          {siteData.site.introduction.split(/\n{2,}/).map((para) => (
+            <p className="hero__lead" key={para.slice(0, 40)}>
+              {para.trim()}
+            </p>
+          ))}
           </section>
 
           {siteData.sections

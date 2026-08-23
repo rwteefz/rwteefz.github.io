@@ -485,13 +485,30 @@ a.row:hover .row__arrow { transform: translate(2px, -2px); }
 /* ---------- paper reader ---------- */
 
 .reader {
+  display: grid;
+  gap: 16px;
+  margin: 32px 0 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.reader__page { position: relative; }
+
+.reader__page img {
   display: block;
   width: 100%;
-  height: min(82vh, 1000px);
-  margin: 32px 0 0;
+  height: auto;
   border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--hover);
+  border-radius: 4px;
+  background: #fff;
+  -webkit-user-drag: none;
+}
+
+/* Sits over the page so a right-click or a long press hits this, not the image. */
+.reader__shield {
+  position: absolute;
+  inset: 0;
 }
 
 .reader__note {

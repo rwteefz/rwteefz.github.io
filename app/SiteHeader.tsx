@@ -1,9 +1,25 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import siteData from "@/content/site.json";
 
 export function SiteHeader() {
+  // A static export hydrates after the browser has already handled the hash, and
+  // the router puts the page back at the top. Jump to the target once more when
+  // the page is ready, so /#education lands on Education.
+  useEffect(() => {
+    const jump = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!id) return;
+      document.getElementById(id)?.scrollIntoView({ block: "start" });
+    };
+
+    jump();
+    window.addEventListener("hashchange", jump);
+    return () => window.removeEventListener("hashchange", jump);
+  }, []);
+
   // The theme lives on <html data-theme>, set before paint by the inline script in
   // layout.tsx. Keeping it out of React state avoids a hydration mismatch on the
   // statically exported page; the icon swap is handled in CSS.
@@ -33,16 +49,19 @@ export function SiteHeader() {
             siteData.profile.name
           )}
         </Link>
+        {/* Plain anchors on purpose: next/link swallows same-page hash jumps. */}
+        {/* eslint-disable @next/next/no-html-link-for-pages */}
         <nav className="primary-nav" aria-label="Primary">
           {siteData.sections
             .filter((section) => section.visible && section.key !== "now")
             .map((section) => (
-              <Link key={section.key} href={`/#${section.key}`}>
+              <a key={section.key} href={`/#${section.key}`}>
                 {section.label}
-              </Link>
+              </a>
             ))}
-          <Link href="/#contact">Contact</Link>
+          <a href="/#contact">Contact</a>
         </nav>
+        {/* eslint-enable @next/next/no-html-link-for-pages */}
         <button
           className="theme-toggle"
           type="button"

@@ -52,15 +52,28 @@ export default async function PaperPage({ params }: Params) {
             {paper.summary ? <p className="article__summary">{paper.summary}</p> : null}
 
             {/*
-              Reading view. The PDF viewer's own toolbar — and with it the
-              download and print buttons — is switched off by the #toolbar=0
-              fragment, and the file is not linked anywhere else on the site.
+              The pages are images built by tools/paper-pages.mjs; the PDF is
+              not published at all, so there is no file to save. Each page
+              carries a transparent shield on top: a right-click lands on the
+              shield, not the image, so the browser offers no "Save image as".
             */}
-            <iframe
-              className="reader"
-              src={`${paper.file}#toolbar=0&navpanes=0&statusbar=0&view=FitH`}
-              title={paper.title}
-            />
+            <div className="reader">
+              {Array.from({ length: paper.pages }, (_, index) => {
+                const page = String(index + 1).padStart(3, "0");
+                return (
+                  <div className="reader__page" key={page}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`/papers/${paper.slug}/p-${page}.jpg`}
+                      alt={`Page ${index + 1} of ${paper.pages}`}
+                      loading={index < 2 ? "eager" : "lazy"}
+                      draggable={false}
+                    />
+                    <span className="reader__shield" aria-hidden="true" />
+                  </div>
+                );
+              })}
+            </div>
 
             {paper.note ? <p className="reader__note">{paper.note}</p> : null}
           </article>

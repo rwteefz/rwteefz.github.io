@@ -4,7 +4,7 @@
     "title": "rwteefz — Mathematics, Analysis and Possibilities",
     "description": "Personal site of rwteefz: a compact log of learning, experiments, and shipped work.",
     "kicker": "PERSONAL NODE / 2026",
-    "introduction": "I am pursuing dual bachelor’s degrees in Mathematics and Finance at Shandong University (SDU), with academic interests in differential geometry, functional analysis, machine learning, deep learning, and financial technology (FinTech).",
+    "introduction": "I am pursuing dual bachelor’s degrees in Mathematics and Finance at Shandong University (SDU), with academic interests in differential geometry, functional analysis, machine learning, deep learning, and financial technology (FinTech).\n\nI plan to pursue graduate (or doctoral) studies at a university in Shanghai, likely in statistics or quantitative finance, with the goal of eventually finding employment in Shanghai.",
     "updated": "2026-08-22",
     "status": "currently learning · building · documenting",
     "footer": "© 2026 rwteefz · built with plain HTML instincts and too much coffee"
@@ -127,20 +127,20 @@
   ],
   "education": [
     {
-      "period": "2022 - 2025",
-      "title": "No.2 High School of East China Normal University",
-      "logo": "/images/logo-ecnu-no2-high-school.png",
-      "place": "Senior high school",
-      "city": "Shanghai",
-      "detail": "Mathematical modelling project: A Study on Comprehensive Mathematical Modeling of Noise and Travel Fatigue Among Residents Living Near Above-Ground Subway Stations."
-    },
-    {
       "period": "2025-2029",
       "title": "Shandong University",
       "logo": "/images/logo-shandong-university.png",
       "place": "B.Sc. in Mathematics and Finance",
       "city": "Jinan",
       "detail": "Analysis, algebra, probability, numerical methods, and the habit of asking better questions."
+    },
+    {
+      "period": "2022 - 2025",
+      "title": "No.2 High School of East China Normal University",
+      "logo": "/images/logo-ecnu-no2-high-school.png",
+      "place": "Senior high school",
+      "city": "Shanghai",
+      "detail": "Mathematical modelling project: A Study on Comprehensive Mathematical Modeling of Noise and Travel Fatigue Among Residents Living Near Above-Ground Subway Stations."
     },
     {
       "period": "always",
@@ -182,16 +182,16 @@
       "title": "Euler–Maclaurin 公式与渐进估计",
       "meta": "Term paper · Mathematical Analysis II · School of Mathematics, Shandong University · 72 pages",
       "summary": "The longest piece of mathematics I have written so far. It builds the Euler–Maclaurin summation formula from power sums and Bernoulli numbers, reads it through Riemann–Stieltjes integration, and then puts it to work: Stirling's formula, asymptotic expansions, Richardson extrapolation and Romberg integration, and the singular Euler–Maclaurin expansion for lattice sums.",
-      "file": "/files/mathematical-analysis-2-paper.pdf",
-      "note": "Reading view only — please do not redistribute. Ask me if you would like a copy."
+      "pages": 72,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
     },
     {
       "slug": "rolle-mean-value",
       "title": "利用 Rolle 定理解决中值问题时函数构造技巧的深入思考",
       "meta": "Term paper · Mathematical Analysis I · Shandong University · 16 pages · January 2026",
       "summary": "Where the writing started, in my first year: Rolle's theorem proved and extended, and then a way of constructing the auxiliary functions that mean-value problems ask for — reading the construction through first-order linear and higher-order constant-coefficient differential equations.",
-      "file": "/files/mathematical-analysis-1-paper.pdf",
-      "note": "Reading view only — please do not redistribute. Ask me if you would like a copy."
+      "pages": 16,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
     }
   ]
 }
