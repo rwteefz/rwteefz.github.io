@@ -93,7 +93,7 @@
       "title": "Constructing auxiliary functions for Rolle's theorem",
       "date": "2026-01",
       "tag": "course paper / mathematics",
-      "description": "An earlier term paper, written in my first year and more of a starting point than the Analysis II one: Rolle's theorem proved and extended, then ideas from ordinary differential equations used to build the auxiliary functions that mean-value problems need.",
+      "description": "My first-year paper for Mathematical Analysis I, and the first time I tried to write mathematics properly rather than just answer questions. It proves Rolle's theorem, extends it, and then borrows ideas from ordinary differential equations to build the auxiliary functions that mean-value problems ask for.",
       "stack": "LaTeX · 16 pages · read it on the site",
       "url": "/papers/rolle-mean-value"
     },
@@ -185,7 +185,7 @@
       "slug": "rolle-mean-value",
       "title": "利用 Rolle 定理解决中值问题时函数构造技巧的深入思考",
       "meta": "Term paper · Mathematical Analysis I · Shandong University · 16 pages · January 2026",
-      "summary": "Where the writing started, in my first year: Rolle's theorem proved and extended, and then a way of constructing the auxiliary functions that mean-value problems ask for — reading the construction through first-order linear and higher-order constant-coefficient differential equations.",
+      "summary": "Written in my first year, for Mathematical Analysis I. It proves Rolle's theorem and extends it, then turns to the harder part of a mean-value problem — finding the auxiliary function — and shows how first-order linear and higher-order constant-coefficient differential equations suggest what that function should be.",
       "pages": 16,
       "width": 2480,
       "height": 3508,
