@@ -83,7 +83,7 @@
       "number": "00",
       "title": "Euler–Maclaurin formula and asymptotic estimates",
       "date": "2026-06",
-      "tag": "course paper / mathematics",
+      "tag": "course paper / Mathematical Analysis II",
       "description": "My paper for Mathematical Analysis II: the Euler–Maclaurin summation formula derived from Bernoulli numbers, then applied to Stirling's formula, Romberg integration, and singular expansions for lattice sums.",
       "stack": "LaTeX · 72 pages · read it on the site",
       "url": "/papers/euler-maclaurin"
@@ -92,7 +92,7 @@
       "number": "00b",
       "title": "Constructing auxiliary functions for Rolle's theorem",
       "date": "2026-01",
-      "tag": "course paper / mathematics",
+      "tag": "course paper / Mathematical Analysis I",
       "description": "My paper for Mathematical Analysis I, and the first time I tried to write mathematics properly rather than just answer questions. It proves Rolle's theorem, extends it, and then borrows ideas from ordinary differential equations to build the auxiliary functions that mean-value problems ask for.",
       "stack": "LaTeX · 16 pages · read it on the site",
       "url": "/papers/rolle-mean-value"
