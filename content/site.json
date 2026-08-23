@@ -51,6 +51,26 @@
     { "number": "02", "title": "tiny experiments", "tag": "lab / in progress", "description": "Small programs for visualising functions, testing ideas, and understanding how abstractions behave under pressure.", "stack": "Python · TypeScript · whatever works", "url": "https://github.com/rwteefz" },
     { "number": "03", "title": "this interface", "tag": "meta / shipped", "description": "A personal page that stays close to the source: one readable layout, zero framework-shaped fog, and a bias toward useful defaults.", "stack": "React · CSS · GitHub Pages", "url": "https://github.com/rwteefz/rwteefz.github.io" }
   ],
+  "activities": [
+    {
+      "period": "2026",
+      "title": "Mathematics Study Group",
+      "role": "organiser",
+      "detail": "Weekly problem sessions on analysis and probability, with shared notes published after each meeting."
+    },
+    {
+      "period": "2025 - now",
+      "title": "Campus Coding Club",
+      "role": "member",
+      "detail": "Building small tools with other students and helping newcomers get their first project running."
+    },
+    {
+      "period": "2025",
+      "title": "Open-source contributions",
+      "role": "contributor",
+      "detail": "Documentation fixes and small patches to projects I use while studying."
+    }
+  ],
   "writing": [
     {
       "date": "2026-08",
