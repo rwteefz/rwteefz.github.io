@@ -48,9 +48,13 @@ function Education() {
           <h3>
             {item.title}
             {item.logo ? (
-              // Decorative: the school's name is right next to it.
-              // eslint-disable-next-line @next/next/no-img-element
-              <img className="row__logo" src={item.logo} alt="" />
+              <>
+                {/* A non-breaking space keeps the crest on the name's last line. */}
+                {"\u00a0"}
+                {/* Decorative: the school's name is right next to it. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="row__logo" src={item.logo} alt="" />
+              </>
             ) : null}
           </h3>
           <span className="row__qual">{item.place}</span>

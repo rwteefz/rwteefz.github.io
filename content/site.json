@@ -83,9 +83,17 @@
       "number": "00",
       "title": "Euler–Maclaurin formula and asymptotic estimates",
       "tag": "course paper / mathematics",
-      "description": "A term paper for Mathematical Analysis II, and my first go at writing mathematics as a paper: the Euler–Maclaurin summation formula derived from Bernoulli numbers, then applied to Stirling's formula, Romberg integration, and singular expansions for lattice sums.",
+      "description": "A term paper for Mathematical Analysis II, and the furthest I have taken a piece of mathematical writing: the Euler–Maclaurin summation formula derived from Bernoulli numbers, then applied to Stirling's formula, Romberg integration, and singular expansions for lattice sums.",
       "stack": "LaTeX · 72 pages · read it on the site",
       "url": "/papers/euler-maclaurin"
+    },
+    {
+      "number": "00b",
+      "title": "Constructing auxiliary functions for Rolle's theorem",
+      "tag": "course paper / mathematics",
+      "description": "An earlier term paper, written in my first year and more of a starting point than the Analysis II one: Rolle's theorem proved and extended, then ideas from ordinary differential equations used to build the auxiliary functions that mean-value problems need.",
+      "stack": "LaTeX · 16 pages · read it on the site",
+      "url": "/papers/rolle-mean-value"
     },
     {
       "number": "01",
@@ -125,7 +133,7 @@
       "period": "2025-2029",
       "title": "Shandong University",
       "logo": "/images/logo-shandong-university.png",
-      "place": "B.Sc. in Mathematics",
+      "place": "B.Sc. in Mathematics and Finance",
       "city": "Jinan",
       "detail": "Analysis, algebra, probability, numerical methods, and the habit of asking better questions."
     },
@@ -168,8 +176,16 @@
       "slug": "euler-maclaurin",
       "title": "Euler–Maclaurin 公式与渐进估计",
       "meta": "Term paper · Mathematical Analysis II · School of Mathematics, Shandong University · 72 pages",
-      "summary": "My first attempt at writing mathematics as a paper rather than as homework. It builds the Euler–Maclaurin summation formula from power sums and Bernoulli numbers, reads it through Riemann–Stieltjes integration, and then puts it to work: Stirling's formula, asymptotic expansions, Richardson extrapolation and Romberg integration, and the singular Euler–Maclaurin expansion for lattice sums.",
+      "summary": "The longest piece of mathematics I have written so far. It builds the Euler–Maclaurin summation formula from power sums and Bernoulli numbers, reads it through Riemann–Stieltjes integration, and then puts it to work: Stirling's formula, asymptotic expansions, Richardson extrapolation and Romberg integration, and the singular Euler–Maclaurin expansion for lattice sums.",
       "file": "/files/mathematical-analysis-2-paper.pdf",
+      "note": "Reading view only — please do not redistribute. Ask me if you would like a copy."
+    },
+    {
+      "slug": "rolle-mean-value",
+      "title": "利用 Rolle 定理解决中值问题时函数构造技巧的深入思考",
+      "meta": "Term paper · Mathematical Analysis I · Shandong University · 16 pages · January 2026",
+      "summary": "Where the writing started, in my first year: Rolle's theorem proved and extended, and then a way of constructing the auxiliary functions that mean-value problems ask for — reading the construction through first-order linear and higher-order constant-coefficient differential equations.",
+      "file": "/files/mathematical-analysis-1-paper.pdf",
       "note": "Reading view only — please do not redistribute. Ask me if you would like a copy."
     }
   ]

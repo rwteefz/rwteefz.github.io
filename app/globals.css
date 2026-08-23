@@ -380,7 +380,7 @@ a.row:hover h3 { color: var(--accent); }
   display: inline-block;
   height: 1.4em;
   width: auto;
-  margin-left: 0.45em;
+  margin-left: 0.15em;
   vertical-align: -0.3em;
   border-radius: 50%;
   background: #fff;
