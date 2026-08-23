@@ -33,13 +33,27 @@ export function SiteHeader() {
     }
   };
 
+  // On the homepage the name scrolls back to the top instead of reloading;
+  // anywhere else the browser follows the link home as usual.
+  const goHome = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+    if (!["/", "/index.html"].includes(window.location.pathname)) return;
+
+    event.preventDefault();
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: still ? "auto" : "smooth" });
+    // Drop any #section from the address, or a refresh would jump back down.
+    window.history.replaceState(null, "", window.location.pathname);
+  };
+
   return (
     <header className="masthead">
       <div className="masthead__inner">
         {/* Plain anchor, like the nav: a client-side hop to "/" can leave the
-            reader at the scroll position of the page they came from. */}
+            reader at the scroll position of the page they came from. On the
+            homepage itself there is nowhere to go, so it rides back up. */}
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-        <a className="brand" href="/">
+        <a className="brand" href="/" onClick={goHome}>
           {siteData.profile.logo ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
