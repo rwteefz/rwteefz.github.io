@@ -2,6 +2,9 @@
 
 My personal site: profile, projects, education, activities, and writing.
 
+> **New here, or just want to edit the site?** Read the step-by-step guide:
+> **[HELP.md](HELP.md)** · **[使用说明（中文）](HELP.zh.md)**
+
 The published site is plain static files — no database, no server, no admin
 panel. Everything comes from three places in this repository:
 
