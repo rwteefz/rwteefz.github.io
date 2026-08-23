@@ -183,7 +183,7 @@
   "papers": [
     {
       "slug": "euler-maclaurin",
-      "title": "Euler–Maclaurin 公式与渐进估计",
+      "title": "Euler–Maclaurin Formula and Asymptotic Estimates",
       "meta": "Term paper · Mathematical Analysis II · School of Mathematics, Shandong University · 72 pages",
       "summary": "A term paper for Mathematical Analysis II. It builds the Euler–Maclaurin summation formula from power sums and Bernoulli numbers, reads it through Riemann–Stieltjes integration, and then puts it to work: Stirling's formula, asymptotic expansions, Richardson extrapolation and Romberg integration, and the singular Euler–Maclaurin expansion for lattice sums.",
       "pages": 72,
@@ -193,7 +193,7 @@
     },
     {
       "slug": "rolle-mean-value",
-      "title": "利用 Rolle 定理解决中值问题时函数构造技巧的深入思考",
+      "title": "Constructing Auxiliary Functions for Mean-Value Problems with Rolle's Theorem",
       "meta": "Term paper · Mathematical Analysis I · Shandong University · 16 pages · January 2026",
       "summary": "Written in my first year, for Mathematical Analysis I. It proves Rolle's theorem and extends it, then turns to the harder part of a mean-value problem — finding the auxiliary function — and shows how first-order linear and higher-order constant-coefficient differential equations suggest what that function should be.",
       "pages": 16,
