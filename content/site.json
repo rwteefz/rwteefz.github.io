@@ -9,6 +9,14 @@
     "status": "currently learning · building · documenting",
     "footer": "© 2026 rwteefz · built with plain HTML instincts and too much coffee"
   },
+  "theme": {
+    "preset": "ink",
+    "mode": "system",
+    "headingFont": "",
+    "bodyFont": "",
+    "accent": "",
+    "accentDark": ""
+  },
   "profile": {
     "name": "rwteefz",
     "role": "student / developer / curious human",
@@ -25,12 +33,67 @@
         "url": "mailto:your-email@example.com",
         "icon": "@"
       }
-    ]
+    ],
+    "logo": "",
+    "logoAlt": ""
   },
+  "sections": [
+    {
+      "key": "now",
+      "label": "Now",
+      "visible": true
+    },
+    {
+      "key": "projects",
+      "label": "Projects",
+      "visible": true
+    },
+    {
+      "key": "education",
+      "label": "Education",
+      "visible": true
+    },
+    {
+      "key": "activities",
+      "label": "Activities",
+      "visible": true
+    },
+    {
+      "key": "writing",
+      "label": "Writing",
+      "visible": true
+    }
+  ],
   "now": [
     "studying mathematical foundations and algorithms",
     "turning notes into small, reusable tools",
     "learning to ship fewer things with more care"
+  ],
+  "projects": [
+    {
+      "number": "01",
+      "title": "math archive",
+      "tag": "open data / web",
+      "description": "A searchable, human-maintained index for course notes, exams, and the things that usually disappear into chat history.",
+      "stack": "Next.js · JSON · GitHub Pages",
+      "url": "https://github.com/rwteefz/rwteefz.github.io"
+    },
+    {
+      "number": "02",
+      "title": "tiny experiments",
+      "tag": "lab / in progress",
+      "description": "Small programs for visualising functions, testing ideas, and understanding how abstractions behave under pressure.",
+      "stack": "Python · TypeScript · whatever works",
+      "url": "https://github.com/rwteefz"
+    },
+    {
+      "number": "03",
+      "title": "this interface",
+      "tag": "meta / shipped",
+      "description": "A personal page that stays close to the source: one readable layout, zero framework-shaped fog, and a bias toward useful defaults.",
+      "stack": "React · CSS · GitHub Pages",
+      "url": "https://github.com/rwteefz/rwteefz.github.io"
+    }
   ],
   "education": [
     {
@@ -45,11 +108,6 @@
       "place": "books · papers · source code",
       "detail": "A living syllabus spanning systems, typography, programming languages, and mathematical thinking."
     }
-  ],
-  "projects": [
-    { "number": "01", "title": "math archive", "tag": "open data / web", "description": "A searchable, human-maintained index for course notes, exams, and the things that usually disappear into chat history.", "stack": "Next.js · JSON · GitHub Pages", "url": "https://github.com/rwteefz/rwteefz.github.io" },
-    { "number": "02", "title": "tiny experiments", "tag": "lab / in progress", "description": "Small programs for visualising functions, testing ideas, and understanding how abstractions behave under pressure.", "stack": "Python · TypeScript · whatever works", "url": "https://github.com/rwteefz" },
-    { "number": "03", "title": "this interface", "tag": "meta / shipped", "description": "A personal page that stays close to the source: one readable layout, zero framework-shaped fog, and a bias toward useful defaults.", "stack": "React · CSS · GitHub Pages", "url": "https://github.com/rwteefz/rwteefz.github.io" }
   ],
   "activities": [
     {
@@ -69,20 +127,6 @@
       "title": "Open-source contributions",
       "role": "contributor",
       "detail": "Documentation fixes and small patches to projects I use while studying."
-    }
-  ],
-  "writing": [
-    {
-      "date": "2026-08",
-      "title": "Notes on learning in public",
-      "detail": "Why unfinished work is often the most honest kind of documentation.",
-      "url": "#"
-    },
-    {
-      "date": "2026-06",
-      "title": "A small argument for boring tools",
-      "detail": "When a text file, a browser, and version control are enough.",
-      "url": "#"
     }
   ],
   "contact": {
