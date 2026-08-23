@@ -169,8 +169,16 @@ const queueSave = (fn) => {
   }, 600);
 };
 
-const saveSite = () => queueSave(() =>
-  api("/site", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify(state.site) }));
+// The stamp travels with every save so the server can spot a page that was
+// opened before someone else changed content/site.json.
+const saveSite = () => queueSave(async () => {
+  const saved = await api("/site", {
+    method: "PUT",
+    headers: { "content-type": "application/json", "x-site-stamp": state.stamp ?? "" },
+    body: JSON.stringify(state.site),
+  });
+  state.stamp = saved.stamp;
+});
 
 const savePost = (post, previousSlug) => queueSave(() =>
   api("/post", { method: "PUT", headers: { "content-type": "application/json" },

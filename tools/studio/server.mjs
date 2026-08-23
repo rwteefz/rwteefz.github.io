@@ -9,6 +9,7 @@
  */
 
 import { execFile } from "node:child_process";
+import { createHash } from "node:crypto";
 import { createReadStream } from "node:fs";
 import { mkdir, readdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { createServer } from "node:http";
@@ -25,6 +26,17 @@ const siteJson = join(repoRoot, "content", "site.json");
 const themesJson = join(repoRoot, "content", "themes.json");
 const postsDir = join(repoRoot, "content", "posts");
 const imagesDir = join(repoRoot, "public", "images");
+
+/**
+ * A fingerprint of content/site.json as it is on disk right now.
+ *
+ * The browser holds a whole copy of that file and writes all of it back on
+ * every save, so a tab left open since before an outside edit would silently
+ * undo it. Each save carries the fingerprint the tab loaded; if the file has
+ * moved on since, the write is refused and the tab is told to reload.
+ */
+const siteStamp = async () =>
+  createHash("sha1").update(await readFile(siteJson)).digest("hex").slice(0, 12);
 
 const PORT = Number(process.env.PORT) || 4321;
 const MAX_IMAGE_BYTES = 12 * 1024 * 1024;
@@ -202,15 +214,22 @@ const server = createServer(async (req, res) => {
         readImages(),
         gitState(),
       ]);
-      return send(res, 200, { site, themes, posts, images, git });
+      return send(res, 200, { site, themes, posts, images, git, stamp: await siteStamp() });
     }
 
     /* ---- site.json ---- */
     if (pathname === "/api/site" && req.method === "PUT") {
       const site = await readJson(req);
       if (!site || typeof site !== "object" || Array.isArray(site)) return fail(res, 400, "expected an object");
+
+      const sent = req.headers["x-site-stamp"];
+      if (sent && sent !== await siteStamp()) {
+        return fail(res, 409, "This page was opened before content/site.json last changed, " +
+          "so saving would undo that change. Reload the studio (Cmd-R) and edit again.");
+      }
+
       await writeFile(siteJson, JSON.stringify(site, null, 2) + "\n");
-      return send(res, 200, { saved: "content/site.json" });
+      return send(res, 200, { saved: "content/site.json", stamp: await siteStamp() });
     }
 
     /* ---- articles ---- */
