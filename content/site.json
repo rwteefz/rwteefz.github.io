@@ -106,15 +106,24 @@
   ],
   "education": [
     {
+      "period": "2022 - 2025",
+      "title": "No.2 High School of East China Normal University",
+      "place": "Senior high school",
+      "city": "Shanghai",
+      "detail": "Mathematical modelling project: A Study on Comprehensive Mathematical Modeling of Noise and Travel Fatigue Among Residents Living Near Above-Ground Subway Stations."
+    },
+    {
       "period": "2025-2029",
-      "title": "B.Sc. in Mathematics",
-      "place": "Shandong University",
-      "detail": "Analysis, algebra, probability, numerical methods, and the habit of asking better questions."
+      "title": "Shandong University",
+      "place": "B.Sc. in Mathematics",
+      "city": "Jinan",
+      "detail": ""
     },
     {
       "period": "always",
       "title": "Independent study",
       "place": "books · papers · source code",
+      "city": "",
       "detail": "A living syllabus spanning systems, typography, programming languages, and mathematical thinking."
     }
   ],

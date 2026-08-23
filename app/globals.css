@@ -348,7 +348,37 @@ a.row:hover h3 { color: var(--accent); }
   line-height: 1.65;
 }
 
-.row__place { color: var(--accent) !important; font-weight: 600; }
+/* Education and activities: one grid shared by every row, so the institution,
+   the qualification and the dates each keep their own column down the list. */
+.rows--cv {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content max-content;
+}
+
+.rows--cv .row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+  column-gap: 24px;
+}
+
+.rows--cv .row__detail { grid-column: 1 / -1; }
+
+/* The degree or role, lighter than the institution it belongs to. */
+.row__qual {
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* Where the entry happened, ahead of the years it covers. */
+.row__city::after {
+  content: "·";
+  margin: 0 0.45em;
+}
 
 .row__foot {
   margin-top: 10px;
@@ -582,6 +612,13 @@ a.row:hover .row__arrow { transform: translate(2px, -2px); }
   .pcard__inner { grid-template-columns: 84px minmax(0, 1fr); column-gap: 16px; }
   .pcard__avatar { width: 84px; }
   .pcard__avatar--initials { font-size: 1.5rem; }
+}
+
+/* Three columns need room. Narrower than this the row stacks: the parent grid
+   drops to one column and the subgrid rows follow it. */
+@media (max-width: 760px) {
+  .rows--cv { grid-template-columns: minmax(0, 1fr); }
+  .rows--cv .row { row-gap: 2px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

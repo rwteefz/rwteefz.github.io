@@ -40,15 +40,18 @@ function Projects() {
 
 function Education() {
   return (
-    <div className="rows">
+    // rows--cv: heading, qualification and dates share one grid, so the same
+    // kind of thing sits in the same column on every line.
+    <div className="rows rows--cv">
       {siteData.education.map((item) => (
         <article className="row" key={`${item.period}-${item.title}`}>
-          <div className="row__top">
-            <h3>{item.title}</h3>
-            <span className="row__aside">{item.period}</span>
-          </div>
-          <p className="row__place">{item.place}</p>
-          <p>{item.detail}</p>
+          <h3>{item.title}</h3>
+          <span className="row__qual">{item.place}</span>
+          <span className="row__aside">
+            {item.city ? <span className="row__city">{item.city}</span> : null}
+            {item.period}
+          </span>
+          {item.detail ? <p className="row__detail">{item.detail}</p> : null}
         </article>
       ))}
     </div>
@@ -57,15 +60,13 @@ function Education() {
 
 function Activities() {
   return (
-    <div className="rows">
+    <div className="rows rows--cv">
       {siteData.activities.map((item) => (
         <article className="row" key={`${item.period}-${item.title}`}>
-          <div className="row__top">
-            <h3>{item.title}</h3>
-            <span className="row__aside">{item.period}</span>
-          </div>
-          <p className="row__place">{item.role}</p>
-          <p>{item.detail}</p>
+          <h3>{item.title}</h3>
+          <span className="row__qual">{item.role}</span>
+          <span className="row__aside">{item.period}</span>
+          {item.detail ? <p className="row__detail">{item.detail}</p> : null}
         </article>
       ))}
     </div>
