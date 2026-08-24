@@ -5,7 +5,7 @@
     "description": "Personal site of rwteefz: a compact log of learning, experiments, and shipped work.",
     "kicker": "PERSONAL NODE / 2026",
     "introduction": "I am pursuing dual bachelor’s degrees in Mathematics and Finance at Shandong University (SDU), with academic interests in differential geometry, functional analysis, machine learning, deep learning, and financial technology (FinTech).\n\nI intend to pursue graduate studies in statistics or quantitative finance at a university in Shanghai, with the possibility of continuing to doctoral study and eventually building my career there.",
-    "updated": "2026-08-22",
+    "updated": "2026-08-24",
     "status": "currently learning · building · documenting",
     "footer": "© 2026 rwteefz · built with plain HTML instincts and too much coffee"
   },
@@ -105,6 +105,15 @@
       "description": "A problem book I wrote for myself while taking Advanced Algebra (2): linear maps, eigenvalues and Jordan form, quadratic forms, inner product spaces — each problem proved out in full, often more than one way.",
       "stack": "LaTeX · 47 pages · read it on the site",
       "url": "/papers/advanced-algebra"
+    },
+    {
+      "number": "01b",
+      "title": "Reflection matrices and the Householder transformation",
+      "date": "2026-06",
+      "tag": "course paper / Advanced Algebra",
+      "description": "A short paper growing out of Advanced Algebra (2): why classical Gram–Schmidt loses orthogonality in floating point, how a reflection in a hyperplane fixes it, and what that reflection is good for — the Cartan–Dieudonné theorem and a numerically stable QR decomposition.",
+      "stack": "LaTeX · 15 pages · read it on the site",
+      "url": "/papers/householder"
     },
     {
       "number": "01",
@@ -209,6 +218,16 @@
       "pages": 47,
       "width": 2550,
       "height": 3300,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "householder",
+      "title": "Reflection Matrices and the Householder Transformation",
+      "meta": "Term paper · Advanced Algebra (2) · School of Mathematics, Shandong University · 15 pages · June 2026",
+      "summary": "Written alongside Advanced Algebra (2). It starts from the numerical instability of classical Gram–Schmidt orthogonalisation, builds the Householder matrix out of reflection in a hyperplane, proves it symmetric, orthogonal and involutive, and uses it to prove the Cartan–Dieudonné theorem. It then works through QR decomposition by Householder reflections, arguing for the sign rule α = −sgn(x₁)‖x‖₂ that keeps the algorithm clear of cancellation, and closes with worked matrix examples.",
+      "pages": 15,
+      "width": 2480,
+      "height": 3508,
       "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
     }
   ]
