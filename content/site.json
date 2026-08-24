@@ -107,6 +107,15 @@
       "url": "/papers/mathematical-analysis-2"
     },
     {
+      "number": "00d",
+      "title": "The Cauchy integral and the Riemann integral",
+      "date": "2026-04",
+      "tag": "problem session / Mathematical Analysis II",
+      "description": "Notes written for a Mathematical Analysis (2) problem session, on one exercise: left-endpoint sums that converge to a constant force the function to be Riemann integrable. The proof pairs an oscillation criterion for integrability with a parity trick that keeps the bad intervals apart.",
+      "stack": "LaTeX · 5 pages · read it on the site",
+      "url": "/papers/cauchy-riemann-integral"
+    },
+    {
       "number": "01a",
       "title": "Advanced Algebra (2) Exercises",
       "date": "2026-05",
@@ -247,6 +256,16 @@
       "pages": 14,
       "width": 2550,
       "height": 3300,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "cauchy-riemann-integral",
+      "title": "The Cauchy Integral and the Riemann Integral",
+      "meta": "Problem-session notes · Mathematical Analysis (2) · School of Mathematics, Shandong University · 5 pages · April 2026",
+      "summary": "Notes for a problem session in Mathematical Analysis (2), on a single question: if the left-endpoint sums of a bounded function converge to a constant as the mesh goes to zero, is the function Riemann integrable? The Cauchy integral is defined, an oscillation criterion for Riemann integrability is proved, and the two are shown to agree — the bad intervals are split by parity so that no two are adjacent, and the partition is then nudged to make two Cauchy sums differ by more than the Cauchy condition allows.",
+      "pages": 5,
+      "width": 2480,
+      "height": 3508,
       "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
     }
   ]
