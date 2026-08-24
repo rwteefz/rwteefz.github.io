@@ -143,6 +143,15 @@
       "url": "/papers/householder"
     },
     {
+      "number": "01c",
+      "title": "The 17th CMC final paper",
+      "date": "2026-04",
+      "tag": "worked problems / national competition",
+      "description": "Solutions to the final round of the 17th Chinese Mathematics Competition, mathematics division, lower years: the fill-in section and the four proofs after it — a rotation matrix raised to the 2026th power, the extremes of a cubic on a large disc, commuting matrices of finite order, an iterated absolute-value map, a determinant forced by two positive definite conditions, and when xₙ₊₁ = f(xₙ) + aₙ converges. Written in Chinese, and where a problem takes more than one route both are written out.",
+      "stack": "LaTeX · 12 pages · read it on the site",
+      "url": "/papers/cmc-final-2026"
+    },
+    {
       "number": "01",
       "title": "math archive",
       "date": "2026",
@@ -285,6 +294,16 @@
       "pages": 5,
       "width": 2480,
       "height": 3508,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "cmc-final-2026",
+      "title": "17th CMC Final Paper — Mathematics Division, Lower Years",
+      "meta": "Worked problems · 17th Chinese Mathematics Competition, final round · School of Mathematics, Shandong University · 12 pages · April 2026",
+      "summary": "The final-round paper of the 17th Chinese Mathematics Competition (mathematics division, lower years), worked through in Chinese. The fill-in section covers a 2×2 rotation matrix raised to the 2026th power, the asymptotics of max and min of x² − y² + 9x²y − 3y³ over a disc of radius R, a symmetry identity for ∫₀ˣ dt/(1 + t³), and a second-order equation with polynomial coefficients solved by guessing eᵏᵗ and reducing the order. The proofs that follow ask for the invertibility of A + B + E when A²⁰²⁵ = B²⁰²⁶ = E and AB = BA, the growth of min and max of the level set of an iterated |(x − 1)(x − 2)|, a determinant inequality under two positive definite hypotheses, and the convergence of xₙ₊₁ = f(xₙ) + aₙ under a contraction and then under a weaker derivative bound. Several problems are given two solutions.",
+      "pages": 12,
+      "width": 2550,
+      "height": 3300,
       "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
     }
   ]
