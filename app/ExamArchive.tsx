@@ -192,6 +192,7 @@ export function ExamArchive() {
           <footer className="site-footer">
             <span>{siteData.site.footer}</span>
             <span>Updated {siteData.site.updated}</span>
+            <a className="to-top" href="#top">↑ Top</a>
           </footer>
         </div>
       </main>

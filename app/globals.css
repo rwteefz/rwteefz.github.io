@@ -608,6 +608,8 @@ a.row:hover .row__arrow { transform: translate(2px, -2px); }
 .site-footer {
   display: flex;
   flex-wrap: wrap;
+  /* Baseline, so the "Top" pill's label sits on the same line as the dates. */
+  align-items: baseline;
   justify-content: space-between;
   gap: 8px 20px;
   margin-top: 88px;
@@ -619,6 +621,15 @@ a.row:hover .row__arrow { transform: translate(2px, -2px); }
 
 .site-footer a { color: var(--muted); text-decoration: none; }
 .site-footer a:hover { color: var(--accent); }
+
+/* Sits with the footer text, so the page ends on a way back up. */
+.to-top {
+  padding: 4px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.site-footer .to-top:hover { background: var(--hover); color: var(--ink); }
 
 /* ---------- responsive ---------- */
 
