@@ -12,6 +12,15 @@ export const metadata: Metadata = {
     template: `%s · ${siteData.site.shortName}`,
   },
   description: siteData.site.description,
+  // Built from the profile photo by `node tools/make-favicon.mjs`.
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
+  },
 };
 
 export const viewport: Viewport = {
