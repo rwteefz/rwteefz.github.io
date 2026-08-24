@@ -118,7 +118,7 @@
     {
       "number": "00e",
       "title": "Secant parametrisation and the area of an algebraic curve",
-      "date": "2026-04",
+      "date": "2026-03",
       "tag": "problem session / Mathematical Analysis II",
       "description": "More notes from a Mathematical Analysis (2) problem session, on areas enclosed by implicit curves. Parametrising by the slope of a secant through the node turns Green's formula into A = ½∫x²(t) dt, which is then generalised — a moved node, a curved secant family, an affine change of coordinates — and bounded by the requirement that the curve be rational.",
       "stack": "LaTeX · 5 pages · read it on the site",
@@ -280,7 +280,7 @@
     {
       "slug": "secant-area",
       "title": "Secant Parametrisation and the Area Enclosed by an Algebraic Curve",
-      "meta": "Problem-session notes · Mathematical Analysis (2) · School of Mathematics, Shandong University · 5 pages · April 2026",
+      "meta": "Problem-session notes · Mathematical Analysis (2) · School of Mathematics, Shandong University · 5 pages · March 2026",
       "summary": "Notes on the geometric applications of the definite integral, built around one device: parametrise a curve through its node by the slope t of the secant y = tx, and Green's theorem collapses the area to A = ½∫x²(t) dt. The formula is proved twice — once as a line integral, once as a Jacobian change of variables — then extended to a translated node, to a general secant family y = f(t)x (which returns the polar-sector formula as the case f = tan), and to affine substitutions. It closes on the algebraic limit: the method needs a rational parametrisation, so it works exactly where a singular point drags the genus to zero, with the folium of Descartes and a quartic worked out.",
       "pages": 5,
       "width": 2480,
