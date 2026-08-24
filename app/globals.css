@@ -135,6 +135,9 @@ button { font: inherit; }
 }
 .theme-toggle:hover { background: var(--hover); color: var(--ink); }
 
+/* The phone stylesheet below is the only place this button is ever shown. */
+.nav-toggle { display: none; }
+
 /* Only one icon shows; which one depends on the theme stamped on <html>. */
 .theme-icon { grid-area: 1 / 1; }
 :root[data-theme="dark"] .theme-icon--to-dark,
@@ -680,14 +683,90 @@ a.row:hover .row__arrow { transform: translate(2px, -2px); }
   .page,
   .page--aside { width: calc(100% - 32px); }
   .masthead__inner { gap: 16px; min-height: 60px; }
-  .primary-nav { gap: 14px; }
-  .primary-nav a { font-size: 0.8125rem; }
   .page { padding: 44px 0 72px; }
   .section { margin-top: 56px; }
   .row__top { flex-direction: column; gap: 2px; }
   .pcard__inner { grid-template-columns: 84px minmax(0, 1fr); column-gap: 16px; }
   .pcard__avatar { width: 84px; }
   .pcard__avatar--initials { font-size: 1.5rem; }
+
+  /* ---------- phone menu ---------- */
+
+  .nav-toggle {
+    display: grid;
+    place-items: center;
+    /* 44px of tappable area, pulled flush with the bar's right edge. */
+    width: 44px;
+    height: 44px;
+    margin-right: -10px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .nav-toggle__bars {
+    position: relative;
+    display: block;
+  }
+  .nav-toggle__bars,
+  .nav-toggle__bars::before,
+  .nav-toggle__bars::after {
+    width: 18px;
+    height: 1.5px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .nav-toggle__bars::before,
+  .nav-toggle__bars::after {
+    position: absolute;
+    left: 0;
+    content: "";
+  }
+  .nav-toggle__bars::before { top: -6px; }
+  .nav-toggle__bars::after { top: 6px; }
+
+  /* Open: the middle bar goes and the outer two cross. */
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars { background: transparent; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars::before {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars::after {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* The nav leaves the bar and hangs under it as a panel. Absolute against
+     .masthead rather than its inner wrapper, so it spans the full width. */
+  .primary-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 8px;
+    /* Opaque: the bar's own translucency would let the page show through. */
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .primary-nav[data-open="true"] { display: flex; }
+
+  /* Full-width rows, text lined up with the brand, comfortable to hit. */
+  .primary-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 16px;
+    font-size: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  /* The nav no longer takes up the slack, so the controls do. */
+  .theme-toggle { margin-left: auto; }
 }
 
 /* Three columns need room. Narrower than this the row stacks: the parent grid

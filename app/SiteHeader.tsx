@@ -1,9 +1,43 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import siteData from "@/content/site.json";
 
+// Matches the phone breakpoint in globals.css, where the nav folds into a panel.
+const PHONE = "(max-width: 600px)";
+
 export function SiteHeader() {
+  // Only ever true on a phone: wider screens keep the nav in the bar, and the
+  // button that sets this is display:none there.
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Anything that means "the reader is done with the menu" closes it: Escape, a
+  // tap outside the header, or the viewport growing past the phone breakpoint.
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const close = () => setMenuOpen(false);
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") close();
+    };
+    const onPointer = (event: PointerEvent) => {
+      if (!(event.target as Element).closest(".masthead")) close();
+    };
+    const phone = window.matchMedia(PHONE);
+    const onWidth = () => {
+      if (!phone.matches) close();
+    };
+
+    window.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onPointer);
+    phone.addEventListener("change", onWidth);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointer);
+      phone.removeEventListener("change", onWidth);
+    };
+  }, [menuOpen]);
+
   // A static export hydrates after the browser has already handled the hash, and
   // the router puts the page back at the top. Jump to the target once more when
   // the page is ready, so /#education lands on Education.
@@ -67,15 +101,23 @@ export function SiteHeader() {
         </a>
         {/* Plain anchors on purpose: next/link swallows same-page hash jumps. */}
         {/* eslint-disable @next/next/no-html-link-for-pages */}
-        <nav className="primary-nav" aria-label="Primary">
+        <nav
+          className="primary-nav"
+          id="primary-nav"
+          aria-label="Primary"
+          // Read only by the phone stylesheet; the bar ignores it.
+          data-open={menuOpen}
+        >
           {siteData.sections
             .filter((section) => section.visible && section.key !== "now")
             .map((section) => (
-              <a key={section.key} href={`/#${section.key}`}>
+              <a key={section.key} href={`/#${section.key}`} onClick={() => setMenuOpen(false)}>
                 {section.label}
               </a>
             ))}
-          <a href="/#contact">Contact</a>
+          <a href="/#contact" onClick={() => setMenuOpen(false)}>
+            Contact
+          </a>
         </nav>
         {/* eslint-enable @next/next/no-html-link-for-pages */}
         <button
@@ -86,6 +128,17 @@ export function SiteHeader() {
         >
           <span className="theme-icon theme-icon--to-dark" aria-hidden="true">☾</span>
           <span className="theme-icon theme-icon--to-light" aria-hidden="true">☀</span>
+        </button>
+        {/* Last in the bar, and display:none above the phone breakpoint. */}
+        <button
+          className="nav-toggle"
+          type="button"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-expanded={menuOpen}
+          aria-controls="primary-nav"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+        >
+          <span className="nav-toggle__bars" aria-hidden="true" />
         </button>
       </div>
     </header>
