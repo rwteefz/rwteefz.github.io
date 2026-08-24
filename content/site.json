@@ -11,7 +11,7 @@
   },
   "theme": {
     "preset": "ink",
-    "mode": "dark",
+    "mode": "system",
     "headingFont": "sans",
     "bodyFont": "",
     "accent": "",
@@ -96,6 +96,15 @@
       "description": "My paper for Mathematical Analysis I, and the first time I tried to write mathematics properly rather than just answer questions. It proves Rolle's theorem, extends it, and then borrows ideas from ordinary differential equations to build the auxiliary functions that mean-value problems ask for.",
       "stack": "LaTeX · 16 pages · read it on the site",
       "url": "/papers/rolle-mean-value"
+    },
+    {
+      "number": "00c",
+      "title": "Mathematical Analysis (2) — notes on series",
+      "date": "2026-06",
+      "tag": "course notes / Mathematical Analysis II",
+      "description": "Notes kept while taking Mathematical Analysis (2): the convergence tests for series that the lectures only gestured at — Bertrand, Gauss, Cauchy condensation, Sapogov — written out with full proofs, then the first results on uniform convergence of series of functions.",
+      "stack": "LaTeX · 14 pages · read it on the site",
+      "url": "/papers/mathematical-analysis-2"
     },
     {
       "number": "01a",
@@ -228,6 +237,16 @@
       "pages": 15,
       "width": 2480,
       "height": 3508,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "mathematical-analysis-2",
+      "title": "Mathematical Analysis (2)",
+      "meta": "Course notes · Mathematical Analysis (2) · School of Mathematics, Shandong University · 14 pages · June 2026",
+      "summary": "Notes taken alongside ShuaiKun Wang's Mathematical Analysis (2) at Shandong University, read against Jixiu Chen's textbook. Chapter 9 gathers the sharper convergence tests for series of numbers — the ratio form of comparison, Bertrand, Gauss, Cauchy condensation, Sapogov — each proved in full, with the equivalence between infinite products and series and a set of worked problems on conditional convergence. Chapter 10 opens the theory of series of functions, on failure of uniform convergence at an endpoint and Bendixson's test.",
+      "pages": 14,
+      "width": 2550,
+      "height": 3300,
       "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
     }
   ]
