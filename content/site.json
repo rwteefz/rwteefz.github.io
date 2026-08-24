@@ -120,7 +120,7 @@
       "title": "Secant parametrisation and the area of an algebraic curve",
       "date": "2026-03",
       "tag": "problem session / Mathematical Analysis II",
-      "description": "More notes from a Mathematical Analysis (2) problem session, on areas enclosed by implicit curves. Parametrising by the slope of a secant through the node turns Green's formula into A = ½∫x²(t) dt, which is then generalised — a moved node, a curved secant family, an affine change of coordinates — and bounded by the requirement that the curve be rational.",
+      "description": "A note from a Mathematical Analysis (2) problem session, on areas enclosed by implicit curves. Parametrising by the slope of a secant through the node turns Green's formula into A = ½∫x²(t) dt, which is then generalised — a moved node, a curved secant family, an affine change of coordinates — and bounded by the requirement that the curve be rational.",
       "stack": "LaTeX · 5 pages · read it on the site",
       "url": "/papers/secant-area"
     },
