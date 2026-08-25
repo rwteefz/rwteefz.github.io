@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ProfileCard } from "@/app/ProfileCard";
+import { ProjectFilter } from "@/app/ProjectFilter";
+import { visibleSections } from "@/app/sections";
 import { SiteHeader } from "@/app/SiteHeader";
 import { posts } from "@/app/posts";
 import siteData from "@/content/site.json";
@@ -31,25 +33,43 @@ const when = (date: string) => {
 
 const projects = [...siteData.projects].sort((a, b) => when(a.date) - when(b.date));
 
+// Written in site.json, and empty until the first award is added there, so
+// the shape is declared here rather than inferred from an empty list.
+type Honour = {
+  period: string;
+  title: string;
+  prize?: string;
+  issuer: string;
+  url?: string;
+  detail?: string;
+};
+
+const MONTHS = ["january", "february", "march", "april", "may", "june", "july",
+  "august", "september", "october", "november", "december"];
+
+/**
+ * A point on the calendar for an award's "When", however it was written:
+ * "December 2025", "2025-12" and a bare "2025" all place. Anything without a
+ * year sorts to the end.
+ */
+const at = (period: string) => {
+  const text = String(period ?? "").toLowerCase();
+  const year = Number(text.match(/\d{4}/)?.[0] ?? 0);
+  if (!year) return Number.POSITIVE_INFINITY;
+
+  const named = MONTHS.findIndex((month) => text.includes(month));
+  const numeric = text.match(/\d{4}\s*[-/]\s*(\d{1,2})/);
+  const month = named >= 0 ? named + 1 : numeric ? Number(numeric[1]) : 0;
+  return year * 12 + month;
+};
+
+// Oldest first, like Projects, whatever order site.json happens to list them.
+const honours = [...(siteData.honours as Honour[])].sort((a, b) => at(a.period) - at(b.period));
+
+// The list itself is a client component: filtering by subject happens in the
+// browser, with no page to fetch between one subject and the next.
 function Projects() {
-  return (
-    <div className="rows">
-      {projects.map((project) => (
-        <a className="row" key={project.number} href={project.url} {...linkProps(project.url)}>
-          <div className="row__top">
-            <h3>
-              {project.title} <span className="row__arrow">↗</span>
-            </h3>
-            <span className="row__aside">{project.date}</span>
-          </div>
-          <p>{project.description}</p>
-          <p className="row__foot">
-            {[project.tag, project.stack].filter(Boolean).join(" · ")}
-          </p>
-        </a>
-      ))}
-    </div>
-  );
+  return <ProjectFilter projects={projects} />;
 }
 
 function Education() {
@@ -82,6 +102,39 @@ function Education() {
             {item.city ? <span className="row__city">{item.city}</span> : null}
             {item.period}
           </span>
+          {item.detail ? <p className="row__detail">{item.detail}</p> : null}
+        </article>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * Awards, scholarships, prizes and titles — on the Education grid, so the name,
+ * the prize and the year sit in the same three columns the entries above them
+ * use. The body that gave the award, and any detail, take the full width below.
+ */
+function Honours() {
+  return (
+    <div className="rows rows--cv">
+      {honours.map((item) => (
+        <article className="row" key={`${item.period}-${item.title}`}>
+          <h3>
+            {/* Always a new tab: the link goes to a scan of the certificate,
+                not to a page of this site, so the reader keeps their place. */}
+            {item.url ? (
+              <a className="row__site" href={item.url} target="_blank" rel="noreferrer">
+                {item.title}
+              </a>
+            ) : (
+              item.title
+            )}
+          </h3>
+          {/* Rendered even when empty, so an award without a prize does not
+              pull the year out of its column. */}
+          <span className="row__qual">{item.prize}</span>
+          <span className="row__aside">{item.period}</span>
+          {item.issuer ? <p className="row__issuer">{item.issuer}</p> : null}
           {item.detail ? <p className="row__detail">{item.detail}</p> : null}
         </article>
       ))}
@@ -137,6 +190,7 @@ const SECTIONS: Record<string, () => React.ReactElement> = {
   now: Now,
   projects: Projects,
   education: Education,
+  honours: Honours,
   activities: Activities,
   writing: Writing,
 };
@@ -165,8 +219,8 @@ export function ExamArchive() {
           ))}
           </section>
 
-          {siteData.sections
-            .filter((section) => section.visible && section.key in SECTIONS)
+          {visibleSections
+            .filter((section) => section.key in SECTIONS)
             .map((section) => {
               const Body = SECTIONS[section.key];
               return (
