@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ProfileCard } from "@/app/ProfileCard";
+import { ProjectFilter } from "@/app/ProjectFilter";
 import { visibleSections } from "@/app/sections";
 import { SiteHeader } from "@/app/SiteHeader";
 import { posts } from "@/app/posts";
@@ -65,25 +66,10 @@ const at = (period: string) => {
 // Oldest first, like Projects, whatever order site.json happens to list them.
 const honours = [...(siteData.honours as Honour[])].sort((a, b) => at(a.period) - at(b.period));
 
+// The list itself is a client component: filtering by subject happens in the
+// browser, with no page to fetch between one subject and the next.
 function Projects() {
-  return (
-    <div className="rows">
-      {projects.map((project) => (
-        <a className="row" key={project.number} href={project.url} {...linkProps(project.url)}>
-          <div className="row__top">
-            <h3>
-              {project.title} <span className="row__arrow">↗</span>
-            </h3>
-            <span className="row__aside">{project.date}</span>
-          </div>
-          <p>{project.description}</p>
-          <p className="row__foot">
-            {[project.tag, project.stack].filter(Boolean).join(" · ")}
-          </p>
-        </a>
-      ))}
-    </div>
-  );
+  return <ProjectFilter projects={projects} />;
 }
 
 function Education() {

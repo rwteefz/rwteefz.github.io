@@ -89,6 +89,7 @@
       "title": "Euler–Maclaurin formula and asymptotic estimates",
       "date": "2026-06",
       "tag": "course paper / Mathematical Analysis II",
+      "category": "Mathematical Analysis II",
       "description": "My paper for Mathematical Analysis II: the Euler–Maclaurin summation formula derived from Bernoulli numbers, then applied to Stirling's formula, Romberg integration, and singular expansions for lattice sums.",
       "stack": "LaTeX · 72 pages · read it on the site",
       "url": "/papers/euler-maclaurin"
@@ -98,6 +99,7 @@
       "title": "Constructing auxiliary functions for Rolle's theorem",
       "date": "2026-01",
       "tag": "course paper / Mathematical Analysis I",
+      "category": "Mathematical Analysis I",
       "description": "My paper for Mathematical Analysis I, and the first time I tried to write mathematics properly rather than just answer questions. It proves Rolle's theorem, extends it, and then borrows ideas from ordinary differential equations to build the auxiliary functions that mean-value problems ask for.",
       "stack": "LaTeX · 16 pages · read it on the site",
       "url": "/papers/rolle-mean-value"
@@ -107,6 +109,7 @@
       "title": "Mathematical Analysis (2) — notes on series",
       "date": "2026-06",
       "tag": "course notes / Mathematical Analysis II",
+      "category": "Mathematical Analysis II",
       "description": "Notes kept while taking Mathematical Analysis (2): the convergence tests for series that the lectures only gestured at — Bertrand, Gauss, Cauchy condensation, Sapogov — written out with full proofs, then the first results on uniform convergence of series of functions.",
       "stack": "LaTeX · 14 pages · read it on the site",
       "url": "/papers/mathematical-analysis-2"
@@ -116,6 +119,7 @@
       "title": "The Cauchy integral and the Riemann integral",
       "date": "2026-04",
       "tag": "problem session / Mathematical Analysis II",
+      "category": "Mathematical Analysis II",
       "description": "Notes written for a Mathematical Analysis (2) problem session, on one exercise: left-endpoint sums that converge to a constant force the function to be Riemann integrable. The proof pairs an oscillation criterion for integrability with a parity trick that keeps the bad intervals apart.",
       "stack": "LaTeX · 5 pages · read it on the site",
       "url": "/papers/cauchy-riemann-integral"
@@ -125,6 +129,7 @@
       "title": "Secant parametrisation and the area of an algebraic curve",
       "date": "2026-03",
       "tag": "problem session / Mathematical Analysis II",
+      "category": "Mathematical Analysis II",
       "description": "A note from a Mathematical Analysis (2) problem session, on areas enclosed by implicit curves. Parametrising by the slope of a secant through the node turns Green's formula into A = ½∫x²(t) dt, which is then generalised — a moved node, a curved secant family, an affine change of coordinates — and bounded by the requirement that the curve be rational.",
       "stack": "LaTeX · 5 pages · read it on the site",
       "url": "/papers/secant-area"
@@ -134,6 +139,7 @@
       "title": "Advanced Algebra (2) Exercises",
       "date": "2026-05",
       "tag": "course notes / Advanced Algebra",
+      "category": "Advanced Algebra",
       "description": "A problem book I wrote for myself while taking Advanced Algebra (2): linear maps, eigenvalues and Jordan form, quadratic forms, inner product spaces — each problem proved out in full, often more than one way.",
       "stack": "LaTeX · 47 pages · read it on the site",
       "url": "/papers/advanced-algebra"
@@ -143,6 +149,7 @@
       "title": "Reflection matrices and the Householder transformation",
       "date": "2026-06",
       "tag": "course paper / Advanced Algebra",
+      "category": "Advanced Algebra",
       "description": "A short paper growing out of Advanced Algebra (2): why classical Gram–Schmidt loses orthogonality in floating point, how a reflection in a hyperplane fixes it, and what that reflection is good for — the Cartan–Dieudonné theorem and a numerically stable QR decomposition.",
       "stack": "LaTeX · 15 pages · read it on the site",
       "url": "/papers/householder"
@@ -152,6 +159,7 @@
       "title": "The 17th CMC final paper",
       "date": "2026-04",
       "tag": "worked problems / national competition",
+      "category": "Competition",
       "description": "Solutions to the final round of the 17th Chinese Mathematics Competition, mathematics division, lower years: the fill-in section and the four proofs after it — a rotation matrix raised to the 2026th power, the extremes of a cubic on a large disc, commuting matrices of finite order, an iterated absolute-value map, a determinant forced by two positive definite conditions, and when xₙ₊₁ = f(xₙ) + aₙ converges. Written in Chinese, and where a problem takes more than one route both are written out.",
       "stack": "LaTeX · 12 pages · read it on the site",
       "url": "/papers/cmc-final-2026"
@@ -161,6 +169,7 @@
       "title": "Advanced Algebra (2) — pre-midterm mock exam",
       "date": "2026-04",
       "tag": "worked problems / Advanced Algebra",
+      "category": "Advanced Algebra",
       "description": "A mock paper I set for myself before the Advanced Algebra (2) midterm, with every problem worked out: representing matrices under a change of basis, commuting transformations sharing an eigenvector, invariant subspaces of a diagonalisable map, and a last problem on polynomials in a 3×3 matrix settled by Jordan form. Written in Chinese.",
       "stack": "LaTeX · 7 pages · read it on the site",
       "url": "/papers/advanced-algebra-midterm-mock"
@@ -170,6 +179,7 @@
       "title": "Abstract Algebra — problem set 3",
       "date": "2026-03",
       "tag": "worked problems / Abstract Algebra",
+      "category": "Abstract Algebra",
       "description": "The third problem set from Abstract Algebra at Shandong University, worked through: classifying the groups of order 6, when a product HK of subgroups is again a subgroup, coprime normal subgroups commuting elementwise, automorphisms fixing a normal subgroup of coprime index, and the Bruhat decomposition of GLₙ(ℝ) into double cosets. Written in Chinese.",
       "stack": "LaTeX · 11 pages · read it on the site",
       "url": "/papers/abstract-algebra-hw-3"
@@ -179,6 +189,7 @@
       "title": "math archive",
       "date": "2026",
       "tag": "open data / web",
+      "category": "Code",
       "description": "A searchable, human-maintained index for course notes, exams, and the things that usually disappear into chat history.",
       "stack": "Next.js · JSON · GitHub Pages",
       "url": "https://github.com/rwteefz/rwteefz.github.io"
@@ -188,6 +199,7 @@
       "title": "tiny experiments",
       "date": "2026",
       "tag": "lab / in progress",
+      "category": "Code",
       "description": "Small programs for visualising functions, testing ideas, and understanding how abstractions behave under pressure.",
       "stack": "Python · TypeScript · whatever works",
       "url": "https://github.com/rwteefz"
@@ -197,6 +209,7 @@
       "title": "this interface",
       "date": "2026",
       "tag": "meta / shipped",
+      "category": "Code",
       "description": "A personal page that stays close to the source: one readable layout, zero framework-shaped fog, and a bias toward useful defaults.",
       "stack": "React · CSS · GitHub Pages",
       "url": "https://github.com/rwteefz/rwteefz.github.io"
