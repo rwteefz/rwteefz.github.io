@@ -23,15 +23,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fcfcfa" },
-    { media: "(prefers-color-scheme: dark)", color: "#131413" },
-  ],
-};
-
 // site.json is edited through the local studio, so treat its theme values as
 // untrusted input rather than dropping them straight into a <style> tag.
 const hex = (value: string | undefined, fallback: string) =>
@@ -40,6 +31,16 @@ const hex = (value: string | undefined, fallback: string) =>
 const { theme } = siteData;
 const preset = getPreset(theme.preset);
 const mode = ["light", "dark", "system"].includes(theme.mode) ? theme.mode : "system";
+
+// One colour, not one per prefers-color-scheme: which theme a visitor gets no
+// longer follows their device, so keying the browser chrome to the device
+// would tint it against the page. It starts on whichever mode the site opens
+// in, and syncThemeColor keeps it there through a toggle.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: hex(preset[mode === "dark" ? "dark" : "light"].bg, "#fcfcfa"),
+};
 
 const block = (selector: string, palette: Palette, accentOverride?: string) =>
   `${selector}{` +
@@ -77,11 +78,18 @@ const themeCss = [
 ].join("");
 
 // Applied before first paint so the theme never flashes the wrong colours.
+// The <meta> is written by Next from the viewport export above, and may not be
+// in the document yet this early, so the sync runs again once it certainly is.
 const themeScript =
   `(function(){try{var s=localStorage.getItem("rwteefz-theme");` +
   `var d=${JSON.stringify(mode)};` +
   `document.documentElement.dataset.theme=s==="dark"||s==="light"?s:` +
-  `(d==="system"?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):d)` +
+  `(d==="system"?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):d);` +
+  `window.syncThemeColor=function(){var m=document.querySelector('meta[name="theme-color"]');` +
+  `if(m)m.setAttribute("content",getComputedStyle(document.documentElement)` +
+  `.getPropertyValue("--bg").trim())};` +
+  `window.syncThemeColor();` +
+  `document.addEventListener("DOMContentLoaded",window.syncThemeColor)` +
   `}catch(e){}})()`;
 
 export default function RootLayout({

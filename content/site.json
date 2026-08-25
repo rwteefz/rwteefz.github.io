@@ -11,7 +11,7 @@
   },
   "theme": {
     "preset": "ink",
-    "mode": "system",
+    "mode": "light",
     "headingFont": "sans",
     "bodyFont": "",
     "accent": "",

@@ -4,6 +4,13 @@ import { useEffect, useState } from "react";
 import siteData from "@/content/site.json";
 import { visibleSections } from "@/app/sections";
 
+declare global {
+  interface Window {
+    // Set by the pre-paint theme script in layout.tsx.
+    syncThemeColor?: () => void;
+  }
+}
+
 // Matches the phone breakpoint in globals.css, where the nav folds into a panel.
 const PHONE = "(max-width: 600px)";
 
@@ -61,6 +68,9 @@ export function SiteHeader() {
     const root = document.documentElement;
     const next = root.dataset.theme === "dark" ? "light" : "dark";
     root.dataset.theme = next;
+    // Defined by the same inline script, so the browser chrome follows the page
+    // out of light and back again.
+    window.syncThemeColor?.();
     try {
       window.localStorage.setItem("rwteefz-theme", next);
     } catch {
