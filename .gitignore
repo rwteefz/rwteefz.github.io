@@ -23,3 +23,6 @@ dist/
 # Papers are published as page images (tools/paper-pages.mjs), never as a
 # downloadable file — keep source PDFs out of this public repository.
 public/files/*.pdf
+
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo
