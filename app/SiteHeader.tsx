@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import siteData from "@/content/site.json";
+import { visibleSections } from "@/app/sections";
 
 // Matches the phone breakpoint in globals.css, where the nav folds into a panel.
 const PHONE = "(max-width: 600px)";
@@ -108,8 +109,8 @@ export function SiteHeader() {
           // Read only by the phone stylesheet; the bar ignores it.
           data-open={menuOpen}
         >
-          {siteData.sections
-            .filter((section) => section.visible && section.key !== "now")
+          {visibleSections
+            .filter((section) => section.key !== "now")
             .map((section) => (
               <a key={section.key} href={`/#${section.key}`} onClick={() => setMenuOpen(false)}>
                 {section.label}

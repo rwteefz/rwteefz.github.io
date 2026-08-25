@@ -371,10 +371,10 @@ a.row:hover h3 { color: var(--accent); }
   column-gap: 24px;
 }
 
-.rows--cv .row__detail { grid-column: 1 / -1; }
+.rows--cv .row__detail,
+.rows--cv .row__issuer { grid-column: 1 / -1; }
 
 .rows--cv .row__aside { text-align: right; }
-
 
 /* The institution's own site, opened from its name. */
 .row__site {
@@ -404,6 +404,15 @@ a.row:hover h3 { color: var(--accent); }
   font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: 0;
+}
+
+/* The body that gave the award, under it. Quieter than the prize, so the two
+   do not compete for the same glance. */
+.row__issuer {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 /* Where the entry happened, ahead of the years it covers. */

@@ -53,6 +53,11 @@
       "visible": true
     },
     {
+      "key": "honours",
+      "label": "Honours and Awards",
+      "visible": true
+    },
+    {
       "key": "now",
       "label": "Now",
       "visible": true
@@ -215,6 +220,24 @@
       "place": "Senior high school",
       "city": "Shanghai",
       "detail": "Mathematical modelling project: A Study on Comprehensive Mathematical Modeling of Noise and Travel Fatigue Among Residents Living Near Above-Ground Subway Stations."
+    }
+  ],
+  "honours": [
+    {
+      "period": "December 2025",
+      "title": "“ICBC Cup” National College Students Financial Technology Innovation Competition, Shandong Division",
+      "prize": "Third Prize",
+      "issuer": "Industrial and Commercial Bank of China, Shandong Provincial Branch",
+      "url": "/images/certificate-icbc-shandong-2025.jpg",
+      "detail": "16th edition. Team entry “Talent + e”, with two fellow students."
+    },
+    {
+      "period": "November 2025",
+      "title": "The Chinese Mathematics Competitions, Shandong Division (CMC)",
+      "prize": "Second Prize",
+      "issuer": "Department of Education of Shandong Province",
+      "url": "/images/certificate-cmc-shandong-2025.jpg",
+      "detail": "Undergraduate division, non-mathematics category B, at the 17th Shandong College Students' Science and Technology Festival. Jointly issued by six provincial bodies, led by the Shandong Association for Science and Technology. Certificate no. SDUC202502-2-2407."
     }
   ],
   "activities": [
