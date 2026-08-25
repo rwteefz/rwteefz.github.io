@@ -1,0 +1,384 @@
+{
+  "site": {
+    "shortName": "rwteefz",
+    "title": "rwteefz — Mathematics, Analysis and Possibilities",
+    "description": "Personal site of rwteefz: a compact log of learning, experiments, and shipped work.",
+    "kicker": "PERSONAL NODE / 2026",
+    "introduction": "I am pursuing dual bachelor’s degrees in Mathematics and Finance at Shandong University (SDU), with academic interests in differential geometry, functional analysis, machine learning, deep learning, and financial technology (FinTech).\n\nI intend to pursue graduate studies in statistics or quantitative finance at a university in Shanghai, with the possibility of continuing to doctoral study and eventually building my career there.",
+    "updated": "2026-08-25",
+    "status": "currently learning · building · documenting",
+    "footer": "© 2026 rwteefz · built with plain HTML instincts and too much coffee"
+  },
+  "theme": {
+    "preset": "ink",
+    "mode": "light",
+    "headingFont": "sans",
+    "bodyFont": "",
+    "accent": "",
+    "accentDark": "",
+    "headingWeight": "700",
+    "textScale": "1.05"
+  },
+  "pagination": {
+    "perPage": 5,
+    "homeLimit": 3
+  },
+  "profile": {
+    "name": "Zixuan Zhang",
+    "handle": "rwteefz",
+    "photo": "/images/profile.png",
+    "photoAlt": "Monochrome illustration of a hooded figure — Zixuan Zhang's avatar",
+    "role": "student / developer / curious human",
+    "motto": "Mathematics reveals.",
+    "location": "Shanghai, China",
+    "links": [
+      {
+        "label": "github.com/rwteefz",
+        "url": "https://github.com/rwteefz",
+        "icon": "GH"
+      },
+      {
+        "label": "ericzhang2007@outlook.com",
+        "url": "mailto:ericzhang2007@outlook.com",
+        "icon": "@"
+      }
+    ],
+    "logo": "",
+    "logoAlt": ""
+  },
+  "sections": [
+    {
+      "key": "education",
+      "label": "Education",
+      "visible": true
+    },
+    {
+      "key": "honours",
+      "label": "Honours and Awards",
+      "visible": true
+    },
+    {
+      "key": "now",
+      "label": "Now",
+      "visible": true
+    },
+    {
+      "key": "projects",
+      "label": "Projects",
+      "visible": true
+    },
+    {
+      "key": "activities",
+      "label": "Activities",
+      "visible": true
+    },
+    {
+      "key": "writing",
+      "label": "Writing",
+      "visible": true
+    }
+  ],
+  "now": [
+    "Studying Differential Manifolds and Functional Analysis",
+    "Turning notes into small, reusable tools by coding",
+    "Trying to conduct research in interested fields"
+  ],
+  "projects": [
+    {
+      "number": "00",
+      "title": "Euler–Maclaurin formula and asymptotic estimates",
+      "date": "2026-06",
+      "tag": "course paper / Mathematical Analysis II",
+      "category": "Mathematical Analysis II",
+      "description": "My paper for Mathematical Analysis II: the Euler–Maclaurin summation formula derived from Bernoulli numbers, then applied to Stirling's formula, Romberg integration, and singular expansions for lattice sums.",
+      "stack": "LaTeX · 72 pages · read it on the site",
+      "url": "/papers/euler-maclaurin"
+    },
+    {
+      "number": "00b",
+      "title": "Constructing auxiliary functions for Rolle's theorem",
+      "date": "2026-01",
+      "tag": "course paper / Mathematical Analysis I",
+      "category": "Mathematical Analysis I",
+      "description": "My paper for Mathematical Analysis I, and the first time I tried to write mathematics properly rather than just answer questions. It proves Rolle's theorem, extends it, and then borrows ideas from ordinary differential equations to build the auxiliary functions that mean-value problems ask for.",
+      "stack": "LaTeX · 16 pages · read it on the site",
+      "url": "/papers/rolle-mean-value"
+    },
+    {
+      "number": "00c",
+      "title": "Mathematical Analysis (2) — notes on series",
+      "date": "2026-06",
+      "tag": "course notes / Mathematical Analysis II",
+      "category": "Mathematical Analysis II",
+      "description": "Notes kept while taking Mathematical Analysis (2): the convergence tests for series that the lectures only gestured at — Bertrand, Gauss, Cauchy condensation, Sapogov — written out with full proofs, then the first results on uniform convergence of series of functions.",
+      "stack": "LaTeX · 14 pages · read it on the site",
+      "url": "/papers/mathematical-analysis-2"
+    },
+    {
+      "number": "00d",
+      "title": "The Cauchy integral and the Riemann integral",
+      "date": "2026-04",
+      "tag": "problem session / Mathematical Analysis II",
+      "category": "Mathematical Analysis II",
+      "description": "Notes written for a Mathematical Analysis (2) problem session, on one exercise: left-endpoint sums that converge to a constant force the function to be Riemann integrable. The proof pairs an oscillation criterion for integrability with a parity trick that keeps the bad intervals apart.",
+      "stack": "LaTeX · 5 pages · read it on the site",
+      "url": "/papers/cauchy-riemann-integral"
+    },
+    {
+      "number": "00e",
+      "title": "Secant parametrisation and the area of an algebraic curve",
+      "date": "2026-03",
+      "tag": "problem session / Mathematical Analysis II",
+      "category": "Mathematical Analysis II",
+      "description": "A note from a Mathematical Analysis (2) problem session, on areas enclosed by implicit curves. Parametrising by the slope of a secant through the node turns Green's formula into A = ½∫x²(t) dt, which is then generalised — a moved node, a curved secant family, an affine change of coordinates — and bounded by the requirement that the curve be rational.",
+      "stack": "LaTeX · 5 pages · read it on the site",
+      "url": "/papers/secant-area"
+    },
+    {
+      "number": "01a",
+      "title": "Advanced Algebra (2) Exercises",
+      "date": "2026-05",
+      "tag": "course notes / Advanced Algebra",
+      "category": "Advanced Algebra",
+      "description": "A problem book I wrote for myself while taking Advanced Algebra (2): linear maps, eigenvalues and Jordan form, quadratic forms, inner product spaces — each problem proved out in full, often more than one way.",
+      "stack": "LaTeX · 47 pages · read it on the site",
+      "url": "/papers/advanced-algebra"
+    },
+    {
+      "number": "01b",
+      "title": "Reflection matrices and the Householder transformation",
+      "date": "2026-06",
+      "tag": "course paper / Advanced Algebra",
+      "category": "Advanced Algebra",
+      "description": "A short paper growing out of Advanced Algebra (2): why classical Gram–Schmidt loses orthogonality in floating point, how a reflection in a hyperplane fixes it, and what that reflection is good for — the Cartan–Dieudonné theorem and a numerically stable QR decomposition.",
+      "stack": "LaTeX · 15 pages · read it on the site",
+      "url": "/papers/householder"
+    },
+    {
+      "number": "01c",
+      "title": "The 17th CMC final paper",
+      "date": "2026-04",
+      "tag": "worked problems / national competition",
+      "category": "Competition",
+      "description": "Solutions to the final round of the 17th Chinese Mathematics Competition, mathematics division, lower years: the fill-in section and the four proofs after it — a rotation matrix raised to the 2026th power, the extremes of a cubic on a large disc, commuting matrices of finite order, an iterated absolute-value map, a determinant forced by two positive definite conditions, and when xₙ₊₁ = f(xₙ) + aₙ converges. Written in Chinese, and where a problem takes more than one route both are written out.",
+      "stack": "LaTeX · 12 pages · read it on the site",
+      "url": "/papers/cmc-final-2026"
+    },
+    {
+      "number": "01d",
+      "title": "Advanced Algebra (2) — pre-midterm mock exam",
+      "date": "2026-04",
+      "tag": "worked problems / Advanced Algebra",
+      "category": "Advanced Algebra",
+      "description": "A mock paper I set for myself before the Advanced Algebra (2) midterm, with every problem worked out: representing matrices under a change of basis, commuting transformations sharing an eigenvector, invariant subspaces of a diagonalisable map, and a last problem on polynomials in a 3×3 matrix settled by Jordan form. Written in Chinese.",
+      "stack": "LaTeX · 7 pages · read it on the site",
+      "url": "/papers/advanced-algebra-midterm-mock"
+    },
+    {
+      "number": "01e",
+      "title": "Abstract Algebra — problem set 3",
+      "date": "2026-03",
+      "tag": "worked problems / Abstract Algebra",
+      "category": "Abstract Algebra",
+      "description": "The third problem set from Abstract Algebra at Shandong University, worked through: classifying the groups of order 6, when a product HK of subgroups is again a subgroup, coprime normal subgroups commuting elementwise, automorphisms fixing a normal subgroup of coprime index, and the Bruhat decomposition of GLₙ(ℝ) into double cosets. Written in Chinese.",
+      "stack": "LaTeX · 11 pages · read it on the site",
+      "url": "/papers/abstract-algebra-hw-3"
+    },
+    {
+      "number": "01",
+      "title": "math archive",
+      "date": "2026",
+      "tag": "open data / web",
+      "category": "Code",
+      "description": "A searchable, human-maintained index for course notes, exams, and the things that usually disappear into chat history.",
+      "stack": "Next.js · JSON · GitHub Pages",
+      "url": "https://github.com/rwteefz/rwteefz.github.io"
+    },
+    {
+      "number": "02",
+      "title": "tiny experiments",
+      "date": "2026",
+      "tag": "lab / in progress",
+      "category": "Code",
+      "description": "Small programs for visualising functions, testing ideas, and understanding how abstractions behave under pressure.",
+      "stack": "Python · TypeScript · whatever works",
+      "url": "https://github.com/rwteefz"
+    },
+    {
+      "number": "03",
+      "title": "this interface",
+      "date": "2026",
+      "tag": "meta / shipped",
+      "category": "Code",
+      "description": "A personal page that stays close to the source: one readable layout, zero framework-shaped fog, and a bias toward useful defaults.",
+      "stack": "React · CSS · GitHub Pages",
+      "url": "https://github.com/rwteefz/rwteefz.github.io"
+    }
+  ],
+  "education": [
+    {
+      "period": "2025-2029",
+      "title": "Shandong University",
+      "logo": "/images/logo-shandong-university.png",
+      "url": "https://www.sdu.edu.cn/",
+      "place": "B.S. in Mathematics and Finance",
+      "city": "Jinan",
+      "detail": "Analysis, algebra, probability, numerical methods, and the habit of asking better questions."
+    },
+    {
+      "period": "2022 - 2025",
+      "title": "No.2 High School of East China Normal University",
+      "logo": "/images/logo-ecnu-no2-high-school.png",
+      "url": "https://www.hsefz.cn/",
+      "place": "Senior high school",
+      "city": "Shanghai",
+      "detail": "Mathematical modelling project: A Study on Comprehensive Mathematical Modeling of Noise and Travel Fatigue Among Residents Living Near Above-Ground Subway Stations."
+    }
+  ],
+  "honours": [
+    {
+      "period": "December 2025",
+      "title": "“ICBC Cup” National College Students Financial Technology Innovation Competition, Shandong Division",
+      "prize": "Third Prize",
+      "issuer": "Industrial and Commercial Bank of China, Shandong Provincial Branch",
+      "url": "/images/certificate-icbc-shandong-2025.jpg",
+      "detail": "16th edition. Team entry “Talent + e”, with two fellow students."
+    },
+    {
+      "period": "November 2025",
+      "title": "The Chinese Mathematics Competitions, Shandong Division (CMC)",
+      "prize": "Second Prize",
+      "issuer": "Department of Education of Shandong Province",
+      "url": "/images/certificate-cmc-shandong-2025.jpg",
+      "detail": "Undergraduate division, non-mathematics category B, at the 17th Shandong College Students' Science and Technology Festival. Jointly issued by six provincial bodies, led by the Shandong Association for Science and Technology. Certificate no. SDUC202502-2-2407."
+    }
+  ],
+  "activities": [
+    {
+      "period": "2026",
+      "title": "Mathematics Study Group",
+      "role": "organiser",
+      "detail": "Weekly problem sessions on analysis and probability, with shared notes published after each meeting."
+    },
+    {
+      "period": "2025 - now",
+      "title": "Campus Coding Club",
+      "role": "member",
+      "detail": "Building small tools with other students and helping newcomers get their first project running."
+    },
+    {
+      "period": "2025",
+      "title": "Open-source contributions",
+      "role": "contributor",
+      "detail": "Documentation fixes and small patches to projects I use while studying."
+    }
+  ],
+  "contact": {
+    "title": "Contact me",
+    "text": "Have a great question or idea you’d like to discuss, collaborate on, or share with me? Send me a note.",
+    "email": "ericzhang2007@outlook.com",
+    "emailAlt": ""
+  },
+  "papers": [
+    {
+      "slug": "euler-maclaurin",
+      "title": "Euler–Maclaurin Formula and Asymptotic Estimates",
+      "meta": "Term paper · Mathematical Analysis II · School of Mathematics, Shandong University · 72 pages",
+      "summary": "A term paper for Mathematical Analysis II. It builds the Euler–Maclaurin summation formula from power sums and Bernoulli numbers, reads it through Riemann–Stieltjes integration, and then puts it to work: Stirling's formula, asymptotic expansions, Richardson extrapolation and Romberg integration, and the singular Euler–Maclaurin expansion for lattice sums.",
+      "pages": 72,
+      "width": 2480,
+      "height": 3508,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "rolle-mean-value",
+      "title": "Constructing Auxiliary Functions for Mean-Value Problems with Rolle's Theorem",
+      "meta": "Term paper · Mathematical Analysis I · Shandong University · 16 pages · January 2026",
+      "summary": "Written in my first year, for Mathematical Analysis I. It proves Rolle's theorem and extends it, then turns to the harder part of a mean-value problem — finding the auxiliary function — and shows how first-order linear and higher-order constant-coefficient differential equations suggest what that function should be.",
+      "pages": 16,
+      "width": 2480,
+      "height": 3508,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "advanced-algebra",
+      "title": "Advanced Algebra (2) Exercises",
+      "meta": "Worked problems · Advanced Algebra (2) · Shandong University · 47 pages",
+      "summary": "Problems from Advanced Algebra (2) worked through in full, following Shuqian Zhu's course at Shandong University and the Xie–Yao textbook. It runs from linear maps and their matrix representations through eigenvalues, Jordan form, quadratic forms and inner product spaces, and where a problem admits more than one line of attack the alternatives are written out side by side rather than left as a remark.",
+      "pages": 47,
+      "width": 2550,
+      "height": 3300,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "householder",
+      "title": "Reflection Matrices and the Householder Transformation",
+      "meta": "Term paper · Advanced Algebra (2) · School of Mathematics, Shandong University · 15 pages · June 2026",
+      "summary": "Written alongside Advanced Algebra (2). It starts from the numerical instability of classical Gram–Schmidt orthogonalisation, builds the Householder matrix out of reflection in a hyperplane, proves it symmetric, orthogonal and involutive, and uses it to prove the Cartan–Dieudonné theorem. It then works through QR decomposition by Householder reflections, arguing for the sign rule α = −sgn(x₁)‖x‖₂ that keeps the algorithm clear of cancellation, and closes with worked matrix examples.",
+      "pages": 15,
+      "width": 2480,
+      "height": 3508,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "mathematical-analysis-2",
+      "title": "Mathematical Analysis (2)",
+      "meta": "Course notes · Mathematical Analysis (2) · School of Mathematics, Shandong University · 14 pages · June 2026",
+      "summary": "Notes taken alongside ShuaiKun Wang's Mathematical Analysis (2) at Shandong University, read against Jixiu Chen's textbook. Chapter 9 gathers the sharper convergence tests for series of numbers — the ratio form of comparison, Bertrand, Gauss, Cauchy condensation, Sapogov — each proved in full, with the equivalence between infinite products and series and a set of worked problems on conditional convergence. Chapter 10 opens the theory of series of functions, on failure of uniform convergence at an endpoint and Bendixson's test.",
+      "pages": 14,
+      "width": 2550,
+      "height": 3300,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "cauchy-riemann-integral",
+      "title": "The Cauchy Integral and the Riemann Integral",
+      "meta": "Problem-session notes · Mathematical Analysis (2) · School of Mathematics, Shandong University · 5 pages · April 2026",
+      "summary": "Notes for a problem session in Mathematical Analysis (2), on a single question: if the left-endpoint sums of a bounded function converge to a constant as the mesh goes to zero, is the function Riemann integrable? The Cauchy integral is defined, an oscillation criterion for Riemann integrability is proved, and the two are shown to agree — the bad intervals are split by parity so that no two are adjacent, and the partition is then nudged to make two Cauchy sums differ by more than the Cauchy condition allows.",
+      "pages": 5,
+      "width": 2480,
+      "height": 3508,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "secant-area",
+      "title": "Secant Parametrisation and the Area Enclosed by an Algebraic Curve",
+      "meta": "Problem-session notes · Mathematical Analysis (2) · School of Mathematics, Shandong University · 5 pages · March 2026",
+      "summary": "Notes on the geometric applications of the definite integral, built around one device: parametrise a curve through its node by the slope t of the secant y = tx, and Green's theorem collapses the area to A = ½∫x²(t) dt. The formula is proved twice — once as a line integral, once as a Jacobian change of variables — then extended to a translated node, to a general secant family y = f(t)x (which returns the polar-sector formula as the case f = tan), and to affine substitutions. It closes on the algebraic limit: the method needs a rational parametrisation, so it works exactly where a singular point drags the genus to zero, with the folium of Descartes and a quartic worked out.",
+      "pages": 5,
+      "width": 2480,
+      "height": 3508,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "cmc-final-2026",
+      "title": "17th CMC Final Paper — Mathematics Division, Lower Years",
+      "meta": "Worked problems · 17th Chinese Mathematics Competition, final round · School of Mathematics, Shandong University · 12 pages · April 2026",
+      "summary": "The final-round paper of the 17th Chinese Mathematics Competition (mathematics division, lower years), worked through in Chinese. The fill-in section covers a 2×2 rotation matrix raised to the 2026th power, the asymptotics of max and min of x² − y² + 9x²y − 3y³ over a disc of radius R, a symmetry identity for ∫₀ˣ dt/(1 + t³), and a second-order equation with polynomial coefficients solved by guessing eᵏᵗ and reducing the order. The proofs that follow ask for the invertibility of A + B + E when A²⁰²⁵ = B²⁰²⁶ = E and AB = BA, the growth of min and max of the level set of an iterated |(x − 1)(x − 2)|, a determinant inequality under two positive definite hypotheses, and the convergence of xₙ₊₁ = f(xₙ) + aₙ under a contraction and then under a weaker derivative bound. Several problems are given two solutions.",
+      "pages": 12,
+      "width": 2550,
+      "height": 3300,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "advanced-algebra-midterm-mock",
+      "title": "Advanced Algebra (2) — Pre-Midterm Mock Exam",
+      "meta": "Mock exam with solutions · Advanced Algebra (2) · School of Mathematics, Shandong University · 7 pages · April 2026",
+      "summary": "Eight problems set as a mock paper before the Advanced Algebra (2) midterm, each written out in full and in Chinese. The first half stays close to the course: recovering the matrix of a linear transformation from its action on a second basis, showing that commuting transformations on a complex space have a common eigenvector, proving that a diagonalisable map restricts to a diagonalisable map on any invariant subspace and that the subspace has an invariant complement, and splitting V as Im(A − I) ⊕ Ker(A − I) when A³ = A. The second half is heavier: diagonalising a 3×3 matrix from its determinant and eigenvector count to get a closed form for Aᵐ, proving that a matrix of entries 1 + xᵢyⱼ has real eigenvalues by factoring it through rank two, working out the eigenvalues, diagonalisability and injectivity of φ(X) = AX − XB, and finally showing that polynomials f(X) = A, g(X) = B in M₃(C) with A² = B² = O force A = ζB or B = ζA, by cases on the Jordan form of X.",
+      "pages": 7,
+      "width": 2550,
+      "height": 3300,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "abstract-algebra-hw-3",
+      "title": "Abstract Algebra — Problem Set 3",
+      "meta": "Worked problems · Abstract Algebra · School of Mathematics, Shandong University · 11 pages · March 2026",
+      "summary": "Five problems from the third Abstract Algebra assignment, written out in full and in Chinese. The first classifies the groups of order 6 by splitting on the order of the elements — a 6-element gives Z₆, a 3-element without one gives S₃ ≅ D₃ through the relation bab⁻¹ = a⁻¹, and a group of involutions alone is ruled out by Lagrange — with a decision tree showing why the three cases exhaust the possibilities. The rest work on subgroup products: HK is a subgroup exactly when HK = KH, |HK| = |H||K|/|H ∩ K| by coset decomposition, a counterexample where the product fails, and normal subgroups of orders 3 and 5 forcing an element of order 15. Then coprime normal subgroups H and N are shown to commute elementwise via the commutator hnh⁻¹n⁻¹, giving HN ≅ H × N; an automorphism is shown to fix a normal subgroup whose index is coprime to its order, and G = NH for a subgroup H of the same order as G/N. The last problem builds the H−K double cosets, shows they partition G but need not be equinumerous, and proves that for lower- and upper-triangular subgroups of GLₙ(ℝ) every double coset has the form HWK with W a permutation matrix, by reducing a matrix with row and column operations.",
+      "pages": 11,
+      "width": 2480,
+      "height": 3508,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    }
+  ]
+}

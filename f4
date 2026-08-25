@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Site studio</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fbfbf9; --panel: #fff; --ink: #1b1b19; --muted: #6c6a64; --faint: #9c9890;
+    --line: #e5e2db; --accent: #2f6f52; --bad: #b4443a; --hover: #f3f2ee;
+    --sans: ui-sans-serif, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131413; --panel: #191a19; --ink: #e9e7e1; --muted: #9a978f; --faint: #706d66;
+      --line: #2b2c2a; --accent: #86c2a2; --bad: #e08a80; --hover: #202220;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.6 var(--sans); }
+  h1 { margin: 0; font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+  h2 { margin: 0 0 4px; font-size: 17px; font-weight: 600; }
+  h3 { margin: 0; font-size: 14px; font-weight: 600; }
+  p.about { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
+
+  /* top bar */
+  .bar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 14px;
+    padding: 12px 22px; border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); }
+  .bar .grow { flex: 1; }
+  #saved { color: var(--muted); font-size: 13px; min-width: 90px; }
+  #saved.ok { color: var(--accent); }
+  #saved.bad { color: var(--bad); }
+
+  .button { padding: 8px 14px; border: 1px solid var(--accent); border-radius: 7px;
+    background: var(--accent); color: #fff; font: inherit; font-size: 14px; cursor: pointer; }
+  .button.secondary { background: transparent; color: var(--accent); }
+  .button.ghost { border-color: var(--line); background: transparent; color: var(--muted); }
+  .button:disabled { opacity: .45; cursor: not-allowed; }
+  .button:not(:disabled):hover { opacity: .88; }
+
+  /* tabs */
+  .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 10px 22px 0; border-bottom: 1px solid var(--line); }
+  .tab { padding: 8px 14px; border: 0; border-bottom: 2px solid transparent; background: none;
+    color: var(--muted); font: inherit; font-size: 14px; cursor: pointer; }
+  .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+
+  main { width: min(880px, calc(100% - 44px)); margin: 0 auto; padding: 26px 0 120px; }
+  section.panel { margin-bottom: 34px; }
+
+  /* fields */
+  .field { margin-bottom: 14px; }
+  .field label { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 500; }
+  .field .hint { display: block; margin-bottom: 6px; color: var(--faint); font-size: 12.5px; }
+  input, textarea, select { width: 100%; padding: 9px 11px; border: 1px solid var(--line);
+    border-radius: 7px; background: var(--panel); color: var(--ink); font: inherit; font-size: 14px; }
+  input:focus, textarea:focus, select:focus { border-color: var(--accent); outline: none; }
+  textarea { min-height: 84px; resize: vertical; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 640px) { .two { grid-template-columns: 1fr; } }
+
+  .card { margin-bottom: 14px; padding: 15px; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); }
+  .card-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .card-bar strong { flex: 1; font-size: 13px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .icon-button { padding: 3px 9px; border: 1px solid var(--line); border-radius: 6px;
+    background: transparent; color: var(--muted); font: inherit; font-size: 13px; cursor: pointer; }
+  .icon-button:hover { border-color: var(--accent); color: var(--accent); }
+  .icon-button.danger:hover { border-color: var(--bad); color: var(--bad); }
+  .row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+
+  /* themes */
+  .themes { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+  .theme { padding: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--panel);
+    cursor: pointer; overflow: hidden; text-align: left; font: inherit; }
+  .theme[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .swatch { display: block; padding: 16px 14px 18px; }
+  .swatch b { display: block; font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+  .swatch i { display: block; font-size: 12px; font-style: normal; opacity: .75; }
+  .dots { display: flex; gap: 5px; margin-top: 12px; }
+  .dots span { width: 13px; height: 13px; border-radius: 50%; }
+  .theme-meta { padding: 10px 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12.5px; }
+
+  /* articles */
+  .split { display: grid; grid-template-columns: 220px 1fr; gap: 20px; }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+  .post-list { display: flex; flex-direction: column; gap: 4px; }
+  .post-item { padding: 9px 11px; border: 1px solid transparent; border-radius: 7px;
+    background: none; color: var(--ink); font: inherit; font-size: 13.5px; text-align: left; cursor: pointer; }
+  .post-item:hover { background: var(--hover); }
+  .post-item[aria-current="true"] { border-color: var(--accent); background: var(--hover); }
+  .post-item small { display: block; color: var(--faint); font-size: 12px; }
+  .post-item .draft { color: var(--bad); }
+
+  .writer { min-height: 380px; font-family: var(--mono); font-size: 13.5px; line-height: 1.65; }
+  .preview { padding: 16px 18px; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); }
+  .preview img { max-width: 100%; height: auto; border-radius: 6px; }
+  .preview :first-child { margin-top: 0; }
+  .preview pre { overflow-x: auto; padding: 12px; border-radius: 6px; background: var(--hover); }
+
+  .imgs { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+  .img { border: 1px solid var(--line); border-radius: 9px; background: var(--panel); overflow: hidden; }
+  .img img { display: block; width: 100%; height: 96px; object-fit: cover; background: var(--hover); }
+  .img .meta { padding: 8px 10px; font-size: 12px; color: var(--muted); word-break: break-all; }
+  .img .acts { display: flex; gap: 6px; padding: 0 10px 10px; }
+
+  .log { margin-top: 16px; padding: 14px; border: 1px solid var(--line); border-radius: 9px;
+    background: var(--panel); font-family: var(--mono); font-size: 12.5px; white-space: pre-wrap;
+    max-height: 320px; overflow: auto; }
+  .note { padding: 13px 15px; border: 1px solid var(--line); border-left: 3px solid var(--accent);
+    border-radius: 8px; background: var(--panel); color: var(--muted); font-size: 13.5px; }
+  .warn { border-left-color: var(--bad); }
+  code { padding: 1px 5px; border-radius: 4px; background: var(--hover); font-family: var(--mono); font-size: 12.5px; }
+  .spacer { height: 22px; }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <h1>Site studio</h1>
+  <span id="saved">Loading…</span>
+  <span class="grow"></span>
+  <a class="button ghost" href="http://localhost:3000" target="_blank" rel="noreferrer">Preview site ↗</a>
+  <button class="button" id="publish-top">Publish</button>
+</div>
+
+<div class="tabs" role="tablist">
+  <button class="tab" role="tab" data-tab="look">Look</button>
+  <button class="tab" role="tab" data-tab="profile">Profile</button>
+  <button class="tab" role="tab" data-tab="sections">Sections</button>
+  <button class="tab" role="tab" data-tab="articles">Articles</button>
+  <button class="tab" role="tab" data-tab="images">Pictures</button>
+  <button class="tab" role="tab" data-tab="publish">Publish</button>
+</div>
+
+<main id="view"></main>
+
+<script>
+const view = document.querySelector("#view");
+const savedEl = document.querySelector("#saved");
+
+let state = null;      // { site, themes, posts, images, git }
+let tab = "look";
+let openSlug = null;   // article being edited
+
+/* ------------------------------------------------------------ plumbing */
+
+const api = async (path, options = {}) => {
+  const res = await fetch(`/api${path}`, options);
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || res.statusText);
+  return data;
+};
+
+const status = (text, kind = "") => { savedEl.textContent = text; savedEl.className = kind; };
+
+let saveTimer = null;
+const queueSave = (fn) => {
+  status("Saving…");
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async () => {
+    try {
+      await fn();
+      status("Saved", "ok");
+    } catch (error) {
+      status(error.message, "bad");
+    }
+  }, 600);
+};
+
+// The stamp travels with every save so the server can spot a page that was
+// opened before someone else changed content/site.json.
+const saveSite = () => queueSave(async () => {
+  const saved = await api("/site", {
+    method: "PUT",
+    headers: { "content-type": "application/json", "x-site-stamp": state.stamp ?? "" },
+    body: JSON.stringify(state.site),
+  });
+  state.stamp = saved.stamp;
+});
+
+const savePost = (post, previousSlug) => queueSave(() =>
+  api("/post", { method: "PUT", headers: { "content-type": "application/json" },
+    body: JSON.stringify({ ...post, previousSlug }) }));
+
+const el = (tag, props = {}, ...children) => {
+  const node = Object.assign(document.createElement(tag), props);
+  for (const child of children.flat()) if (child != null) node.append(child);
+  return node;
+};
+
+/** A labelled input bound to obj[key]. */
+function field(label, obj, key, { hint, type = "input", rows, onInput } = {}) {
+  const wrap = el("div", { className: "field" });
+  const id = `f${Math.random().toString(36).slice(2)}`;
+  wrap.append(el("label", { htmlFor: id, textContent: label }));
+  if (hint) wrap.append(el("span", { className: "hint", textContent: hint }));
+
+  const control = el(type === "textarea" ? "textarea" : "input", { id, value: obj[key] ?? "" });
+  if (rows) control.rows = rows;
+  control.addEventListener("input", () => {
+    obj[key] = control.value;
+    (onInput ?? saveSite)();
+  });
+  wrap.append(control);
+  return wrap;
+}
+
+/** Add / remove / reorder for an array of objects. */
+function listEditor(list, { singular, titleKey, fields, blank, onChange = saveSite }) {
+  const box = el("div");
+
+  list.forEach((entry, index) => {
+    const card = el("div", { className: "card" });
+    const bar = el("div", { className: "card-bar" });
+    const name = el("strong", { textContent: entry[titleKey] || `${singular} ${index + 1}` });
+    bar.append(name);
+
+    const swap = (to) => {
+      if (to < 0 || to >= list.length) return;
+      [list[index], list[to]] = [list[to], list[index]];
+      onChange(); render();
+    };
+    bar.append(
+      el("button", { className: "icon-button", textContent: "↑", title: "Move up", onclick: () => swap(index - 1) }),
+      el("button", { className: "icon-button", textContent: "↓", title: "Move down", onclick: () => swap(index + 1) }),
+      el("button", { className: "icon-button danger", textContent: "Remove",
+        onclick: () => { list.splice(index, 1); onChange(); render(); } }),
+    );
+    card.append(bar);
+
+    for (const spec of fields) {
+      card.append(field(spec.label, entry, spec.key, {
+        hint: spec.hint, type: spec.type,
+        onInput: () => { if (spec.key === titleKey) name.textContent = entry[titleKey] || `${singular} ${index + 1}`; onChange(); },
+      }));
+    }
+    box.append(card);
+  });
+
+  box.append(el("button", { className: "icon-button", textContent: `+ Add ${singular}`,
+    onclick: () => { list.push({ ...blank }); onChange(); render(); } }));
+  return box;
+}
+
+/* ---------------------------------------------------------------- tabs */
+
+function renderLook() {
+  const { site, themes } = state;
+  const panel = el("section", { className: "panel" });
+  panel.append(el("h2", { textContent: "Theme" }),
+    el("p", { className: "about", textContent: "Each theme is a full palette and typeface, for light and dark." }));
+
+  const grid = el("div", { className: "themes" });
+  for (const [key, preset] of Object.entries(themes)) {
+    const chosen = (site.theme.preset || "ink") === key;
+    const card = el("button", { className: "theme", type: "button" });
+    card.setAttribute("aria-pressed", String(chosen));
+
+    const swatch = el("div", { className: "swatch" });
+    swatch.style.background = preset.light.bg;
+    swatch.style.color = preset.light.ink;
+    swatch.append(el("b", { textContent: preset.name }), el("i", { textContent: "Aa — the quick brown fox" }));
+    const dots = el("div", { className: "dots" });
+    for (const colour of [preset.light.accent, preset.dark.bg, preset.dark.accent, preset.light.line]) {
+      dots.append(Object.assign(el("span"), { style: `background:${colour}` }));
+    }
+    swatch.append(dots);
+
+    card.append(swatch, el("div", { className: "theme-meta", textContent: preset.description }));
+    card.addEventListener("click", () => { site.theme.preset = key; saveSite(); render(); });
+    grid.append(card);
+  }
+  panel.append(grid);
+
+  const opts = el("section", { className: "panel" });
+  opts.append(el("div", { className: "spacer" }), el("h2", { textContent: "Colours and type" }));
+
+  const pick = (label, key, choices, hint) => {
+    const wrap = el("div", { className: "field" });
+    wrap.append(el("label", { textContent: label }));
+    if (hint) wrap.append(el("span", { className: "hint", textContent: hint }));
+    const select = el("select");
+    for (const [value, text] of choices) {
+      select.append(el("option", { value, textContent: text, selected: (site.theme[key] || "") === value }));
+    }
+    select.addEventListener("change", () => { site.theme[key] = select.value; saveSite(); });
+    wrap.append(select);
+    return wrap;
+  };
+
+  const fonts = [["", "Theme default"], ["serif", "Serif"], ["sans", "Sans-serif"], ["mono", "Monospace"]];
+  const grid2 = el("div", { className: "two" });
+  grid2.append(
+    pick("Starting colour mode", "mode", [["system", "Follow the visitor's device"], ["light", "Always light"], ["dark", "Always dark"]]),
+    pick("Heading font", "headingFont", fonts),
+    pick("Body font", "bodyFont", fonts),
+    pick("Heading weight", "headingWeight", [
+      ["", "Theme default (regular)"], ["300", "Light"], ["400", "Regular"],
+      ["500", "Medium"], ["600", "Semibold"], ["700", "Bold"], ["800", "Extra bold"],
+    ], "Applies to your name and every section and article heading."),
+    pick("Text size", "textScale", [
+      ["", "Normal"], ["0.9", "Small"], ["0.95", "Slightly smaller"],
+      ["1.05", "Slightly larger"], ["1.15", "Large"], ["1.25", "Extra large"],
+    ], "Scales all text on the site together."),
+    field("Accent colour override", site.theme, "accent", { hint: "A hex colour such as #2f6f52. Leave empty to use the theme's own." }),
+    field("Accent colour in dark mode", site.theme, "accentDark", { hint: "Leave empty to use the theme's own." }),
+  );
+  opts.append(grid2);
+
+  const logo = el("section", { className: "panel" });
+  logo.append(el("div", { className: "spacer" }), el("h2", { textContent: "Logo" }),
+    el("p", { className: "about", textContent: "Leave empty to show your name as text." }),
+    field("Logo image address", site.profile, "logo", { hint: "Upload it under Pictures, then use /images/your-logo.png" }),
+    field("Logo description", site.profile, "logoAlt", { hint: "Read aloud by screen readers." }));
+
+  const paging = el("section", { className: "panel" });
+  paging.append(el("div", { className: "spacer" }), el("h2", { textContent: "Article paging" }),
+    el("div", { className: "two" },
+      field("Articles per page", site.pagination, "perPage"),
+      field("Articles shown on the homepage", site.pagination, "homeLimit")));
+
+  return [panel, opts, logo, paging];
+}
+
+function renderProfile() {
+  const { site } = state;
+  const you = el("section", { className: "panel" });
+  you.append(el("h2", { textContent: "You" }),
+    field("Name or handle", site.profile, "name"),
+    field("Name in the left column", site.profile, "handle", { hint: "Your handle, shown under the photo. Leave empty to use the name above." }),
+    field("Profile photo", site.profile, "photo", { hint: "Upload it under Pictures, then use /images/your-photo.jpg. Leave empty to show your initials." }),
+    field("Photo description", site.profile, "photoAlt", { hint: "Read aloud by screen readers." }),
+    field("Tagline", site.profile, "motto", { hint: "One short line under your name." }),
+    field("Role", site.profile, "role"),
+    field("Location", site.profile, "location"),
+    field("Introduction", site.site, "introduction", { type: "textarea" }));
+
+  const links = el("section", { className: "panel" });
+  links.append(el("div", { className: "spacer" }), el("h2", { textContent: "Links" }),
+    listEditor(site.profile.links, {
+      singular: "link", titleKey: "label", blank: { label: "", url: "", icon: "" },
+      fields: [
+        { key: "label", label: "Text shown" },
+        { key: "url", label: "Address", hint: "https://… or mailto:you@example.com" },
+      ],
+    }));
+
+  const meta = el("section", { className: "panel" });
+  meta.append(el("div", { className: "spacer" }), el("h2", { textContent: "Page and sharing text" }),
+    field("Page title", site.site, "title"),
+    field("Search description", site.site, "description", { type: "textarea" }),
+    field("Last updated", site.site, "updated"),
+    field("Footer line", site.site, "footer"));
+
+  const contact = el("section", { className: "panel" });
+  contact.append(el("div", { className: "spacer" }), el("h2", { textContent: "Contact" }),
+    field("Heading", site.contact, "title"),
+    field("Invitation", site.contact, "text", { type: "textarea" }),
+    field("Your email address", site.contact, "email"),
+    field("Second email address", site.contact, "emailAlt", { hint: "Shown under the first. Leave empty for none." }));
+
+  return [you, links, meta, contact];
+}
+
+const SECTION_SPECS = {
+  now: { singular: "line", stringList: true },
+  projects: { singular: "project", titleKey: "title", blank: { number: "", title: "", date: "", tag: "", description: "", stack: "", url: "" },
+    fields: [{ key: "title", label: "Project name" },
+      { key: "date", label: "When", hint: "2026-06 for June 2026. Projects are listed oldest first; entries with only a year, or none, sit at the end." },
+      { key: "description", label: "What it is", type: "textarea" },
+      { key: "tag", label: "Tag" }, { key: "stack", label: "Built with" }, { key: "url", label: "Link" },
+      { key: "number", label: "Internal id", hint: "Any short value, different for each project." }] },
+  education: { singular: "entry", titleKey: "title", blank: { period: "", title: "", logo: "", url: "", place: "", city: "", detail: "" },
+    fields: [{ key: "title", label: "School or institution" },
+      { key: "logo", label: "School logo", hint: "Upload it under Pictures, then use /images/your-logo.png. Leave empty for none." },
+      { key: "place", label: "Degree or programme" },
+      { key: "url", label: "School website", hint: "https://… — leave empty for no link." },
+      { key: "city", label: "City" }, { key: "period", label: "Years" },
+      { key: "detail", label: "Details", type: "textarea", hint: "Leave empty to show nothing under the heading." }] },
+  honours: { singular: "honour", titleKey: "title", blank: { period: "", title: "", prize: "", issuer: "", url: "", detail: "" },
+    fields: [{ key: "title", label: "Award or honour" },
+      { key: "prize", label: "Prize or rank", hint: "Shown in the accent colour beside the name: Second Prize, Gold, First Class. Leave empty for none." },
+      { key: "issuer", label: "Awarded by", hint: "The body that gave it: a university, a ministry, a competition." },
+      { key: "period", label: "When" },
+      { key: "url", label: "Announcement or certificate", hint: "https://... - leave empty for no link." },
+      { key: "detail", label: "Details", type: "textarea", hint: "Rank, cohort size, what it was for. Leave empty to show nothing." }] },
+  activities: { singular: "activity", titleKey: "title", blank: { period: "", title: "", role: "", detail: "" },
+    fields: [{ key: "title", label: "Activity" }, { key: "role", label: "Your role" },
+      { key: "period", label: "When" }, { key: "detail", label: "Details", type: "textarea" }] },
+  writing: { articles: true },
+};
+
+function renderSections() {
+  const { site } = state;
+  const out = [];
+
+  const order = el("section", { className: "panel" });
+  order.append(el("h2", { textContent: "Order and visibility" }),
+    el("p", { className: "about", textContent: "Drag-free: use the arrows. Hidden sections disappear from the page and the menu." }));
+
+  site.sections.forEach((section, index) => {
+    const card = el("div", { className: "card" });
+    const bar = el("div", { className: "card-bar" });
+    bar.append(el("strong", { textContent: section.key }));
+
+    const swap = (to) => {
+      if (to < 0 || to >= site.sections.length) return;
+      [site.sections[index], site.sections[to]] = [site.sections[to], site.sections[index]];
+      saveSite(); render();
+    };
+    bar.append(
+      el("button", { className: "icon-button", textContent: "↑", onclick: () => swap(index - 1) }),
+      el("button", { className: "icon-button", textContent: "↓", onclick: () => swap(index + 1) }),
+      el("button", { className: "icon-button", textContent: section.visible ? "Visible" : "Hidden",
+        onclick: () => { section.visible = !section.visible; saveSite(); render(); } }),
+    );
+    card.append(bar, field("Heading shown on the page", section, "label"));
+    order.append(card);
+  });
+  out.push(order);
+
+  for (const section of site.sections) {
+    const spec = SECTION_SPECS[section.key];
+    if (!spec) continue;
+
+    const panel = el("section", { className: "panel" });
+    panel.append(el("div", { className: "spacer" }), el("h2", { textContent: section.label }));
+
+    if (spec.articles) {
+      panel.append(el("p", { className: "about", textContent: "Articles are edited in the Articles tab." }));
+    } else if (spec.stringList) {
+      const list = site[section.key];
+      const box = el("div");
+      list.forEach((value, index) => {
+        const row = el("div", { className: "row" });
+        const input = el("input", { value });
+        input.addEventListener("input", () => { list[index] = input.value; saveSite(); });
+        row.append(input, el("button", { className: "icon-button danger", textContent: "Remove",
+          onclick: () => { list.splice(index, 1); saveSite(); render(); } }));
+        box.append(row);
+      });
+      box.append(el("button", { className: "icon-button", textContent: `+ Add ${spec.singular}`,
+        onclick: () => { list.push(""); saveSite(); render(); } }));
+      panel.append(box);
+    } else {
+      panel.append(listEditor(site[section.key], spec));
+    }
+    out.push(panel);
+  }
+
+  return out;
+}
+
+/* ------------------------------------------------------------ articles */
+
+const slugify = (text) => text.toLowerCase().trim()
+  .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "untitled";
+
+const today = () => new Date().toISOString().slice(0, 10);
+
+function renderArticles() {
+  const panel = el("section", { className: "panel" });
+  const split = el("div", { className: "split" });
+
+  /* left: the list */
+  const left = el("div");
+  left.append(el("button", { className: "button secondary", style: "width:100%;margin-bottom:10px",
+    textContent: "+ New article", onclick: newArticle }));
+
+  const list = el("div", { className: "post-list" });
+  for (const post of state.posts) {
+    const item = el("button", { className: "post-item" });
+    item.setAttribute("aria-current", String(post.slug === openSlug));
+    item.append(el("span", { textContent: post.title || post.slug }),
+      el("small", { className: post.draft ? "draft" : "",
+        textContent: post.draft ? "draft — not published" : (post.date || "no date") }));
+    item.addEventListener("click", () => { openSlug = post.slug; render(); });
+    list.append(item);
+  }
+  left.append(list);
+
+  /* right: the editor */
+  const right = el("div");
+  const post = state.posts.find((entry) => entry.slug === openSlug);
+
+  if (!post) {
+    right.append(el("div", { className: "note",
+      textContent: "Pick an article on the left, or start a new one. Files whose name begins with _ are drafts and stay off the site." }));
+  } else {
+    const previous = post.slug;
+    const save = () => savePost(post, previous);
+
+    right.append(
+      field("Title", post, "title", { onInput: save }),
+      el("div", { className: "two" },
+        field("Date", post, "date", { hint: "YYYY-MM-DD. Newest first.", onInput: save }),
+        field("Web address", post, "slug", { hint: "Lowercase letters, numbers, hyphens.", onInput: save })),
+      field("Summary", post, "summary", { hint: "One line, shown on the homepage.", type: "textarea", onInput: save }),
+      el("div", { className: "two" },
+        field("Cover picture", post, "cover", { hint: "e.g. /images/photo.jpg — leave empty for none.", onInput: save }),
+        field("Cover description", post, "coverAlt", { onInput: save })),
+    );
+
+    /* the writing area */
+    const wrap = el("div", { className: "field" });
+    wrap.append(el("label", { textContent: "Article" }),
+      el("span", { className: "hint", textContent: "Markdown: ## heading, **bold**, [link](url), - list. Use the button below to add a picture." }));
+    const writer = el("textarea", { className: "writer", value: post.body ?? "" });
+    wrap.append(writer);
+    right.append(wrap);
+
+    const tools = el("div", { className: "row" });
+    const insert = (text) => {
+      const at = writer.selectionStart ?? writer.value.length;
+      writer.value = writer.value.slice(0, at) + text + writer.value.slice(writer.selectionEnd ?? at);
+      writer.dispatchEvent(new Event("input"));
+      writer.focus();
+    };
+
+    const picker = el("input", { type: "file", accept: "image/*", hidden: true });
+    picker.addEventListener("change", async () => {
+      const file = picker.files?.[0];
+      picker.value = "";
+      if (!file) return;
+      try {
+        status("Uploading picture…");
+        const saved = await uploadImage(file);
+        insert(`\n![${file.name.replace(/\.[^.]+$/, "").replace(/[-_]+/g, " ")}](${saved.url})\n`);
+        status("Picture added", "ok");
+      } catch (error) { status(error.message, "bad"); }
+    });
+
+    tools.append(
+      el("button", { className: "icon-button", textContent: "Add a picture", onclick: () => picker.click() }),
+      picker,
+      el("button", { className: "icon-button", textContent: "Heading", onclick: () => insert("\n## ") }),
+      el("button", { className: "icon-button", textContent: "Link", onclick: () => insert("[text](https://)") }),
+      el("button", { className: "icon-button", textContent: "List", onclick: () => insert("\n- ") }),
+      el("span", { style: "flex:1" }),
+      el("button", { className: "icon-button danger", textContent: "Delete article",
+        onclick: async () => {
+          if (!confirm(`Delete "${post.title || post.slug}"? This cannot be undone.`)) return;
+          await api(`/post?slug=${encodeURIComponent(post.slug)}`, { method: "DELETE" });
+          openSlug = null;
+          await load();
+        } }),
+    );
+    right.append(tools);
+
+    const preview = el("div", { className: "preview" });
+    right.append(el("div", { className: "spacer" }), el("h3", { textContent: "Preview" }), preview);
+
+    let previewTimer = null;
+    const refresh = async () => {
+      try {
+        const { html } = await api("/preview", { method: "POST",
+          headers: { "content-type": "application/json" }, body: JSON.stringify({ body: writer.value }) });
+        preview.innerHTML = html;
+      } catch { /* preview is optional */ }
+    };
+
+    writer.addEventListener("input", () => {
+      post.body = writer.value;
+      save();
+      clearTimeout(previewTimer);
+      previewTimer = setTimeout(refresh, 350);
+    });
+    refresh();
+  }
+
+  split.append(left, right);
+  panel.append(split);
+  return [panel];
+}
+
+async function newArticle() {
+  const title = prompt("What is the article called?");
+  if (!title) return;
+
+  const slug = slugify(title);
+  await api("/post", { method: "PUT", headers: { "content-type": "application/json" },
+    body: JSON.stringify({ slug, title, date: today(), summary: "", cover: "", coverAlt: "",
+      body: "Write your first paragraph here.\n" }) });
+  openSlug = slug;
+  await load();
+  status("Article created", "ok");
+}
+
+/* -------------------------------------------------------------- images */
+
+async function uploadImage(file) {
+  const name = file.name.toLowerCase().replace(/[^a-z0-9._-]+/g, "-");
+  return api(`/image?name=${encodeURIComponent(name)}`, {
+    method: "POST", headers: { "content-type": file.type || "application/octet-stream" }, body: file,
+  });
+}
+
+function renderImages() {
+  const panel = el("section", { className: "panel" });
+  panel.append(el("h2", { textContent: "Pictures" }),
+    el("p", { className: "about", textContent: "Everything here lives in public/images and can be used in any article." }));
+
+  const picker = el("input", { type: "file", accept: "image/*", multiple: true, hidden: true });
+  picker.addEventListener("change", async () => {
+    const files = [...(picker.files ?? [])];
+    picker.value = "";
+    try {
+      status(`Uploading ${files.length} picture(s)…`);
+      for (const file of files) await uploadImage(file);
+      await load();
+      status("Uploaded", "ok");
+    } catch (error) { status(error.message, "bad"); }
+  });
+
+  panel.append(el("button", { className: "button secondary", textContent: "Upload pictures",
+    onclick: () => picker.click() }), picker, el("div", { className: "spacer" }));
+
+  if (!state.images.length) {
+    panel.append(el("div", { className: "note", textContent: "No pictures yet." }));
+    return [panel];
+  }
+
+  const grid = el("div", { className: "imgs" });
+  for (const image of state.images) {
+    const card = el("div", { className: "img" });
+    card.append(el("img", { src: image.url, alt: image.name, loading: "lazy" }),
+      el("div", { className: "meta", textContent: `${image.name} · ${Math.round(image.bytes / 1024)} KB` }));
+    const acts = el("div", { className: "acts" });
+    acts.append(
+      el("button", { className: "icon-button", textContent: "Copy address",
+        onclick: () => navigator.clipboard.writeText(image.url).then(() => status("Address copied", "ok")) }),
+      el("button", { className: "icon-button danger", textContent: "Delete",
+        onclick: async () => {
+          if (!confirm(`Delete ${image.name}?`)) return;
+          await api(`/image?name=${encodeURIComponent(image.name)}`, { method: "DELETE" });
+          await load();
+        } }),
+    );
+    card.append(acts);
+    grid.append(card);
+  }
+  panel.append(grid);
+  return [panel];
+}
+
+/* ------------------------------------------------------------- publish */
+
+function renderPublish() {
+  const panel = el("section", { className: "panel" });
+  panel.append(el("h2", { textContent: "Publish" }),
+    el("p", { className: "about", textContent: "This saves your changes to GitHub. The live site rebuilds itself in about a minute." }));
+
+  const { git } = state;
+  panel.append(el("div", { className: git.ok ? "note" : "note warn", textContent: git.ok
+    ? (git.changed ? `${git.changed} file(s) changed on branch ${git.branch}.` : "Nothing has changed since the last publish.")
+    : `Git is not available here: ${git.error}` }));
+
+  panel.append(el("div", { className: "spacer" }));
+
+  const message = el("input", { value: "Update site content" });
+  const wrap = el("div", { className: "field" });
+  wrap.append(el("label", { textContent: "What did you change?" }),
+    el("span", { className: "hint", textContent: "A short note, saved in the history." }), message);
+  panel.append(wrap);
+
+  const log = el("div", { className: "log", hidden: true });
+  const button = el("button", { className: "button", textContent: "Check and publish" });
+
+  const publish = async (check) => {
+    button.disabled = true;
+    log.hidden = false;
+    log.textContent = check ? "Checking the site builds, then publishing…" : "Publishing…";
+    try {
+      const result = await api("/publish", { method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ message: message.value, check }) });
+      log.textContent = result.log.join("\n\n");
+      status(result.ok ? "Published" : "Publish failed", result.ok ? "ok" : "bad");
+      if (result.ok) await load({ keepTab: true });
+    } catch (error) {
+      log.textContent = error.message;
+      status("Publish failed", "bad");
+    } finally {
+      button.disabled = false;
+    }
+  };
+
+  button.addEventListener("click", () => publish(true));
+
+  const row = el("div", { className: "row" });
+  row.append(button, el("button", { className: "button ghost", textContent: "Publish without checking",
+    onclick: () => publish(false) }));
+  panel.append(row, log);
+
+  return [panel];
+}
+
+/* --------------------------------------------------------------- shell */
+
+const TABS = { look: renderLook, profile: renderProfile, sections: renderSections,
+  articles: renderArticles, images: renderImages, publish: renderPublish };
+
+function render() {
+  for (const button of document.querySelectorAll(".tab")) {
+    button.setAttribute("aria-selected", String(button.dataset.tab === tab));
+  }
+  view.replaceChildren();
+  if (state) view.append(...TABS[tab]());
+}
+
+for (const button of document.querySelectorAll(".tab")) {
+  button.addEventListener("click", () => { tab = button.dataset.tab; render(); });
+}
+document.querySelector("#publish-top").addEventListener("click", () => { tab = "publish"; render(); });
+
+async function load() {
+  try {
+    state = await api("/state");
+    if (!state.posts.some((post) => post.slug === openSlug)) openSlug = state.posts[0]?.slug ?? null;
+    render();
+    status("Ready", "ok");
+  } catch (error) {
+    status(error.message, "bad");
+    view.replaceChildren(el("div", { className: "note warn",
+      textContent: `Could not reach the studio server: ${error.message}` }));
+  }
+}
+
+load();
+</script>
+</body>
+</html>
