@@ -310,6 +310,45 @@ button { font: inherit; }
   background: var(--accent);
 }
 
+/* ---------- subject filter (projects) ---------- */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.filter {
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: none;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.filter:hover { background: var(--hover); color: var(--ink); }
+
+.filter--on,
+.filter--on:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Dimmer than the label, so the chips read as names first and tallies second. */
+.filter__count { opacity: 0.6; font-variant-numeric: tabular-nums; }
+
+.filters__status {
+  margin: 0 0 14px;
+  color: var(--faint);
+  font-size: 0.8125rem;
+}
+
 /* ---------- rows (work, education, writing) ---------- */
 
 .rows { border-top: 1px solid var(--line); }
@@ -371,10 +410,10 @@ a.row:hover h3 { color: var(--accent); }
   column-gap: 24px;
 }
 
-.rows--cv .row__detail { grid-column: 1 / -1; }
+.rows--cv .row__detail,
+.rows--cv .row__issuer { grid-column: 1 / -1; }
 
 .rows--cv .row__aside { text-align: right; }
-
 
 /* The institution's own site, opened from its name. */
 .row__site {
@@ -404,6 +443,15 @@ a.row:hover h3 { color: var(--accent); }
   font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: 0;
+}
+
+/* The body that gave the award, under it. Quieter than the prize, so the two
+   do not compete for the same glance. */
+.row__issuer {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 /* Where the entry happened, ahead of the years it covers. */
