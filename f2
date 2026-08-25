@@ -1,0 +1,882 @@
+@import "tailwindcss";
+
+:root {
+  /* The two-column shell: sidebar, gutter, and the reading column. */
+  --shell: 1000px;
+  --aside: 210px;
+  --gutter: 60px;
+
+  --bg: #fcfcfa;
+  --ink: #1b1b19;
+  --muted: #6c6a64;
+  --faint: #9a978f;
+  --line: #e7e4dd;
+  --accent: #2f6f52;
+  --hover: #f4f3ef;
+  color-scheme: light;
+
+  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Overridden per preset by the <style> block in layout.tsx. */
+  --font-heading: var(--font-serif);
+  --font-body: var(--font-sans);
+  --heading-weight: 400;
+  --text-scale: 1;
+}
+
+:root[data-theme="dark"] {
+  --bg: #131413;
+  --ink: #e9e7e1;
+  --muted: #9a978f;
+  --faint: #706d66;
+  --line: #2a2b29;
+  --accent: #86c2a2;
+  --hover: #1b1c1a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: calc(16px * var(--text-scale, 1));
+  background: var(--bg);
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; text-underline-offset: 0.2em; }
+button { font: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.skip-link {
+  position: fixed;
+  left: 14px;
+  top: 12px;
+  z-index: 100;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* ---------- header ---------- */
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.masthead__inner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  width: min(var(--shell), calc(100% - 48px));
+  min-height: 68px;
+  margin: 0 auto;
+}
+
+.brand {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.primary-nav {
+  display: flex;
+  flex: 1;
+  gap: 22px;
+}
+
+.primary-nav a {
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.primary-nav a:hover { color: var(--ink); }
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.theme-toggle:hover { background: var(--hover); color: var(--ink); }
+
+/* The phone stylesheet below is the only place this button is ever shown. */
+.nav-toggle { display: none; }
+
+/* Only one icon shows; which one depends on the theme stamped on <html>. */
+.theme-icon { grid-area: 1 / 1; }
+:root[data-theme="dark"] .theme-icon--to-dark,
+:root:not([data-theme="dark"]) .theme-icon--to-light { display: none; }
+
+/* ---------- layout ---------- */
+
+.page {
+  width: min(680px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 64px 0 96px;
+}
+
+/* Pages that carry the profile sidebar: card left, everything else right. */
+.page--aside {
+  display: grid;
+  grid-template-columns: var(--aside) minmax(0, 1fr);
+  gap: var(--gutter);
+  align-items: start;
+  width: min(var(--shell), calc(100% - 48px));
+}
+
+.page__body { min-width: 0; }
+
+/* The shell is wide for the CV rows; running text keeps a readable measure. */
+.article,
+.hero__lead,
+.hero__tagline { max-width: 44em; }
+
+.section { margin-top: 72px; }
+
+.section-label {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ---------- profile card ---------- */
+
+.pcard { min-width: 0; }
+
+/* Follows the reader down the page, but only where there is room for it. */
+.pcard__inner {
+  position: sticky;
+  top: 96px;
+}
+
+.pcard__avatar {
+  display: grid;
+  place-items: center;
+  width: 168px;
+  max-width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--hover);
+  object-fit: cover;
+}
+
+.pcard__avatar--initials {
+  color: var(--accent);
+  font-family: var(--font-heading);
+  font-size: 2.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.pcard__name {
+  margin: 22px 0 0;
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.pcard__role {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.pcard__meta {
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.pcard__meta li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.pcard__meta li + li { margin-top: 12px; }
+
+.pcard__icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--faint);
+}
+
+.pcard__meta a {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.pcard__meta a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ---------- hero ---------- */
+
+.hero h1 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2.125rem, 6.5vw, 3rem);
+  font-weight: var(--heading-weight);
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+}
+
+.hero__tagline {
+  margin: 14px 0 0;
+  color: var(--accent);
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  font-style: italic;
+}
+
+.hero__lead {
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+/* ---------- now ---------- */
+
+.now-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.now-list li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.now-list li + li { margin-top: 6px; }
+.now-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 6px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* ---------- subject filter (projects) ---------- */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.filter {
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: none;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.filter:hover { background: var(--hover); color: var(--ink); }
+
+.filter--on,
+.filter--on:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Dimmer than the label, so the chips read as names first and tallies second. */
+.filter__count { opacity: 0.6; font-variant-numeric: tabular-nums; }
+
+.filters__status {
+  margin: 0 0 14px;
+  color: var(--faint);
+  font-size: 0.8125rem;
+}
+
+/* ---------- rows (work, education, writing) ---------- */
+
+.rows { border-top: 1px solid var(--line); }
+
+.row {
+  display: block;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+}
+
+a.row { transition: opacity 0.15s ease; }
+
+.row__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.row h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.1875rem;
+  font-weight: var(--heading-weight);
+  letter-spacing: -0.01em;
+  transition: color 0.15s ease;
+}
+
+a.row:hover h3 { color: var(--accent); }
+
+.row__aside {
+  flex-shrink: 0;
+  color: var(--faint);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.row p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+/* Education and activities: one grid shared by every row, so the institution,
+   the qualification and the dates each keep their own column down the list. */
+.rows--cv {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content max-content;
+}
+
+.rows--cv .row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+  column-gap: 24px;
+}
+
+.rows--cv .row__detail,
+.rows--cv .row__issuer { grid-column: 1 / -1; }
+
+.rows--cv .row__aside { text-align: right; }
+
+/* The institution's own site, opened from its name. */
+.row__site {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.row__site:hover { color: var(--accent); border-color: var(--accent); }
+
+/* A school crest riding on the heading line. White disc behind it so a logo
+   with its own white background still reads as a badge in dark mode. */
+.row__logo {
+  /* Tailwind's preflight makes images block-level; this one rides with the text. */
+  display: inline-block;
+  height: 1.4em;
+  width: auto;
+  margin-left: 0.15em;
+  vertical-align: -0.3em;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* The degree or role, lighter than the institution it belongs to. */
+.row__qual {
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* The body that gave the award, under it. Quieter than the prize, so the two
+   do not compete for the same glance. */
+.row__issuer {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Where the entry happened, ahead of the years it covers. */
+.row__city::after {
+  content: "·";
+  margin: 0 0.45em;
+}
+
+.row__foot {
+  margin-top: 10px;
+  color: var(--faint);
+  font-size: 0.8125rem;
+}
+
+.row__arrow {
+  display: inline-block;
+  color: var(--accent);
+  transition: transform 0.15s ease;
+}
+a.row:hover .row__arrow { transform: translate(2px, -2px); }
+
+/* ---------- contact ---------- */
+
+.contact { margin-top: 80px; }
+
+.contact p {
+  max-width: 34em;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+.contact__link {
+  display: block;
+  width: fit-content;
+  margin-top: 18px;
+  color: var(--accent);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  padding-bottom: 2px;
+  transition: border-color 0.15s ease;
+}
+.contact__link:hover { border-color: var(--accent); }
+
+/* ---------- article page ---------- */
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 26px;
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+.back-link:hover { color: var(--accent); }
+
+.article h1 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 5vw, 2.375rem);
+  font-weight: var(--heading-weight);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.article__date {
+  margin: 14px 0 0;
+  color: var(--faint);
+  font-size: 0.875rem;
+}
+
+.article__summary {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.article__cover,
+.prose img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 32px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+/* ---------- paper reader ---------- */
+
+.reader {
+  display: grid;
+  gap: 16px;
+  margin: 32px 0 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.reader__page { position: relative; }
+
+.reader__page img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+  -webkit-user-drag: none;
+}
+
+/* Sits over the page so a right-click or a long press hits this, not the image. */
+.reader__shield {
+  position: absolute;
+  inset: 0;
+}
+
+.reader__note {
+  margin: 14px 0 0;
+  color: var(--faint);
+  font-size: 0.875rem;
+}
+
+/* ---------- prose (rendered Markdown) ---------- */
+
+.prose {
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.prose > :first-child { margin-top: 0; }
+
+.prose p { margin: 0 0 1.15em; }
+
+.prose h2,
+.prose h3 {
+  margin: 1.9em 0 0.55em;
+  font-family: var(--font-heading);
+  font-weight: var(--heading-weight);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+.prose h2 { font-size: 1.625rem; }
+.prose h3 { font-size: 1.3125rem; }
+
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+.prose ul,
+.prose ol { margin: 0 0 1.15em; padding-left: 1.3em; }
+.prose li { margin-bottom: 0.35em; }
+.prose li::marker { color: var(--faint); }
+
+.prose blockquote {
+  margin: 1.5em 0;
+  padding: 2px 0 2px 20px;
+  border-left: 2px solid var(--accent);
+  color: var(--muted);
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  font-style: italic;
+}
+
+.prose code {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--hover);
+  font-size: 0.88em;
+}
+
+.prose pre {
+  margin: 1.5em 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--hover);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.prose pre code { padding: 0; background: none; font-size: inherit; }
+
+.prose hr { margin: 2.2em 0; border: 0; border-top: 1px solid var(--line); }
+
+.prose table {
+  width: 100%;
+  margin: 1.5em 0;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.prose th,
+.prose td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; }
+.prose th { color: var(--muted); font-weight: 700; }
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  /* Baseline, so the "Top" pill's label sits on the same line as the dates. */
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 20px;
+  margin-top: 88px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--faint);
+  font-size: 0.8125rem;
+}
+
+.site-footer a { color: var(--muted); text-decoration: none; }
+.site-footer a:hover { color: var(--accent); }
+
+/* Sits with the footer text, so the page ends on a way back up. */
+.to-top {
+  padding: 4px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.site-footer .to-top:hover { background: var(--hover); color: var(--ink); }
+
+/* ---------- responsive ---------- */
+
+/* Below the shell width the sidebar becomes a banner above the content. */
+@media (max-width: 900px) {
+  .page--aside {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    width: min(680px, calc(100% - 48px));
+  }
+
+  .pcard {
+    margin-bottom: 44px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .pcard__inner {
+    position: static;
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    grid-template-areas:
+      "avatar name"
+      "avatar role"
+      "meta   meta";
+    align-content: center;
+    column-gap: 22px;
+  }
+
+  .pcard__avatar { grid-area: avatar; align-self: center; width: 104px; }
+  .pcard__avatar--initials { font-size: 1.75rem; }
+  .pcard__name { grid-area: name; margin-top: 0; align-self: end; }
+  .pcard__role { grid-area: role; align-self: start; }
+
+  .pcard__meta {
+    grid-area: meta;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-top: 20px;
+  }
+  .pcard__meta li + li { margin-top: 0; }
+}
+
+@media (max-width: 600px) {
+  body { font-size: 0.9375rem; }
+  .masthead__inner,
+  .page,
+  .page--aside { width: calc(100% - 32px); }
+  .masthead__inner { gap: 16px; min-height: 60px; }
+  .page { padding: 44px 0 72px; }
+  .section { margin-top: 56px; }
+  .row__top { flex-direction: column; gap: 2px; }
+  .pcard__inner { grid-template-columns: 84px minmax(0, 1fr); column-gap: 16px; }
+  .pcard__avatar { width: 84px; }
+  .pcard__avatar--initials { font-size: 1.5rem; }
+
+  /* ---------- phone menu ---------- */
+
+  .nav-toggle {
+    display: grid;
+    place-items: center;
+    /* 44px of tappable area, pulled flush with the bar's right edge. */
+    width: 44px;
+    height: 44px;
+    margin-right: -10px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .nav-toggle__bars {
+    position: relative;
+    display: block;
+  }
+  .nav-toggle__bars,
+  .nav-toggle__bars::before,
+  .nav-toggle__bars::after {
+    width: 18px;
+    height: 1.5px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .nav-toggle__bars::before,
+  .nav-toggle__bars::after {
+    position: absolute;
+    left: 0;
+    content: "";
+  }
+  .nav-toggle__bars::before { top: -6px; }
+  .nav-toggle__bars::after { top: 6px; }
+
+  /* Open: the middle bar goes and the outer two cross. */
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars { background: transparent; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars::before {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars::after {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* The nav leaves the bar and hangs under it as a panel. Absolute against
+     .masthead rather than its inner wrapper, so it spans the full width. */
+  .primary-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 8px;
+    /* Opaque: the bar's own translucency would let the page show through. */
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .primary-nav[data-open="true"] { display: flex; }
+
+  /* Full-width rows, text lined up with the brand, comfortable to hit. */
+  .primary-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 16px;
+    font-size: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  /* The nav no longer takes up the slack, so the controls do. */
+  .theme-toggle { margin-left: auto; }
+}
+
+/* Three columns need room. Narrower than this the row stacks: the parent grid
+   drops to one column and the subgrid rows follow it. */
+@media (max-width: 760px) {
+  .rows--cv { grid-template-columns: minmax(0, 1fr); }
+  .rows--cv .row { row-gap: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* ---------- logo ---------- */
+
+.brand__logo {
+  display: block;
+  width: auto;
+  height: 26px;
+  max-width: 180px;
+}
+
+/* ---------- pagination ---------- */
+
+.see-all {
+  display: inline-block;
+  margin-top: 18px;
+  color: var(--accent);
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+.see-all:hover { text-decoration: underline; }
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 32px;
+  font-size: 0.875rem;
+}
+
+.pager__pages { display: flex; gap: 4px; }
+
+.pager__page {
+  display: grid;
+  place-items: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 6px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.pager__page:hover { background: var(--hover); color: var(--ink); }
+.pager__page--on { background: var(--accent); color: var(--bg); }
+
+.pager__step { color: var(--accent); text-decoration: none; white-space: nowrap; }
+.pager__step:hover { text-decoration: underline; }
+.pager__step--off { color: var(--faint); pointer-events: none; }
+
+@media (max-width: 600px) {
+  .pager { flex-wrap: wrap; justify-content: center; }
+}
