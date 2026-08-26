@@ -55,7 +55,7 @@
     {
       "key": "honours",
       "label": "Honours and Awards",
-      "visible": true
+      "visible": false
     },
     {
       "key": "now",
