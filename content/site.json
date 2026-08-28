@@ -55,7 +55,7 @@
     {
       "key": "honours",
       "label": "Honours and Awards",
-      "visible": false
+      "visible": true
     },
     {
       "key": "now",
@@ -133,6 +133,16 @@
       "description": "A note from a Mathematical Analysis (2) problem session, on areas enclosed by implicit curves. Parametrising by the slope of a secant through the node turns Green's formula into A = ½∫x²(t) dt, which is then generalised — a moved node, a curved secant family, an affine change of coordinates — and bounded by the requirement that the curve be rational.",
       "stack": "LaTeX · 5 pages · read it on the site",
       "url": "/papers/secant-area"
+    },
+    {
+      "number": "00f",
+      "title": "Writing variable-limit integral proofs rigorously",
+      "date": "2026-03",
+      "tag": "problem session / Mathematical Analysis II",
+      "category": "Mathematical Analysis II",
+      "description": "A note from a Mathematical Analysis (2) problem session, on the average-value function F(x) of a monotone f — F(0) = f(0+), F(x) = (1/x)∫₀ˣ f for x > 0. It proves F is monotone and continuous with the same monotonicity as f, and that F(+∞) = f(+∞), working the limit argument through both the finite and divergent cases with an ε-splitting of the integral.",
+      "stack": "LaTeX · 4 pages · read it on the site",
+      "url": "/papers/variable-limit-integral-proofs"
     },
     {
       "number": "01a",
@@ -336,6 +346,16 @@
       "meta": "Problem-session notes · Mathematical Analysis (2) · School of Mathematics, Shandong University · 5 pages · April 2026",
       "summary": "Notes for a problem session in Mathematical Analysis (2), on a single question: if the left-endpoint sums of a bounded function converge to a constant as the mesh goes to zero, is the function Riemann integrable? The Cauchy integral is defined, an oscillation criterion for Riemann integrability is proved, and the two are shown to agree — the bad intervals are split by parity so that no two are adjacent, and the partition is then nudged to make two Cauchy sums differ by more than the Cauchy condition allows.",
       "pages": 5,
+      "width": 2480,
+      "height": 3508,
+      "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
+    },
+    {
+      "slug": "variable-limit-integral-proofs",
+      "title": "Writing Variable-Limit Integral Proofs Rigorously",
+      "meta": "Problem-session notes · Mathematical Analysis (2) · School of Mathematics, Shandong University · 4 pages · March 2026",
+      "summary": "Notes for a Mathematical Analysis (2) problem session, on one worked example: for f monotone on [0, +∞), the averaging function F(x) = (1/x)∫₀ˣ f(t)dt (with F(0) := f(0+)) is shown to be monotone and continuous with f's own monotonicity, via a substitution t = sx that turns F into ∫₀¹ f(sx)ds and squeezes it between F(0) and f(x). The second half proves F(+∞) = f(+∞) in both the bounded and unbounded cases — the bounded case by splitting the integral at a threshold ε, the unbounded case by a lower bound F(x) ≥ ½f(x/2).",
+      "pages": 4,
       "width": 2480,
       "height": 3508,
       "note": "Reading view only. The pages are images, and the source PDF is not published — write to me if you would like a copy."
