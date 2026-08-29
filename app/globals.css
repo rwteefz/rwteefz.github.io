@@ -654,6 +654,61 @@ a.row:hover .row__arrow { transform: translate(2px, -2px); }
 .prose td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; }
 .prose th { color: var(--muted); font-weight: 700; }
 
+/* ---------- friendly links (a small reveal under the footer's last line) ---------- */
+
+.links-accordion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 16px;
+  row-gap: 6px;
+  margin-top: 14px;
+}
+
+.links-accordion__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--faint);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.links-accordion__trigger:hover { color: var(--muted); }
+
+/* Points right, toward the list it reveals — it does not rotate, since the
+   links unfold beside it rather than opening a section beneath it. */
+.links-accordion__triangle {
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid currentColor;
+}
+
+.links-inline {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 14px;
+  row-gap: 6px;
+}
+.links-inline__item {
+  color: var(--faint);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.links-inline__item:hover { color: var(--muted); }
+
 /* ---------- footer ---------- */
 
 .site-footer {

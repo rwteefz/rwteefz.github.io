@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FriendlyLinks } from "@/app/FriendlyLinks";
 import { ProfileCard } from "@/app/ProfileCard";
 import { ProjectFilter } from "@/app/ProjectFilter";
 import { visibleSections } from "@/app/sections";
@@ -195,6 +196,11 @@ const SECTIONS: Record<string, () => React.ReactElement> = {
   writing: Writing,
 };
 
+// Its own label from site.json, but its list lives behind the accordion
+// trigger at the bottom of the page rather than in the section flow above —
+// see FriendlyLinks.
+const linksLabel = siteData.sections.find((section) => section.key === "links")?.label ?? "Links";
+
 export function ExamArchive() {
   return (
     <>
@@ -248,6 +254,8 @@ export function ExamArchive() {
             <span>Updated {siteData.site.updated}</span>
             <a className="to-top" href="#top">↑ Top</a>
           </footer>
+
+          <FriendlyLinks items={siteData.links} label={linksLabel} id="links" />
         </div>
       </main>
     </>

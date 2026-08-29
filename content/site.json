@@ -73,6 +73,11 @@
       "visible": true
     },
     {
+      "key": "links",
+      "label": "Links",
+      "visible": false
+    },
+    {
       "key": "writing",
       "label": "Writing",
       "visible": true
@@ -282,6 +287,23 @@
       "role": "contributor",
       "detail": "Documentation fixes and small patches to projects I use while studying."
     }
+  ],
+  "links": [
+    { "title": "SDU", "url": "https://www.sdu.edu.cn/" },
+    { "title": "SDU — Maths", "url": "https://www.math.sdu.edu.cn/" },
+    { "title": "SDU — Econ", "url": "https://www.econ.sdu.edu.cn/" },
+    { "title": "FDU", "url": "https://www.fudan.edu.cn/" },
+    { "title": "FDU — Maths", "url": "https://math.fudan.edu.cn/" },
+    { "title": "FDU — Finance", "url": "https://fisf.fudan.edu.cn/" },
+    { "title": "SJTU", "url": "https://www.sjtu.edu.cn/" },
+    { "title": "SJTU — Maths", "url": "https://math.sjtu.edu.cn/" },
+    { "title": "SJTU — Finance", "url": "https://en.saif.sjtu.edu.cn/" },
+    { "title": "PKU", "url": "https://www.pku.edu.cn/" },
+    { "title": "PKU — Maths", "url": "https://www.math.pku.edu.cn/" },
+    { "title": "PKU — Finance", "url": "https://www.gsm.pku.edu.cn/" },
+    { "title": "THU", "url": "https://www.tsinghua.edu.cn/" },
+    { "title": "THU — Maths", "url": "https://math.tsinghua.edu.cn/" },
+    { "title": "THU — Finance", "url": "https://www.pbcsf.tsinghua.edu.cn/" }
   ],
   "contact": {
     "title": "Contact me",
